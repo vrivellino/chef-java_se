@@ -62,10 +62,10 @@ Note that the JDK file names must be the same as on Oracle's download page.
 
 This cookbook does NOT use [SemVer](http://semver.org) for versioning.  
 
-The versioning scheme is MAJOR.UPDATE.PATCH where:
+The versioning scheme is RELEASE.UPDATE.PATCH where:
 
-1. MAJOR is the major release of Java e.g. 8
-2. UPDATE is the Java update for major release e.g. 51
+1. RELEASE is the release of Java e.g. 8
+2. UPDATE is the Java critical patch update e.g. 51
 3. PATCH is the cookbook release for the update e.g. 0
 
 
