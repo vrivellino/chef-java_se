@@ -1,4 +1,4 @@
-# Windows Autologin Cookbook
+# Java SE Cookbook
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/java_se.svg?style=flat-square)][cookbook]
 [![Build Status](http://img.shields.io/travis/dhoer/chef-java_se.svg?style=flat-square)][travis]
