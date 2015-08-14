@@ -2,87 +2,75 @@
 # https://chocolatey.org/packages/jdk8
 #
 
-arch = kernel['machine'] =~ /x86_64/ ? 'x64' : 'i586'
-arch = 'i586' if node['java_se']['32bit_only'] && node['platform'] != 'mac_os_x'
+arch = node['kernel']['machine'] =~ /x86_64/ ? 'x64' : 'i586'
+arch = 'i586' if node['java_se']['32bit_only'] && !platform?('mac_os_x')
 
-   # Oracle SHA256 checksums https://www.oracle.com/webfolder/s/digest/8u51checksum.html
+version = node['java_se']['version']
+build = node['java_se']['build']
+
 case node['platform_family']
-when 'debian'
-  package 'tar'
+when 'debian', 'rhel', 'fedora'
   jdk = "jdk-#{version}-linux-#{arch}.tar.gz"
-  checksum = ['java_se']['sha256']['tar'][arch]
-  java_home = "/usr/lib/jvm/java-#{node['java']['jdk_version']}-oracle"
-  java_home = "#{java_home}-#{node['kernel']['machine'] == 'x86_64' ? 'amd64' : 'i386'}"
-
-when 'rhel', 'fedora'
-  jdk = "jdk-#{version}-linux-#{arch}.rpm"
-  checksum = ['java_se']['sha256']['rpm'][arch]
-  java_home = "/usr/lib/jvm/java"
+  checksum = node['java_se']['sha256']['tar'][arch]
 when 'mac_os_x'
   jdk = "jdk-#{version}-macosx-#{arch}.dmg"
-  checksum = ['java_se']['sha256']['dmg']['x64']
+  checksum = node['java_se']['sha256']['dmg']['x64']
 when 'windows'
   jdk = "jdk-#{version}-windows-#{arch}.exe"
-  checksum = ['java_se']['sha256']['exe'][arch]
-else
-  # if platform_family?('debian') &&
+  checksum = node['java_se']['sha256']['exe'][arch]
 end
 
 if node['java_se']['url'].nil?
-  url = "http://download.oracle.com/otn-pub/java/jdk/8u51-b16/#{jdk}"
+  download_url = "http://download.oracle.com/otn-pub/java/jdk/#{version}-b#{build}/#{jdk}"
 else
-  url =  "#{node['java_se']['url']}/#{jdk}"
+  download_url = "#{node['java_se']['url']}/#{jdk}"
 end
 
-bin_cmds = node['java']['jdk']['8']['bin_cmds']
+download_path = "#{Chef::Config[:file_cache_path]}/#{jdk}"
 
+gem_package 'open_uri_redirections' do
+  version '0.2.1'
+end
 
-#
-#  set java home
-#
-ruby_block  "set-env-java-home" do
+ruby_block 'download java se' do
   block do
-    ENV["JAVA_HOME"] = node['java']['java_home']
-  end
-  not_if { ENV["JAVA_HOME"] == node['java']['java_home'] }
-end
-
-directory "/etc/profile.d" do
-  mode 00755
-end
-
-file "/etc/profile.d/jdk.sh" do
-  content "export JAVA_HOME=#{node['java']['java_home']}"
-  mode 00755
-end
-
-if node['java']['set_etc_environment']
-  ruby_block "Set JAVA_HOME in /etc/environment" do
-    block do
-      file = Chef::Util::FileEdit.new("/etc/environment")
-      file.insert_line_if_no_match(/^JAVA_HOME=/, "JAVA_HOME=#{node['java']['java_home']}")
-      file.search_file_replace_line(/^JAVA_HOME=/, "JAVA_HOME=#{node['java']['java_home']}")
-      file.write_file
+    unless ::File.exist?(download_path) && JavaSE.valid?(download_path, checksum)
+      JavaSE.download(download_url, download_path)
+      JavaSE.validate(download_path, checksum)
     end
   end
 end
 
 
-java_ark "jdk" do
-  url tarball_url
-  default node['java']['set_default']
-  checksum tarball_checksum
-  app_home java_home
-  bin_cmds bin_cmds
-  alternatives_priority node['java']['alternatives_priority']
-  retries node['java']['ark_retries']
-  retry_delay node['java']['ark_retry_delay']
-  connect_timeout node['java']['ark_timeout']
-  use_alt_suffix node['java']['use_alt_suffix']
-  reset_alternatives node['java']['reset_alternatives']
-  action :install
-end
-
-if node['java']['set_default'] && platform_family?('debian')
-  include_recipe 'java::default_java_symlink'
-end
+# case node['platform_family']
+# when 'mac_os_x'
+#   # dmg_package "JavaForOSX" do
+#   #   source download_url
+#   #   volumes_dir dmg_volumes_dir
+#   #   action :install
+#   #   type "pkg"
+#   #   package_id "com.apple.pkg.JavaForMacOSX107"
+#   #   checksum dmg_checksum
+#   # end
+# when 'windows'
+#   bit = arch == 'x64' ? '64' : '32'
+#   node.set['java']['install_flavor'] = "windows"
+#   node.set['java']['windows']['url'] = download_url
+#   node.set['java']['windows']['checksum'] = checksum
+#   node.set['java']['windows']['package_name'] = "Java(TM) SE Development Kit 7 (#{bit}-bit)"
+#
+# else
+#   node.set['java']['install_flavor'] = "oracle"
+#   node.set['java']['arch'] = arch
+#   node.set['java']['jdk']['8'][arch]['url'] = download_url
+#   node.set['java']['jdk']['8'][arch]['checksum'] = checksum
+#   node.set['java']['jdk']['8']['bin_cmds'] = node['java_se']['bin_cmds'] if node['java_se']['bin_cmds']
+#
+#   if platform?('debian')
+#     node.set['java']['java_home'] = "/usr/lib/jvm/java-8-oracle-#{arch == 'x64' ? 'amd64' : 'i386'}"
+#   end
+# end
+#
+# recipe_eval do
+#   run_context.include_recipe 'java::default'
+# end

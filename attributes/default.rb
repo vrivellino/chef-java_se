@@ -1,8 +1,11 @@
 default['java_se']['url'] = nil
+default['java_se']['bin_cmds'] = nil
 default['java_se']['32bit_only'] = false
 
-default['java_se']['version'] = '1.8.0_51-b16'
+default['java_se']['version'] = '8u51'
+default['java_se']['build'] = '16'
 
+# https://www.oracle.com/webfolder/s/digest/8u51checksum.html
 default['java_se']['sha256']['dmg']['x64'] = '85ee66d1fdce5244afcbfbfce8dc90582b8c7e3ec8ab4c21e0f4eb390af97832'
 default['java_se']['sha256']['exe']['x64'] = 'f01fd26e6c0936a0f928385c61046d6f97eb32c79bf1ec7c11f105ba8147be87'
 default['java_se']['sha256']['exe']['i586'] = '2f2f184c2ec22dbe82a5ed03855c5240019788bdff62df9920bcbcbf4fed3a9f'
