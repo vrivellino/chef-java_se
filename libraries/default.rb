@@ -1,19 +1,24 @@
 require 'open-uri'
-require 'open_uri_redirections'
 require 'openssl'
 require 'digest'
 
 module JavaSE
   class <<self
+    def load_open_uri_redirections
+      # Libraries are loaded before recipes are compiled, so you can't install gems for direct use by libraries.
+      require 'open_uri_redirections'
+    end
+
     def download(url, file, limit = 5)
       raise ArgumentError, 'too many download failures' if limit == 0
+      load_open_uri_redirections
       uri = URI(url)
       begin
         open(uri,
           'Cookie' => 'oraclelicense=accept-securebackup-cookie',
           allow_redirections: :all,
           ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE) do |fin|
-          open(file, 'w') do |fout|
+          open(file, 'wb') do |fout|
             while (buf = fin.read(8192))
               fout.write buf
             end
@@ -30,7 +35,7 @@ module JavaSE
     end
 
     def validate(file, checksum)
-      raise "#{file} does not match checksum #{checksum}" unless valid?(file, checksum)
+      raise "#{File.basename(file)} does not match checksum #{checksum}" unless valid?(file, checksum)
     end
   end
 end
