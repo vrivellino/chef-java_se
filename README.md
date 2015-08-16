@@ -20,9 +20,6 @@ The next scheduled critical patch update:
 
 ### Platforms
 
-- CentOS
-- Mac OS X
-- Ubuntu
 - Windows
 
 ## Usage
@@ -33,16 +30,16 @@ By adding java_se to a run_list or as a dependency you are accepting the
 
 ### Attributes
 
-- `node['java_se']['url']` - The URL which to download the Java SE JDKs. Leave `nil` to download directly from Oracle.
+- `node['java_se']['url']` - The URL which to download the Java SE JDKs. This can be a path to directory or file. 
+Leave `nil` to download directly from Oracle. Default is `nil`.
+- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if `true`. For Linux and Windows only.
+Default is `false`.
+- `node['java_se']['java_home']` - Alternative java_home location. Leave `nil` to use default location. 
 Default is `nil`.
-- `node['java_se']['32bit_only']` - Install 32-bit Java on 64-bit machines if `true`. For Linux and Windows only.
-Default is `false`.
-- `node['java_se']['tar_only']` - Install tar on debian platform instead of rpm. For Debian platforms only.
-Default is `false`.
 
 ### Examples
 
-#### Configure java_se to download JDKs from s3 instead of Oracle: 
+#### Download JDKs from alternative location: 
 
 ```ruby
 { 
@@ -53,9 +50,9 @@ Default is `false`.
 }
 ```
 
-This will look for a JDK that best matches platform family e.g., windows 64-bit will match 
-https://s3.amazonaws.com/mybucket/java/jdk-8u51-windows-x64.exe.
-Note that the JDK file names must be the same as on Oracle's download page. 
+This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u51-windows-i586.exe.
+Note that the JDK file names must be the same as that found on Oracle's download page. 
 
 
 ## Versioning

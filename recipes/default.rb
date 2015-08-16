@@ -35,7 +35,7 @@ end
 file_cache_path = File.join(Chef::Config[:file_cache_path], jdk)
 
 unless ::File.exist?(file_cache_path) && JavaSE.valid?(file_cache_path, checksum)
-  ruby_block "fetch from #{download_url}" do
+  ruby_block "fetch #{download_url}" do
     block do
       JavaSE.fetch(download_url, file_cache_path)
       JavaSE.validate(file_cache_path, checksum)
