@@ -2,7 +2,7 @@ name 'java_se'
 maintainer 'Dennis Hoer'
 maintainer_email 'dennis.hoer@gmail.com'
 license 'MIT'
-description 'Installs Java SE JDK'
+description "Installs Oracle's Java SE JDK"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '8.51.0'
 
