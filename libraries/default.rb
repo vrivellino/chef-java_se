@@ -1,7 +1,9 @@
 require 'open-uri'
 require 'openssl'
 require 'digest'
+require 'mixlib/shellout'
 
+# Java SE helper
 module JavaSE
   class <<self
     def load_open_uri_redirections
@@ -10,14 +12,14 @@ module JavaSE
     end
 
     def download(url, file, limit = 5)
-      raise ArgumentError, 'too many download failures' if limit == 0
+      fail ArgumentError, 'too many download failures' if limit == 0
       load_open_uri_redirections
       uri = URI(url)
       begin
         open(uri,
-          'Cookie' => 'oraclelicense=accept-securebackup-cookie',
-          allow_redirections: :all,
-          ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE) do |fin|
+             'Cookie' => 'oraclelicense=accept-securebackup-cookie',
+             allow_redirections: :all,
+             ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE) do |fin|
           open(file, 'wb') do |fout|
             while (buf = fin.read(8192))
               fout.write buf
@@ -35,7 +37,7 @@ module JavaSE
     end
 
     def validate(file, checksum)
-      raise "#{File.basename(file)} does not match checksum #{checksum}" unless valid?(file, checksum)
+      fail "#{File.basename(file)} does not match checksum #{checksum}" unless valid?(file, checksum)
     end
   end
 end

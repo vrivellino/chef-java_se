@@ -1,8 +1,7 @@
 default['java_se']['url'] = nil
-default['java_se']['bin_cmds'] = nil
-default['java_se']['32bit_only'] = false
+default['java_se']['force_i586'] = false
 
-default['java_se']['version'] = '8u51'
+default['java_se']['version'] = '1.8.0_51'
 default['java_se']['build'] = '16'
 
 # https://www.oracle.com/webfolder/s/digest/8u51checksum.html
