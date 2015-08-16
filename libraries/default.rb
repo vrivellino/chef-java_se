@@ -11,6 +11,7 @@ module JavaSE
       require 'open_uri_redirections'
     end
 
+    # rubocop:disable Metrics/MethodLength
     def fetch(url, file, limit = 5)
       fail ArgumentError, "too many download failures from #{url}" if limit == 0
       load_open_uri_redirections
@@ -30,6 +31,7 @@ module JavaSE
         fetch(url, file, limit - 1)
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     def valid?(file, checksum)
       sha256 = Digest::SHA256.file file

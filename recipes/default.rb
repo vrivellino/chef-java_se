@@ -34,13 +34,12 @@ end
 
 file_cache_path = File.join(Chef::Config[:file_cache_path], jdk)
 
-unless ::File.exist?(file_cache_path) && JavaSE.valid?(file_cache_path, checksum)
-  ruby_block "fetch #{download_url}" do
-    block do
-      JavaSE.fetch(download_url, file_cache_path)
-      JavaSE.validate(file_cache_path, checksum)
-    end
+ruby_block "fetch #{download_url}" do
+  block do
+    JavaSE.fetch(download_url, file_cache_path)
+    JavaSE.validate(file_cache_path, checksum)
   end
+  not_if { ::File.exist?(file_cache_path) && JavaSE.valid?(file_cache_path, checksum) }
 end
 
 case node['platform_family']
@@ -64,15 +63,14 @@ when 'windows'
     install_dir = "INSTALLDIR=\"#{java_home}\""
   end
 
-  unless ::File.exist?(java_home)
-    ruby_block "install #{::File.basename(file_cache_path)} to #{java_home}" do
-      block do
-        exec = Mixlib::ShellOut.new("start \"\" /wait \"#{file_cache_path}\""\
-          " /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir} & exit %%%%ERRORLEVEL%%%%")
-        exec.run_command
-        exec.error!
-      end
+  ruby_block "install #{::File.basename(file_cache_path)} to #{java_home}" do
+    block do
+      exec = Mixlib::ShellOut.new("start \"\" /wait \"#{file_cache_path}\""\
+        " /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir} & exit %%%%ERRORLEVEL%%%%")
+      exec.run_command
+      exec.error!
     end
+    not_if { ::File.exist?(java_home) }
   end
 
   env 'JAVA_HOME' do
@@ -84,8 +82,4 @@ when 'windows'
     delim ::File::PATH_SEPARATOR
     value "#{java_home}\\bin"
   end
-else
-  # recipe_eval do
-  #   run_context.include_recipe 'java::default'
-  # end
 end

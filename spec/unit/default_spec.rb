@@ -13,12 +13,12 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-          'fetch http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-windows-x64.exe')
+        'fetch http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-windows-x64.exe')
     end
 
     it 'installs java' do
       expect(chef_run).to run_ruby_block(
-          'install jdk-8u51-windows-x64.exe to \Java\jdk1.8.0_51')
+        'install jdk-8u51-windows-x64.exe to \Java\jdk1.8.0_51')
     end
 
     it 'sets JAVA_HOME' do
@@ -42,5 +42,4 @@ describe 'java_se::default' do
         file_cache_path: '/var/chef/cache', platform: 'mac_os_x', version: '10.10').converge(described_recipe)
     end
   end
-
 end
