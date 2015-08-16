@@ -28,6 +28,8 @@ By adding java_se to a run_list or as a dependency you are accepting the
 [Oracle Binary Code License Agreement for Java SE]
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
+Windows platform requires a reboot for JAVA_HOME and PATH to be set.
+
 ### Attributes
 
 - `node['java_se']['url']` - The URL which to download the Java SE JDKs. This can be a path to directory or file. 
