@@ -1,5 +1,8 @@
 default['java_se']['url'] = nil
+default['java_se']['java_home'] = nil
 default['java_se']['force_i586'] = false
+
+default['java_se']['win_addlocal'] = 'ToolsFeature,SourceFeature,PublicjreFeature'
 
 default['java_se']['version'] = '1.8.0_51'
 default['java_se']['build'] = '16'
