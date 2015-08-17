@@ -8,7 +8,7 @@ describe 'java_se::default' do
     end
 
     it 'installs open_uri_redirections gem' do
-      expect(chef_run).to install_gem_package('open_uri_redirections')
+      expect(chef_run).to install_chef_gem('open_uri_redirections')
     end
 
     it 'fetches java' do
