@@ -10,3 +10,5 @@ version '8.51.0'
 # supports 'mac_os_x'
 # supports 'ubuntu'
 supports 'windows'
+
+depends 'dmg', '~> 2.0'
