@@ -1,7 +1,8 @@
 extend Chef::Mixin::ShellOut
 
-chef_gem 'open_uri_redirections' do
+chef_gem 'open_uri_redirections' do # ~FC009
   version '0.2.1'
+  compile_time false
 end
 
 arch = node['kernel']['machine'] =~ /x86_64/ ? 'x64' : 'i586'
@@ -49,7 +50,7 @@ case node['platform_family']
 when 'mac_os_x'
   # inspiration from https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb
   unless shell_out("pkgutil --pkgs='com.oracle.jdk#{jdk_version}'").exitstatus == 0
-    name = "JDK #{version.split('.')[1]} Update #{version.sub(%r{^.*?_(\d+)$},'\1')}"
+    name = "JDK #{version.split('.')[1]} Update #{version.sub(/^.*?_(\d+)$/, '\1')}"
     execute "hdiutil attach '#{file_cache_path}' -quiet"
 
     avoid_daemon = Gem::Version.new(node['platform_version']) >= Gem::Version.new('10.8')
@@ -78,12 +79,12 @@ when 'mac_os_x'
     execute "/usr/bin/sudo /bin/ln -nsf /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Home " \
       '/Library/Java/Home'
 
-    execute "/usr/bin/sudo /bin/mkdir -p " \
+    execute '/usr/bin/sudo /bin/mkdir -p ' \
       "/Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Home/bundle/Libraries"
 
     execute "/usr/bin/sudo /bin/ln -nsf /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents" \
       "/Home/jre/lib/server/libjvm.dylib /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents" \
-      "/Home/bundle/Libraries/libserver.dylib"
+      '/Home/bundle/Libraries/libserver.dylib'
   end
 when 'windows'
   # inspiration from https://chocolatey.org/packages/jdk8
