@@ -13,6 +13,16 @@ Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/do
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
 - 20 October 2015
+
+How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
+
+- Allows for downloads of JDKs directly from Oracle on all supported platforms
+- Can specify one URL to download all platform specific JDKs from 
+- Easily lock version to Java release '~> 8.0' or critical patch update '~> 8.51.0'
+- Lightweight, no cookbook dependencies
+
+Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files, 
+or RPM installations on Linux.
                                                   
 ## Requirements
 
@@ -69,12 +79,13 @@ Note that the JDK file names must be the same as that found on Oracle's download
 
 This cookbook does NOT use [SemVer](http://semver.org) for versioning.  
 
-The versioning scheme is RELEASE.UPDATE.PATCH where:
+The versioning scheme is RELEASE.UPDATE.MINOR where:
 
 1. RELEASE is the release of Java e.g. 8
 2. UPDATE is the Java critical patch update e.g. 51
-3. PATCH is the cookbook release for the enhancement or bugfix e.g. 0
+3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
 
+*All cookbook releases will strive to be backwards-compatible.
 
 ## Getting Help
 
