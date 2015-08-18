@@ -10,7 +10,7 @@
 
 Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
-The next scheduled critical patch update:
+The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
 - 20 October 2015
                                                   
@@ -32,30 +32,37 @@ Windows platform requires a reboot for JAVA_HOME and PATH to be set.
 
 ### Attributes
 
-- `node['java_se']['url']` - The URL which to download the Java SE JDKs. This can be a path to directory or file. 
-Leave `nil` to download directly from Oracle. Default is `nil`.
+- `node['java_se']['url']` - The URL to fetch the Java SE JDKs. This can be a URL to a directory or file. If 
+a directory is provided, then it will download the JDK that best matches platform criteria.  Note that the JDK file 
+names must be the same as that found on Oracle's download page. Leave `nil` to fetch directly from Oracle. 
+Default is `nil`.
+- `node['java_se']['file']` - File path to local Java SE JDK. Use this if you downloaded Java SE JDK outside of this
+cookbook.  This will skip fetching Java SE JDK remotely. Default is `nil`.
 - `node['java_se']['force_i586']` - Install i586 Java on x64 machine if `true`. For Linux and Windows only.
 Default is `false`.
-- `node['java_se']['java_home']` - Alternative java_home location. Leave `nil` to use default location. 
-Default is `nil`.
+- `node['java_se']['java_home']` - Alternative java_home location. Leave `nil` to use default location. For Linux
+and Windows only. Default is `nil`.
 
 ### Examples
-
-#### Download JDKs from alternative location: 
+ 
+Example role to download JDK from alternative location: 
 
 ```ruby
-{ 
+name "java_se"
+description "Install Java SE"
+default_attributes(
   "java_se": {
-    "url": 'https://s3.amazonaws.com/mybucket/java/'
+    "url": "https://s3.amazonaws.com/mybucket/java/"
   }
-  ...
-}
+)
+run_list(
+  "recipe[java_se]"
+)
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
 will match https://s3.amazonaws.com/mybucket/java/jdk-8u51-windows-i586.exe.
 Note that the JDK file names must be the same as that found on Oracle's download page. 
-
 
 ## Versioning
 
