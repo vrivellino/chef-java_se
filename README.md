@@ -20,6 +20,7 @@ The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-08
 
 ### Platforms
 
+- Mac OS X
 - Windows
 
 ## Usage
@@ -72,7 +73,7 @@ The versioning scheme is RELEASE.UPDATE.PATCH where:
 
 1. RELEASE is the release of Java e.g. 8
 2. UPDATE is the Java critical patch update e.g. 51
-3. PATCH is the cookbook release for the update e.g. 0
+3. PATCH is the cookbook release for the enhancement or bugfix e.g. 0
 
 
 ## Getting Help
