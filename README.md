@@ -20,9 +20,8 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Allows for downloads directly from Oracle on all supported platforms
 - Can specify one URL directory to download from
 - Easily lock version to Java release '~> 8.0' or critical patch update '~> 8.51.0'
-
-Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files, 
-or RPM installations on Linux.
+         
+Linux support coming soon.
                                                   
 ## Requirements
 

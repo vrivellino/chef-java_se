@@ -38,7 +38,6 @@ if file.nil? || file.empty?
 
   chef_gem 'open_uri_redirections' do # ~FC009
     version '0.2.1'
-    compile_time false
   end
 
   ruby_block "fetch #{download_url}" do
