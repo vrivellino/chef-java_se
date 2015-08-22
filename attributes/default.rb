@@ -1,5 +1,4 @@
-default['java_se']['url'] = nil
-default['java_se']['java_home'] = nil
+default['java_se']['uri'] = nil
 default['java_se']['force_i586'] = false
 
 default['java_se']['win_addlocal'] = 'ToolsFeature,SourceFeature,PublicjreFeature'
@@ -15,3 +14,7 @@ default['java_se']['sha256']['rpm']['x64'] = '49527b54d8e179c8da3547fbac223e9b1e
 default['java_se']['sha256']['rpm']['i586'] = '43e74ff6ad73e16c6a9b2a2a83b5ed86de1c7ea439ffe2af716dec857f5c8a9c'
 default['java_se']['sha256']['tar']['x64'] = 'd7149012cc51c2cdb8d3a1767825e0dfc36ca0419c3dae56d993cb2732cbeff1'
 default['java_se']['sha256']['tar']['i586'] = '3fd43a5d88ea759bf12502980aa956c683d9df058ad25a94914c5890807e9f2b'
+
+# Deprecated attributes that will be removed in Java 9 release
+default['java_se']['url'] = nil # deprecated in favor of uri
+default['java_se']['java_home'] = nil # deprecated in favor of uri

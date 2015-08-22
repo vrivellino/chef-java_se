@@ -9,10 +9,10 @@ else
   install_dir = "INSTALLDIR=\"#{java_home}\""
 end
 
-file = node['java_se']['file']
-ruby_block "install #{::File.basename(file)} to #{java_home}" do
+file_cache_path = node['java_se']['file_cache_path']
+ruby_block "install #{::File.basename(file_cache_path)} to #{java_home}" do
   block do
-    shell_out!("start \"\" /wait \"#{file}\""\
+    shell_out!("start \"\" /wait \"#{file_cache_path}\""\
         " /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir} & exit %%%%ERRORLEVEL%%%%")
   end
   not_if { ::File.exist?(java_home) }

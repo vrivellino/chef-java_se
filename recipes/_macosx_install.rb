@@ -5,7 +5,7 @@ unless shell_out("pkgutil --pkgs='com.oracle.jdk#{node['java_se']['jdk_version']
   version = node['java_se']['version']
 
   name = "JDK #{version.split('.')[1]} Update #{version.sub(/^.*?_(\d+)$/, '\1')}"
-  execute "hdiutil attach '#{node['java_se']['file']}' -quiet"
+  execute "hdiutil attach '#{node['java_se']['file_cache_path']}' -quiet"
 
   avoid_daemon = Gem::Version.new(node['platform_version']) >= Gem::Version.new('10.8')
   execute "sudo installer -pkg '/Volumes/#{name}/#{name}.pkg' -target /" do

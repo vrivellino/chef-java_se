@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.51.2
+
+- Deprecate url and file attributes in favor of uri
+
 ## 8.51.1
 
 - Support Mac OS X install
