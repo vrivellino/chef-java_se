@@ -13,10 +13,12 @@ provisioner:
 platforms:
   - name: macosx-10.10
     driver:
-      box: macosx-10.10
+      box: dhoer/macosx-10.10
 
 suites:
   - name: java_se
     run_list:
       - recipe[java_se::default]
     attributes:
+#      java_se:
+#        url: http://10.0.0.2:4567

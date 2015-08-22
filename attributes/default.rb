@@ -3,6 +3,9 @@ default['java_se']['force_i586'] = false
 
 default['java_se']['win_addlocal'] = 'ToolsFeature,SourceFeature,PublicjreFeature'
 
+default['java_se']['set_etc_environment'] = false
+default['java_se']['use_alt_suffix'] = false
+
 default['java_se']['version'] = '1.8.0_51'
 default['java_se']['build'] = '16'
 

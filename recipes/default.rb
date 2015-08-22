@@ -7,10 +7,12 @@ node.set['java_se']['jdk_version'] = node['java_se']['version'].sub(/^\d+\.(\d+)
 include_recipe 'java_se::_download_java'
 
 case node['platform_family']
+when 'debian', 'rhel', 'fedora'
+  include_recipe 'java_se::_linux_install'
 when 'mac_os_x'
   include_recipe 'java_se::_macosx_install'
 when 'windows'
   include_recipe 'java_se::_windows_install'
 else
-  Chef::Log.warn('Java SE not supported on this plaform!')
+  Chef::Log.warn('Java SE not supported on this platform!')
 end

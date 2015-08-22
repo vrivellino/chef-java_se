@@ -20,5 +20,6 @@ suites:
     run_list:
       - recipe[java_se::default]
     attributes:
-      java_se:
-        force_i586: false
+#      java_se:
+#        force_i586: true
+#        url: http://10.0.0.2:4567
