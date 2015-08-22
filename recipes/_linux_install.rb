@@ -1,3 +1,5 @@
+# inspiration from https://github.com/agileorbit-cookbooks/java
+
 java_home = node['java_se']['java_home']
 java_home = '/usr/lib/jvm/java' if java_home.nil? || java_home.empty?
 

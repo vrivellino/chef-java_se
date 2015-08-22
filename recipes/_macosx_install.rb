@@ -1,6 +1,7 @@
+# inspiration from https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb
+
 extend Chef::Mixin::ShellOut
 
-# inspiration from https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb
 unless shell_out("pkgutil --pkgs='com.oracle.jdk#{node['java_se']['jdk_version']}'").exitstatus == 0
   version = node['java_se']['version']
 
