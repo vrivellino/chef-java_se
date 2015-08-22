@@ -1,9 +1,9 @@
 # TODO: REMOVE IN JAVA 9 RELEASE
 file = node['java_se']['file']
 unless file.nil? || file.empty?
-  node.set['java_se']['uri'] = "file://#{platform?('windows') ? '/' : ''}#{file.gsub('\\', '/').gsub('//', '/')}"
+  node.set['java_se']['uri'] = "file://#{platform?('windows') ? '/' : ''}#{file.tr('\\', '/').gsub('//', '/')}"
   Chef::Log.warn("Attribute node['java_se']['file'] is deprecated in favor of node['java_se']['uri'] "\
-    "and will be removed in Java 9 release!")
+    'and will be removed in Java 9 release!')
 end
 
 # TODO: REMOVE IN JAVA 9 RELEASE
@@ -11,7 +11,7 @@ url = node['java_se']['url']
 unless url.nil? || url.empty?
   node.set['java_se']['uri'] = url
   Chef::Log.warn("Attribute node['java_se']['url'] is deprecated in favor of node['java_se']['uri'] "\
-    "and will be removed in Java 9 release!")
+    'and will be removed in Java 9 release!')
 end
 
 arch = node['java_se']['arch']
@@ -33,7 +33,7 @@ uri = node['java_se']['uri']
 if uri.nil? || uri.empty?
   download_url = "http://download.oracle.com/otn-pub/java/jdk/#{jdk_version}-b#{node['java_se']['build']}/#{jdk}"
 elsif uri.start_with?('file://')
-  file_cache_path = platform?('windows') ? uri.gsub('file:///', '').gsub('/', '\\').gsub('|', ':') : uri.gsub('file://', '')
+  file_cache_path = platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')
 else
   if %w(.dmg .exe .tar.gz).include?(url)
     download_url = url
