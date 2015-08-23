@@ -21,6 +21,11 @@ describe 'java_se::default' do
       it 'should create jdk.sh with the java home environment variable' do
         expect(chef_run).to render_file('/etc/profile.d/jdk.sh').with_content('export JAVA_HOME=/opt/java')
       end
+
+      it 'symlinks /opt/default-java' do
+        link = chef_run.link('/opt/default-java')
+        expect(link).to_not link_to('/opt/java')
+      end
     end
 
     context 'set_java_home_environment' do
@@ -66,9 +71,14 @@ describe 'java_se::default' do
       it 'validates java' do
         expect(chef_run).to create_template('adding /opt/.java.jinfo for debian')
       end
+
+      it 'symlinks /usr/lib/jvm/default-java' do
+        link = chef_run.link('/usr/lib/jvm/default-java')
+        expect(link).to_not link_to('/usr/lib/jvm/java')
+      end
     end
 
-    context 'java' do
+    context 'centos' do
       let(:chef_run) do
         ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do
         end.converge(described_recipe)
@@ -105,6 +115,11 @@ describe 'java_se::default' do
 
       it 'update-alternatives' do
         expect(chef_run).to run_ruby_block('update-alternatives')
+      end
+
+      it 'symlinks /usr/lib/jvm/default-java' do
+        link = chef_run.link('/usr/lib/jvm/default-java')
+        expect(link).to_not link_to('/usr/lib/jvm/java')
       end
     end
 
