@@ -50,6 +50,7 @@ unless file_cache_path
     version '0.2.1'
   end
 
+  Chef::Log.info("Download #{download_url}")
   ruby_block "fetch #{download_url}" do
     block do
       JavaSE.fetch(download_url, file_cache_path)
