@@ -18,15 +18,15 @@ arch = node['java_se']['arch']
 jdk_version = node['java_se']['jdk_version']
 
 case node['platform_family']
-when 'debian', 'rhel', 'fedora'
-  checksum = node['java_se']['sha256']['tar'][arch]
-  jdk = "jdk-#{jdk_version}-linux-#{arch}.tar.gz"
 when 'mac_os_x'
   checksum = node['java_se']['sha256']['dmg']['x64']
   jdk = "jdk-#{jdk_version}-macosx-#{arch}.dmg"
 when 'windows'
   checksum = node['java_se']['sha256']['exe'][arch]
   jdk = "jdk-#{jdk_version}-windows-#{arch}.exe"
+else
+  checksum = node['java_se']['sha256']['tar'][arch]
+  jdk = "jdk-#{jdk_version}-linux-#{arch}.tar.gz"
 end
 
 uri = node['java_se']['uri']
@@ -44,7 +44,7 @@ else
 end
 
 unless file_cache_path
-  file_cache_path = File.join(Chef::Config[:file_cache_path], jdk)
+  file_cache_path = ::File.join(Chef::Config[:file_cache_path], jdk)
 
   chef_gem 'open_uri_redirections' do # ~FC009
     version '0.2.1'

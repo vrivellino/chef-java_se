@@ -6,9 +6,12 @@ description "Installs Oracle's Java SE JDK"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '8.51.2'
 
-# supports 'centos'
+supports 'centos'
+supports 'debian'
+supports 'fedora'
 supports 'mac_os_x'
-# supports 'ubuntu'
+supports 'redhat'
+supports 'ubuntu'
 supports 'windows'
 
 depends 'dmg', '~> 2.0'

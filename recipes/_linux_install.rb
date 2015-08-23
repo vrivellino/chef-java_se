@@ -27,7 +27,7 @@ file '/etc/profile.d/jdk.sh' do
   mode 00755
 end
 
-ruby_block 'Set JAVA_HOME in /etc/environment' do
+ruby_block 'set JAVA_HOME in /etc/environment' do
   block do
     file = Chef::Util::FileEdit.new('/etc/environment')
     file.insert_line_if_no_match(/^JAVA_HOME=/, "JAVA_HOME=#{java_home}")
@@ -54,7 +54,7 @@ if default && node['java_se']['use_alt_suffix']
   java_home = "#{java_home}_alt"
 end
 
-ruby_block "Adding to #{java_dir}" do # ~FC014
+ruby_block "adding java to #{java_dir}" do # ~FC014
   block do
     require 'fileutils'
 
@@ -80,7 +80,7 @@ end
 # set up .jinfo file for update-java-alternatives
 java_name =  java_home.split('/')[-1]
 jinfo_file = "#{java_root}/.#{java_name}.jinfo"
-template "Adding #{jinfo_file} for debian" do
+template "adding #{jinfo_file} for debian" do
   path jinfo_file
   cookbook 'java_se'
   source 'oracle.jinfo.erb'
@@ -99,7 +99,7 @@ end
 # link java_home to java_dir
 Chef::Log.debug "java_home is #{java_home} and java_dir is #{java_dir}"
 current_link = ::File.symlink?(java_home) ? ::File.readlink(java_home) : nil
-ruby_block "Symlink #{java_dir} to #{java_home}" do
+ruby_block "symlink #{java_dir} to #{java_home}" do
   block do
     FileUtils.rm_f java_home
     FileUtils.ln_sf java_dir, java_home
@@ -117,7 +117,7 @@ ruby_block 'update-alternatives' do # ~FC014
       alt_path = "#{java_home}/bin/#{cmd}"
 
       unless ::File.exist?(alt_path)
-        Chef::Log.info "Skipping setting alternative for #{cmd}. Command #{alt_path} does not exist."
+        Chef::Log.info "skipping setting alternative for #{cmd}. Command #{alt_path} does not exist."
         next
       end
 
@@ -126,7 +126,7 @@ ruby_block 'update-alternatives' do # ~FC014
       alternative_exists = shell_out("#{alternatives_cmd} --display #{cmd} | grep #{alt_path}").exitstatus == 0
       # remove alternative if priority is changed and install it with new priority
       if alternative_exists && !alternative_exists_same_prio
-        Chef::Log.info "Removing alternative for #{cmd} with old priority"
+        Chef::Log.info "removing alternative for #{cmd} with old priority"
         alternative_exists = false
         unless shell_out("#{alternatives_cmd} --remove #{cmd} #{alt_path}").exitstatus == 0
           fail("remove alternative failed: #{alternatives_cmd} --remove #{cmd} #{alt_path}")
@@ -134,7 +134,7 @@ ruby_block 'update-alternatives' do # ~FC014
       end
       # install the alternative if needed
       unless alternative_exists
-        Chef::Log.info "Adding alternative for #{cmd}"
+        Chef::Log.info "adding alternative for #{cmd}"
         if node['java_se']['reset_alternatives']
           shell_out("rm /var/lib/alternatives/#{cmd}")
         end
@@ -147,7 +147,7 @@ ruby_block 'update-alternatives' do # ~FC014
       if default
         unless shell_out(
           "#{alternatives_cmd} --display #{cmd} | grep \"link currently points to #{alt_path}\"").exitstatus == 0
-          Chef::Log.info "Setting alternative for #{cmd}"
+          Chef::Log.info "setting alternative for #{cmd}"
           unless shell_out("#{alternatives_cmd} --set #{cmd} #{alt_path}").exitstatus == 0
             fail("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}")
           end
