@@ -3,14 +3,13 @@ default['java_se']['force_i586'] = false
 default['java_se']['java_home'] = nil
 
 # linux only
+default['java_se']['set_default'] = true
 default['java_se']['owner'] = 'root'
 default['java_se']['group'] = 'root'
-default['java_se']['set_default'] = true
 default['java_se']['set_etc_environment'] = false
 default['java_se']['use_alt_suffix'] = false
-default['java_se']['java_home_mode'] = 00755
-default['java_se']['alternatives_priority'] = 1062
 default['java_se']['reset_alternatives'] = true
+default['java_se']['alternatives_priority'] = 1062
 default['java_se']['bin_cmds'] = %w(
   appletviewer apt ControlPanel extcheck idlj jar jarsigner java javac
   javadoc javafxpackager javah javap javaws jcmd jconsole jcontrol jdb

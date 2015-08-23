@@ -17,8 +17,16 @@ when 'darwin' # mac os x
   describe command('java -version') do
     its(:stderr) { should match(/java version \"1.8.0_51\"/m) }
   end
-when 'ubuntu'
-  describe file('/home/vagrant/foo.txt') do
-    it { should be_file }
+else
+  describe command('java -version') do
+    its(:stderr) { should match(/java version \"1.8.0_51\"/m) }
+  end
+
+  describe command('source /etc/profile.d/jdk.sh && echo $JAVA_HOME') do
+    its(:stdout) { should match(%r{usr/lib/jvm/java}) }
+  end
+
+  describe command('readlink -f `which jar`') do
+    its(:stdout) { should match(%r{/usr/lib/jvm/jdk1.8.0_51/bin/jar}) }
   end
 end

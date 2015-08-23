@@ -44,23 +44,23 @@ end
 
 package 'tar'
 
-app_dir_name = "jdk#{version}"
-app_root = java_home.split('/')[0..-2].join('/')
-app_dir = "#{app_root}/#{app_dir_name}"
+java_dir_name = "jdk#{version}"
+java_root = java_home.split('/')[0..-2].join('/')
+java_dir = "#{java_root}/#{java_dir_name}"
 
 if default && node['java_se']['use_alt_suffix']
   Chef::Log.debug('processing alternate jdk')
-  app_dir = "#{app_dir}_alt"
+  java_dir = "#{java_dir}_alt"
   java_home = "#{java_home}_alt"
 end
 
-ruby_block "Adding to #{app_dir}" do
+ruby_block "Adding to #{java_dir}" do
   block do
     require 'fileutils'
 
-    unless ::File.exist?(app_root)
-      FileUtils.mkdir app_root, mode: node['java_se']['java_home_mode']
-      FileUtils.chown owner, group, app_root
+    unless ::File.exist?(java_root)
+      FileUtils.mkdir java_root, mode: 00755
+      FileUtils.chown owner, group, java_root
     end
 
     cmd = shell_out(
@@ -71,22 +71,22 @@ ruby_block "Adding to #{app_dir}" do
     end
 
     cmd = shell_out(
-      %( mv "#{Chef::Config[:file_cache_path]}/#{app_dir_name}" "#{app_dir}" )
+      %( mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" )
     )
     unless cmd.exitstatus == 0
       Chef::Application.fatal!(
-        %( Command \' mv "#{Chef::Config[:file_cache_path]}/#{app_dir_name}" "#{app_dir}" \' failed ))
+        %( Command \' mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" \' failed ))
     end
 
     # change ownership of extracted files
-    FileUtils.chown_R owner, group, app_root
+    FileUtils.chown_R owner, group, java_root
   end
-  not_if { ::File.exist?(app_dir) }
+  not_if { ::File.exist?(java_dir) }
 end
 
 # set up .jinfo file for update-java-alternatives
 java_name =  java_home.split('/')[-1]
-jinfo_file = "#{app_root}/.#{java_name}.jinfo"
+jinfo_file = "#{java_root}/.#{java_name}.jinfo"
 template "Adding #{jinfo_file} for debian" do
   path jinfo_file
   cookbook 'java_se'
@@ -97,22 +97,22 @@ template "Adding #{jinfo_file} for debian" do
     priority: priority,
     bin_cmds: bin_cmds,
     name: java_name,
-    app_dir: java_home
+    java_dir: java_home
   )
   action :create
   only_if { platform_family?('debian') && !::File.exist?(jinfo_file) }
 end
 
-# link java_home to app_dir
-Chef::Log.debug "java_home is #{java_home} and app_dir is #{app_dir}"
+# link java_home to java_dir
+Chef::Log.debug "java_home is #{java_home} and java_dir is #{java_dir}"
 current_link = ::File.symlink?(java_home) ? ::File.readlink(java_home) : nil
-ruby_block "Symlink #{app_dir} to #{java_home}" do
+ruby_block "Symlink #{java_dir} to #{java_home}" do
   block do
     FileUtils.rm_f java_home
-    FileUtils.ln_sf app_dir, java_home
+    FileUtils.ln_sf java_dir, java_home
     FileUtils.chown owner, group, java_home
   end
-  only_if { current_link != app_dir }
+  only_if { current_link != java_dir }
 end
 
 # rubocop:disable  Style/Next

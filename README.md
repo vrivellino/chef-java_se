@@ -17,12 +17,13 @@ The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-08
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
 - Only supports Oracle's Java SE JDK
+- Does not support RPM installations on Linux
 - Allows for downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from
 - Easily lock version to Java release '~> 8.0' or critical patch update '~> 8.51.0'
 - Lightweight, no cookbook dependencies
          
-Linux support coming soon.
+Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
                                                   
 ## Requirements
 
@@ -46,11 +47,24 @@ Windows platform requires a reboot for JAVA_HOME and PATH to be set.
 - `node['java_se']['uri']` - The URI to the Java SE JDKs. This can be a URI to a local or remote directory or file. 
 If a directory is provided, then it will download the JDK that best matches platform criteria.  Note that JDK file 
 names must be the same as that found on Oracle's download page. For local directories or files, use file:// prefix 
-e.g., 'file:///c:/path/to/jdk.exe'. Leave `nil` to download directly from Oracle. Default is `nil`.
-- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if `true`. For Linux and Windows only.
+e.g., 'file:///c:/path/to/jdk.exe'. Leave nil to download directly from Oracle. Default is `nil`.
+- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows only.
 Default is `false`.
-- `node['java_se']['java_home']` - Alternative java_home location. Leave `nil` to use default location. For Linux
+- `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default is `nil`.
+- `node['java']['set_default']` - Indicates whether or not you want the JDK installed to be default on the system. 
+For Linux only. Defaults to `true`.                
+- `node['java']['owner']` - The owner of extracted directory. For Linux only. Default to `root`. 
+- `node['java']['group']` - The group of extracted directory. For Linux only. Default to `root`. 
+- `node['java']['alternatives_priority']` - A priority of the alternatives. For Linux only. Defaults to `1061`.
+- `node['java']['set_etc_environment']` - Optionally sets JAVA_HOME in /etc/environment for. For Linux only. 
+Default `false`.
+- `node['java']['reset_alternatives']` - Whether alternatives is reset.  For Linux only. Defaults to `true`.  
+- `node['java']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. For Linux only. 
+Defaults to `false`. 
+- `node['java']['bin_cmds']` -  Array of binary commands to symlink /usr/bin to, and set alternative on.  
+Examples are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. 
+Will be ignored if set_default is not true.  For Linux only. 
 - `node['java_se']['url']` - Deprecated in favor of uri and will be removed in Java 9 release.
 - `node['java_se']['file']` - Deprecated in favor of uri and will be removed in Java 9 release.
 
