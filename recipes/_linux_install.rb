@@ -54,7 +54,7 @@ if default && node['java_se']['use_alt_suffix']
   java_home = "#{java_home}_alt"
 end
 
-ruby_block "Adding to #{java_dir}" do
+ruby_block "Adding to #{java_dir}" do # ~FC014
   block do
     require 'fileutils'
 
@@ -64,18 +64,11 @@ ruby_block "Adding to #{java_dir}" do
     end
 
     cmd = shell_out(
-      %( tar xvzf "#{node['java_se']['file_cache_path']}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner)
-    )
-    unless cmd.exitstatus == 0
-      Chef::Application.fatal!("Failed to extract file #{tarball_name}!")
-    end
+      %( tar xvzf "#{node['java_se']['file_cache_path']}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner))
+    fail("Failed to extract file #{tarball_name}!") unless cmd.exitstatus == 0
 
-    cmd = shell_out(
-      %( mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" )
-    )
-    unless cmd.exitstatus == 0
-      Chef::Application.fatal!(
-        %( Command \' mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" \' failed ))
+    unless shell_out(%( mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" )).exitstatus == 0
+      fail(%( Command \' mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" \' failed ))
     end
 
     # change ownership of extracted files
@@ -116,7 +109,7 @@ ruby_block "Symlink #{java_dir} to #{java_home}" do
 end
 
 # rubocop:disable  Style/Next
-ruby_block 'update-alternatives' do
+ruby_block 'update-alternatives' do # ~FC014
   block do
     alternatives_cmd = node['platform_family'] == 'rhel' ? 'alternatives' : 'update-alternatives'
     bin_cmds.each do |cmd|
@@ -136,7 +129,7 @@ ruby_block 'update-alternatives' do
         Chef::Log.info "Removing alternative for #{cmd} with old priority"
         alternative_exists = false
         unless shell_out("#{alternatives_cmd} --remove #{cmd} #{alt_path}").exitstatus == 0
-          fail('remove alternative failed')
+          fail("remove alternative failed: #{alternatives_cmd} --remove #{cmd} #{alt_path}")
         end
       end
       # install the alternative if needed
@@ -146,7 +139,7 @@ ruby_block 'update-alternatives' do
           shell_out("rm /var/lib/alternatives/#{cmd}")
         end
         unless shell_out("#{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}").exitstatus == 0
-          fail("install alternative failed #{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
+          fail("install alternative failed: #{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
         end
       end
 
@@ -156,7 +149,7 @@ ruby_block 'update-alternatives' do
           "#{alternatives_cmd} --display #{cmd} | grep \"link currently points to #{alt_path}\"").exitstatus == 0
           Chef::Log.info "Setting alternative for #{cmd}"
           unless shell_out("#{alternatives_cmd} --set #{cmd} #{alt_path}").exitstatus == 0
-            fail('set alternative failed')
+            fail("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}")
           end
         end
       end
