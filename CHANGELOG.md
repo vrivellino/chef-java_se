@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.51.4
+
+- Remove unused dmg dependency
+
 ## 8.51.3
 
 - Support Linux installs
