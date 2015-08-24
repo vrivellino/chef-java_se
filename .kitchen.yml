@@ -22,6 +22,9 @@ suites:
     run_list:
       - recipe[java_se::default]
     attributes:
+    java_se:
+      uri: https://s3.amazonaws.com/prsnpublic/
+      force_i586: true
 #      java_se:
 #        force_i586: true
 #        url: http://10.0.0.2:4567

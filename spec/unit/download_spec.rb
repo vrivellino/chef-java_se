@@ -38,7 +38,7 @@ describe 'java_se::_download_java' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-          'fetch https://example.com/path/to/jdks//jdk-8u60-linux-x64.tar.gz')
+        'fetch https://example.com/path/to/jdks//jdk-8u60-linux-x64.tar.gz')
     end
 
     it 'validates java' do
@@ -57,7 +57,7 @@ describe 'java_se::_download_java' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-          'fetch https://example.com/path/to/jdks/myjdk.tar.gz')
+        'fetch https://example.com/path/to/jdks/myjdk.tar.gz')
     end
 
     it 'validates java' do
@@ -76,7 +76,7 @@ describe 'java_se::_download_java' do
 
     it 'does not fetch java' do
       expect(chef_run).to_not run_ruby_block(
-          'fetch /var/chef/cache/jdks//jdk-8u60-linux-x64.tar.gz')
+        'fetch /var/chef/cache/jdks//jdk-8u60-linux-x64.tar.gz')
     end
 
     it 'validates java' do
@@ -95,7 +95,7 @@ describe 'java_se::_download_java' do
 
     it 'does not fetche java' do
       expect(chef_run).to_not run_ruby_block(
-          'fetch /var/chef/cache/myjdk.tar.gz')
+        'fetch /var/chef/cache/myjdk.tar.gz')
     end
 
     it 'validates java' do
