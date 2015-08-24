@@ -18,7 +18,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 
 - Allows for downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from
-- Easily lock version to Java release '~> 8.0' or critical patch update '~> 8.51.0'
+- Easily lock version to Java release '~> 8.0' or critical patch update '~> 8.60.0'
 - Lightweight, no cookbook dependencies
 - Only supports Oracle's Java SE JDK
 - Does not support RPM installations on Linux
@@ -88,7 +88,7 @@ run_list(
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u51-windows-i586.exe.
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u60-windows-i586.exe.
 Note that JDK file names must be the same as that found on Oracle's download page. 
 
 ## Versioning
@@ -98,7 +98,7 @@ This cookbook does NOT use [SemVer](http://semver.org) for versioning.
 The versioning scheme is RELEASE.UPDATE.MINOR where:
 
 1. RELEASE is the release of Java e.g. 8
-2. UPDATE is the Java critical patch update e.g. 51
+2. UPDATE is the Java critical patch update e.g. 60
 3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
 
 *All cookbook releases will strive to be backwards-compatible.

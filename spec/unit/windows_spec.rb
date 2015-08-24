@@ -13,16 +13,16 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-        'fetch http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-windows-x64.exe')
+        'fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-windows-x64.exe')
     end
 
     it 'validates java' do
-      expect(chef_run).to run_ruby_block('validate C:/chef/cache/jdk-8u51-windows-x64.exe')
+      expect(chef_run).to run_ruby_block('validate C:/chef/cache/jdk-8u60-windows-x64.exe')
     end
 
     it 'installs java' do
       expect(chef_run).to run_ruby_block(
-        'install jdk-8u51-windows-x64.exe to \Java\jdk1.8.0_51')
+        'install jdk-8u60-windows-x64.exe to \Java\jdk1.8.0_60')
     end
 
     it 'sets JAVA_HOME' do
