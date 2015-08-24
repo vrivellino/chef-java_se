@@ -34,12 +34,13 @@ if uri.nil? || uri.empty?
   download_url = "http://download.oracle.com/otn-pub/java/jdk/#{jdk_version}-b#{node['java_se']['build']}/#{jdk}"
 elsif uri.start_with?('file://')
   file_cache_path = platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')
+  file_cache_path = "#{file_cache_path}/#{jdk}" unless uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
 else
-  if %w(.dmg .exe .tar.gz).include?(url)
-    download_url = url
-    jdk = ::File.basename(url)
+  if uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
+    download_url = uri
+    jdk = ::File.basename(uri)
   else
-    download_url = "#{url}/#{jdk}"
+    download_url = "#{uri}/#{jdk}"
   end
 end
 
