@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.51.3
+
+- Support Linux installs
+
 ## 8.51.2
 
 - Deprecate url and file attributes in favor of uri
