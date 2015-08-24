@@ -55,17 +55,17 @@ e.g. windows=exe, macosx=dmg, linux=tar.gz.  Leave nil to download directly from
 Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
-- `node['java']['set_default']` - Indicates whether or not you want the JDK installed to be default on the system. 
+- `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the system. 
 For Linux only. Default `true`.                
-- `node['java']['owner']` - The owner of extracted directory. For Linux only. Default `root`. 
-- `node['java']['group']` - The group of extracted directory. For Linux only. Default `root`. 
-- `node['java']['alternatives_priority']` - A priority of the alternatives. For Linux only. Default `1061`.
-- `node['java']['set_etc_environment']` - Optionally sets JAVA_HOME in /etc/environment for. For Linux only. 
+- `node['java_se']['owner']` - The owner of extracted directory. For Linux only. Default `root`. 
+- `node['java_se']['group']` - The group of extracted directory. For Linux only. Default `root`. 
+- `node['java_se']['alternatives_priority']` - A priority of the alternatives. For Linux only. Default `1061`.
+- `node['java_se']['set_etc_environment']` - Optionally sets JAVA_HOME in /etc/environment for. For Linux only. 
 Default `false`.
-- `node['java']['reset_alternatives']` - Whether alternatives is reset.  For Linux only. Default `true`.  
-- `node['java']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. For Linux only. 
+- `node['java_se']['reset_alternatives']` - Whether alternatives is reset.  For Linux only. Default `true`.  
+- `node['java_se']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. For Linux only. 
 Default `false`. 
-- `node['java']['bin_cmds']` -  Array of binary commands to symlink /usr/bin to, and set alternative on.  Examples 
+- `node['java_se']['bin_cmds']` -  Array of binary commands to symlink /usr/bin to, and set alternative on.  Examples 
 are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. Will be ignored if 
 set_default is not true.  For Linux only. 
 - `node['java_se']['url']` - Deprecated in favor of uri and will be removed in Java 9 release.
