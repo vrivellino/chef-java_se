@@ -86,7 +86,7 @@ describe 'java_se::default' do
 
       it 'fetches java' do
         expect(chef_run).to run_ruby_block(
-          'fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b16/jdk-8u60-linux-x64.tar.gz')
+          'fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz')
       end
 
       it 'validates java' do
