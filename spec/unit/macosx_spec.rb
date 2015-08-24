@@ -1,13 +1,13 @@
 require 'spec_helper'
+require 'mixlib/shellout'
 
 describe 'java_se::default' do
   context 'mac_os_x' do
-    let(:exitstatus) { 0 }
+    let(:shellout) { double(exitstatus: 1, run_command: nil, error!: nil, stdout: '') }
+
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'mac_os_x', version: '10.10') do
-        out = double('out', exitstatus: 1, stdout: '', stderr: '')
-        allow_any_instance_of(Chef::Mixin::ShellOut).to receive(:shell_out).with(
-          "pkgutil --pkgs='com.oracle.jdk8u51'").and_return(out)
+        allow(Mixlib::ShellOut).to receive(:new).and_return(shellout)
       end.converge(described_recipe)
     end
 
