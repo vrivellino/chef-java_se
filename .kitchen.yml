@@ -16,15 +16,14 @@ platforms:
   - name: windows-2012r2
     driver:
       box: dhoer/windows-2012r2
+    attributes:
+      java_se:
+        force_i586: true
 
 suites:
   - name: java_se
     run_list:
       - recipe[java_se::default]
     attributes:
-    java_se:
-      uri: https://s3.amazonaws.com/prsnpublic/
-      force_i586: true
-#      java_se:
-#        force_i586: true
-#        url: http://10.0.0.2:4567
+      java_se:
+#        uri: http://10.0.0.2:4567
