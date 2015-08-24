@@ -1,8 +1,8 @@
 # inspiration from https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb
 
-extend Chef::Mixin::ShellOut
-
-unless shell_out("pkgutil --pkgs='com.oracle.jdk#{node['java_se']['jdk_version']}'").exitstatus == 0
+cmd = Mixlib::ShellOut.new("pkgutil --pkgs='com.oracle.jdk#{node['java_se']['jdk_version']}'")
+cmd.run_command
+unless cmd.exitstatus == 0
   version = node['java_se']['version']
 
   name = "JDK #{version.split('.')[1]} Update #{version.sub(/^.*?_(\d+)$/, '\1')}"

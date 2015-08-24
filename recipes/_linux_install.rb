@@ -1,7 +1,5 @@
 # inspiration from https://github.com/agileorbit-cookbooks/java
 
-extend Chef::Mixin::ShellOut
-
 version = node['java_se']['version']
 bin_cmds = node['java_se']['bin_cmds']
 default = node['java_se']['set_default']
@@ -63,11 +61,14 @@ ruby_block "adding java to #{java_dir}" do # ~FC014
       FileUtils.chown owner, group, java_root
     end
 
-    cmd = shell_out(
+    extract = Mixlib::ShellOut.new(
       %( tar xvzf "#{node['java_se']['file_cache_path']}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner))
-    fail("Failed to extract file #{tarball_name}!") unless cmd.exitstatus == 0
+    extract.run_command
+    fail("Failed to extract file #{tarball_name}!") unless extract.exitstatus == 0
 
-    unless shell_out(%( mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" )).exitstatus == 0
+    move = Mixlib::ShellOut.new(%( mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" ))
+    move.run_command
+    unless move.exitstatus == 0
       fail(%( Command \' mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" \' failed ))
     end
 
@@ -121,14 +122,20 @@ ruby_block 'update-alternatives' do # ~FC014
         next
       end
 
-      alternative_exists_same_prio = shell_out(
-        "#{alternatives_cmd} --display #{cmd} | grep #{alt_path} | grep 'priority #{priority}$'").exitstatus == 0
-      alternative_exists = shell_out("#{alternatives_cmd} --display #{cmd} | grep #{alt_path}").exitstatus == 0
+      same_prio = Mixlib::ShellOut.new(
+        "#{alternatives_cmd} --display #{cmd} | grep #{alt_path} | grep 'priority #{priority}$'")
+      same_prio.run_command
+      alternative_exists_same_prio = same_prio.exitstatus == 0
+      alt_exists = Mixlib::ShellOut.new("#{alternatives_cmd} --display #{cmd} | grep #{alt_path}")
+      alt_exists.run_command
+      alternative_exists = alt_exists.exitstatus == 0
       # remove alternative if priority is changed and install it with new priority
       if alternative_exists && !alternative_exists_same_prio
         Chef::Log.info "removing alternative for #{cmd} with old priority"
         alternative_exists = false
-        unless shell_out("#{alternatives_cmd} --remove #{cmd} #{alt_path}").exitstatus == 0
+        remove_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --remove #{cmd} #{alt_path}")
+        remove_alt.run_command
+        unless remove_alt.exitstatus == 0
           fail("remove alternative failed: #{alternatives_cmd} --remove #{cmd} #{alt_path}")
         end
       end
@@ -136,19 +143,25 @@ ruby_block 'update-alternatives' do # ~FC014
       unless alternative_exists
         Chef::Log.info "adding alternative for #{cmd}"
         if node['java_se']['reset_alternatives']
-          shell_out("rm /var/lib/alternatives/#{cmd}")
+          Mixlib::ShellOut.new("rm /var/lib/alternatives/#{cmd}").run_command
         end
-        unless shell_out("#{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}").exitstatus == 0
+        install_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
+        install_alt.run_command
+        unless install_alt.exitstatus == 0
           fail("install alternative failed: #{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
         end
       end
 
       # set the alternative if default
       if default
-        unless shell_out(
-          "#{alternatives_cmd} --display #{cmd} | grep \"link currently points to #{alt_path}\"").exitstatus == 0
+        set_alt = Mixlib::ShellOut.new(
+          "#{alternatives_cmd} --display #{cmd} | grep \"link currently points to #{alt_path}\"")
+        set_alt.run_command
+        unless set_alt.exitstatus == 0
           Chef::Log.info "setting alternative for #{cmd}"
-          unless shell_out("#{alternatives_cmd} --set #{cmd} #{alt_path}").exitstatus == 0
+          set_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --set #{cmd} #{alt_path}")
+          set_alt.run_command
+          unless set_alt.exitstatus == 0
             fail("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}")
           end
         end

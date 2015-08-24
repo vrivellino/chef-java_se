@@ -1,7 +1,6 @@
 require 'open-uri'
 require 'openssl'
 require 'digest'
-require 'mixlib/shellout'
 
 # Java SE helper
 module JavaSE

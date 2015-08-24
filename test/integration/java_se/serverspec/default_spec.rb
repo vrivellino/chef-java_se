@@ -22,7 +22,7 @@ else
     its(:stderr) { should match(/java version \"1.8.0_51\"/m) }
   end
 
-  describe command('source /etc/profile.d/jdk.sh && echo $JAVA_HOME') do
+  describe command('. /etc/profile.d/jdk.sh && echo $JAVA_HOME') do
     its(:stdout) { should match(%r{usr/lib/jvm/java}) }
   end
 
