@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.60.0
+
+- Update 60
+
 ## 8.51.3
 
 - Support Linux installs

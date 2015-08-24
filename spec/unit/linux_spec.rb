@@ -61,11 +61,11 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block('adding java to /opt/jdk1.8.0_51')
+        expect(chef_run).to run_ruby_block('adding java to /opt/jdk1.8.0_60')
       end
 
       it 'symlink java' do
-        expect(chef_run).to run_ruby_block('symlink /opt/jdk1.8.0_51 to /opt/java')
+        expect(chef_run).to run_ruby_block('symlink /opt/jdk1.8.0_60 to /opt/java')
       end
 
       it 'validates java' do
@@ -86,11 +86,11 @@ describe 'java_se::default' do
 
       it 'fetches java' do
         expect(chef_run).to run_ruby_block(
-          'fetch http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-linux-x64.tar.gz')
+          'fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b16/jdk-8u60-linux-x64.tar.gz')
       end
 
       it 'validates java' do
-        expect(chef_run).to run_ruby_block('validate /var/chef/cache/jdk-8u51-linux-x64.tar.gz')
+        expect(chef_run).to run_ruby_block('validate /var/chef/cache/jdk-8u60-linux-x64.tar.gz')
       end
 
       it 'installs glibc package' do
@@ -102,11 +102,11 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block('adding java to /usr/lib/jvm/jdk1.8.0_51')
+        expect(chef_run).to run_ruby_block('adding java to /usr/lib/jvm/jdk1.8.0_60')
       end
 
       it 'symlink java' do
-        expect(chef_run).to run_ruby_block('symlink /usr/lib/jvm/jdk1.8.0_51 to /usr/lib/jvm/java')
+        expect(chef_run).to run_ruby_block('symlink /usr/lib/jvm/jdk1.8.0_60 to /usr/lib/jvm/java')
       end
 
       it 'validates java' do
