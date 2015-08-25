@@ -9,13 +9,9 @@ else
 end
 
 file_cache_path = node['java_se']['file_cache_path']
-ruby_block "install #{::File.basename(file_cache_path)} to #{java_home}" do
-  block do
-    cmd = Mixlib::ShellOut.new(
-      "\"#{file_cache_path}\" /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" \"#{install_dir}\"")
-    cmd.run_command
-    cmd.error!
-  end
+
+execute "install #{::File.basename(file_cache_path)} to #{java_home}" do
+  command "\"#{file_cache_path}\" /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir}"
   not_if { ::File.exist?(java_home) }
 end
 
