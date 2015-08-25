@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.60.2
+
+- Tweak readme
+
 ## 8.60.1
 
 - Fix #1 URI parameter ignored

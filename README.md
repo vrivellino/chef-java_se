@@ -16,11 +16,11 @@ The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-08
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
+- Only supports Oracle's Java SE JDK
 - Allows for downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from
 - Easily lock version to Java release '~> 8.0' or to update '~> 8.60.0'
 - Lightweight, no cookbook dependencies
-- Only supports Oracle's Java SE JDK
 - Does not support RPM installations on Linux
          
 Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
