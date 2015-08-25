@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.60.3
+
+- Remove unnecessary start cmd from windows install
+- Add info about script to demo downloading from Oracle and populating an alt website
+
 ## 8.60.2
 
 - Tweak readme
