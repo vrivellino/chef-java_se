@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.60.4
+
+- Add symbolic link to installed Java JDK bin directory on Windows
+
 ## 8.60.3
 
 - Remove unnecessary start cmd from windows install

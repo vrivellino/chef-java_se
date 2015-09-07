@@ -42,7 +42,9 @@ By adding java_se to a run_list or as a dependency you are accepting the
 [Oracle Binary Code License Agreement for Java SE]
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
-Windows platform requires a reboot for JAVA_HOME and PATH to be set.
+Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute 
+`node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory that is available 
+during initial chef-client run.
 
 ### Attributes
 
@@ -55,6 +57,11 @@ e.g. windows=exe, macosx=dmg, linux=tar.gz.  Leave nil to download directly from
 Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
+- `node['java_se']['win_addlocal']` - JDK features to install. For Windows only. 
+Default `ToolsFeature,SourceFeature,PublicjreFeature`.
+- `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
+are not available during chef-client run, this provides a way for cookbooks to access the latest installed version.  
+For Windows only. Default `C:\java\bin`.
 - `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the system. 
 For Linux only. Default `true`.                
 - `node['java_se']['owner']` - The owner of extracted directory. For Linux only. Default `root`. 
@@ -105,7 +112,7 @@ The versioning scheme is RELEASE.UPDATE.MINOR where:
 2. UPDATE is the Java update e.g. 60
 3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
 
-*All cookbook releases will strive to be backwards-compatible.
+*All UPDATE and MINOR versions will strive to be backwards-compatible.
 
 ## Getting Help
 

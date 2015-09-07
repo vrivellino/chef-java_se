@@ -6,9 +6,9 @@ when 'windows'
     it { should be_file }
   end
 
-  # describe command('java -version') do
-  #   its(:stderr) { should match(/java version \"1.8.0_60\"/m) }
-  # end
+  describe command('C:\java\bin\java -version') do
+    its(:stderr) { should match(/java version \"1.8.0_60\"/m) }
+  end
 when 'darwin' # mac os x
   describe command('which java') do
     its(:stdout) { should match(%r{/usr/bin/java}) }
