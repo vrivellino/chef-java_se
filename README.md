@@ -19,7 +19,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Only supports Oracle's Java SE JDK
 - Allows for downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from
-- Easily lock version to Java release '~> 8.0' or to update '~> 8.60.0'
+- Easily lock version to Java release '~> 8.0' or update '~> 8.60.0'
 - Lightweight, no cookbook dependencies
 - Does not support RPM installations on Linux
          
@@ -43,7 +43,7 @@ By adding java_se to a run_list or as a dependency you are accepting the
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute 
-`node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory that is available 
+win_javalink provides a symbolic link to installed Java JDK bin directory that is available 
 during initial chef-client run.
 
 ### Attributes
