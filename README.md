@@ -43,7 +43,7 @@ By adding java_se to a run_list or as a dependency you are accepting the
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute 
-win_javalink provides a symbolic link to installed Java JDK bin directory that is available 
+_win_javalink_ provides a symbolic link to installed Java JDK bin directory and is available 
 during initial chef-client run.
 
 ### Attributes
@@ -112,7 +112,7 @@ The versioning scheme is RELEASE.UPDATE.MINOR where:
 2. UPDATE is the Java update e.g. 60
 3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
 
-*All UPDATE and MINOR versions will strive to be backwards-compatible.
+*All MINOR versions will strive to be backwards-compatible.
 
 ## Getting Help
 
