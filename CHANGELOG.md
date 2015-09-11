@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.60.5
+
+- Fix #3 Allow skipping Java install
+
 ## 8.60.4
 
 - Add symbolic link to installed Java JDK bin directory on Windows

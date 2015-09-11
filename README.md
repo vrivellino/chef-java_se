@@ -48,33 +48,36 @@ during initial chef-client run.
 
 ### Attributes
 
-- `node['java_se']['uri']` - The URI to the Java SE JDKs. This can be a URI to a local directory or file, or a remote 
-directory or file.  If a directory is provided, it will then automatically assign a file name that best matches 
-platform criteria.  The JDK file names must be the same as that found on Oracle's download page. For local 
-directories or files, use file:// prefix e.g., 'file:///c:/path/to/jdk.exe'. The file extension must match platform 
-e.g. windows=exe, macosx=dmg, linux=tar.gz.  Leave nil to download directly from Oracle. Default `nil`.
-- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows only.
-Default `false`.
+- `node['java_se']['uri']` - The URI to the Java SE JDKs. If a directory is provided, it will then automatically 
+assign a file name that best matches platform criteria.  The JDK file names must be the same as that found on 
+Oracle's download page. Supports only the following platform extensions; windows=exe, macosx=dmg, linux=tar.gz. Leave 
+nil to download directly from Oracle. Default `nil`.
+- `node['java_se']['skip']` - Skips installing Java SE. Default `false`.
+- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows 
+only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
-- `node['java_se']['win_addlocal']` - JDK features to install. For Windows only. 
-Default `ToolsFeature,SourceFeature,PublicjreFeature`.
-- `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
-are not available during chef-client run, this provides a way for cookbooks to access the latest installed version.  
-For Windows only. Default `C:\java\bin`.
-- `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the system. 
-For Linux only. Default `true`.                
-- `node['java_se']['owner']` - The owner of extracted directory. For Linux only. Default `root`. 
-- `node['java_se']['group']` - The group of extracted directory. For Linux only. Default `root`. 
-- `node['java_se']['alternatives_priority']` - A priority of the alternatives. For Linux only. Default `1061`.
-- `node['java_se']['set_etc_environment']` - Optionally sets JAVA_HOME in /etc/environment for. For Linux only. 
-Default `false`.
-- `node['java_se']['reset_alternatives']` - Whether alternatives is reset.  For Linux only. Default `true`.  
-- `node['java_se']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. For Linux only. 
-Default `false`. 
+
+##### Linux Only
+- `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the 
+system. Default `true`.                
+- `node['java_se']['owner']` - The owner of extracted directory. Default `root`. 
+- `node['java_se']['group']` - The group of extracted directory. Default `root`. 
+- `node['java_se']['alternatives_priority']` - A priority of the alternatives. Default `1061`.
+- `node['java_se']['set_etc_environment']` - Optionally sets JAVA_HOME in /etc/environment for. Default `false`.
+- `node['java_se']['reset_alternatives']` - Whether alternatives is reset. Default `true`.  
+- `node['java_se']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. Default `false`. 
 - `node['java_se']['bin_cmds']` -  Array of binary commands to symlink /usr/bin to, and set alternative on.  Examples 
 are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. Will be ignored if 
-set_default is not true.  For Linux only. 
+set_default is not true. 
+
+##### Windows Only
+- `node['java_se']['win_addlocal']` - JDK features to install. Default `ToolsFeature,SourceFeature,PublicjreFeature`.
+- `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
+are not available during chef-client run, this provides a way for cookbooks to access the latest installed 
+version. Default `C:\java\bin`.
+
+##### Deprecated
 - `node['java_se']['url']` - Deprecated in favor of uri and will be removed in Java 9 release.
 - `node['java_se']['file']` - Deprecated in favor of uri and will be removed in Java 9 release.
 
