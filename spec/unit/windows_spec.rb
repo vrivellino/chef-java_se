@@ -24,7 +24,7 @@ describe 'java_se::default' do
     end
 
     it 'installs java' do
-      expect(chef_run).to run_execute('install jdk-7u79-windows-x64.exe to C:\Program Files\Java\jdk1.8.0_60')
+      expect(chef_run).to run_execute('install jdk-7u79-windows-x64.exe to C:\Program Files\Java\jdk1.7.0_79')
     end
 
     it 'sets JAVA_HOME' do
@@ -48,7 +48,7 @@ describe 'java_se::default' do
     end
 
     it 'creates simlink to bin' do
-      expect(chef_run).to_not run_execute('mklink /D "C:\java\jdk\bin" "C:\Program Files\Java\jdk1.8.0_60\bin"')
+      expect(chef_run).to_not run_execute('mklink /D "C:\java\jdk\bin" "C:\Program Files\Java\jdk1.7.0_79\bin"')
     end
   end
 end

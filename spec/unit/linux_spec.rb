@@ -61,11 +61,11 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block('adding java to /opt/jdk1.8.0_60')
+        expect(chef_run).to run_ruby_block('adding java to /opt/jdk1.7.0_79')
       end
 
       it 'symlink java' do
-        expect(chef_run).to run_ruby_block('symlink /opt/jdk1.8.0_60 to /opt/java')
+        expect(chef_run).to run_ruby_block('symlink /opt/jdk1.7.0_79 to /opt/java')
       end
 
       it 'validates java' do
@@ -102,11 +102,11 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block('adding java to /usr/lib/jvm/jdk1.8.0_60')
+        expect(chef_run).to run_ruby_block('adding java to /usr/lib/jvm/jdk1.7.0_79')
       end
 
       it 'symlink java' do
-        expect(chef_run).to run_ruby_block('symlink /usr/lib/jvm/jdk1.8.0_60 to /usr/lib/jvm/java')
+        expect(chef_run).to run_ruby_block('symlink /usr/lib/jvm/jdk1.7.0_79 to /usr/lib/jvm/java')
       end
 
       it 'validates java' do
