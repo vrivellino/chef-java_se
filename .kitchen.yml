@@ -25,5 +25,5 @@ suites:
     run_list:
       - recipe[java_se::default]
     attributes:
-      java_se:
-        uri: http://10.0.0.2:4567
+#      java_se:
+#        uri: http://10.0.0.2:4567

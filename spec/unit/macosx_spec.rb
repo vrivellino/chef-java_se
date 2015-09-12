@@ -17,15 +17,15 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-        'fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-macosx-x64.dmg')
+        'fetch http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-macosx-x64.dmg')
     end
 
     it 'validates java' do
-      expect(chef_run).to run_ruby_block('validate /var/chef/cache/jdk-8u60-macosx-x64.dmg')
+      expect(chef_run).to run_ruby_block('validate /var/chef/cache/jdk-7u79-macosx-x64.dmg')
     end
 
     it 'attaches volume' do
-      expect(chef_run).to run_execute("hdiutil attach '/var/chef/cache/jdk-8u60-macosx-x64.dmg' -quiet")
+      expect(chef_run).to run_execute("hdiutil attach '/var/chef/cache/jdk-7u79-macosx-x64.dmg' -quiet")
     end
 
     it 'install pkg' do

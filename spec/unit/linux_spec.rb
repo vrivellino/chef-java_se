@@ -86,11 +86,11 @@ describe 'java_se::default' do
 
       it 'fetches java' do
         expect(chef_run).to run_ruby_block(
-          'fetch http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz')
+          'fetch http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz')
       end
 
       it 'validates java' do
-        expect(chef_run).to run_ruby_block('validate /var/chef/cache/jdk-8u60-linux-x64.tar.gz')
+        expect(chef_run).to run_ruby_block('validate /var/chef/cache/jdk-7u79-linux-x64.tar.gz')
       end
 
       it 'installs glibc package' do

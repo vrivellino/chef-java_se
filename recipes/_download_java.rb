@@ -19,13 +19,13 @@ jdk_version = node['java_se']['jdk_version']
 
 case node['platform_family']
 when 'mac_os_x'
-  checksum = node['java_se']['sha256']['dmg']['x64']
+  checksum = node['java_se']['md5']['dmg']['x64']
   jdk = "jdk-#{jdk_version}-macosx-#{arch}.dmg"
 when 'windows'
-  checksum = node['java_se']['sha256']['exe'][arch]
+  checksum = node['java_se']['md5']['exe'][arch]
   jdk = "jdk-#{jdk_version}-windows-#{arch}.exe"
 else
-  checksum = node['java_se']['sha256']['tar'][arch]
+  checksum = node['java_se']['md5']['tar'][arch]
   jdk = "jdk-#{jdk_version}-linux-#{arch}.tar.gz"
 end
 

@@ -99,7 +99,7 @@ run_list(
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u60-windows-i586.exe. Note that JDK file names must be the 
+will match https://s3.amazonaws.com/mybucket/java/jdk-7u79-windows-i586.exe. Note that JDK file names must be the 
 same as that found on Oracle's download page. 
 
 A script to demonstrate how to download JDKs from Oracle and upload them to an alternative location (S3) is 
