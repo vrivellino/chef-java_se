@@ -8,10 +8,11 @@ else
   install_dir = "INSTALLDIR=\"#{java_home}\""
 end
 
-symlink_path = node['java_se']['win_javalink']
+win_javalink = node['java_se']['win_javalink']
 
+# create each directory in win_javalink path
 path = ''
-symlink_path[0..symlink_path.rindex('\\') - 1].split('\\').each_with_index do |dir, index|
+win_javalink[0..win_javalink.rindex('\\') - 1].split('\\').each_with_index do |dir, index|
   if index == 0 && dir.include?(':')
     path = dir
   else
@@ -27,11 +28,9 @@ file_cache_path = node['java_se']['file_cache_path']
 execute "install #{::File.basename(file_cache_path)} to #{java_home}" do
   command "\"#{file_cache_path}\" /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir}"
   not_if { ::File.exist?(java_home) }
-  notifies :run, 'execute[remove symlink to bin]', :immediately
-  notifies :run, 'execute[create symlink to bin]', :immediately
 end
 
-link link do
+link win_javalink do
   to "#{java_home}\\bin"
 end
 
