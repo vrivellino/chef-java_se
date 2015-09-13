@@ -35,8 +35,8 @@ module JavaSE
       # rubocop:enable Metrics/MethodLength
 
       def valid?(file, checksum)
-        sha256 = Digest::SHA256.file file
-        sha256.hexdigest == checksum
+        md5 = Digest::MD5.file file
+        md5.hexdigest == checksum
       end
 
       def validate(file, checksum)

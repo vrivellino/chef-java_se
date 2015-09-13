@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.79.2
+
+- Fix issue with checksum validation using sha256 instead of md5
+
 ## 7.79.1
 
 - Fix issue with Mac OS X install not using shellout mixlib correctly
