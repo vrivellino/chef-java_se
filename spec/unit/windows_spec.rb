@@ -44,11 +44,9 @@ describe 'java_se::default' do
     end
 
     it 'removes simlink to bin' do
-      expect(chef_run).to_not run_execute('rmdir /Q "C:\java\jdk\bin"')
-    end
-
-    it 'creates simlink to bin' do
-      expect(chef_run).to_not run_execute('mklink /D "C:\java\jdk\bin" "C:\Program Files\Java\jdk1.8.0_60\bin"')
+      expect(chef_run).to create_link('C:\java\jdk\bin').with(
+        to: 'C:\Program Files\Java\jdk1.8.0_60\bin'
+      )
     end
   end
 end
