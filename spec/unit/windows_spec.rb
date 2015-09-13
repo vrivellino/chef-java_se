@@ -4,9 +4,10 @@ describe 'java_se::default' do
   context 'windows' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: 'C:/chef/cache', platform: 'windows', version: '2008R2') do |node|
+        ENV['SYSTEMDRIVE'] = 'C:'
         ENV['ProgramW6432'] = 'C:\Program Files'
         node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['win_javalink'] = 'C:\java\jdk\bin' # test multiple directories
+        node.set['java_se']['win_javalink'] = "#{ENV['SYSTEMDRIVE']}\\java\\jdk\\bin" # test multiple directories
       end.converge(described_recipe)
     end
 

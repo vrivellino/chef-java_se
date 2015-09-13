@@ -21,7 +21,7 @@ default['java_se']['bin_cmds'] = %w(
 
 # windows only
 default['java_se']['win_addlocal'] = 'ToolsFeature,SourceFeature,PublicjreFeature'
-default['java_se']['win_javalink'] = 'C:\java\bin'
+default['java_se']['win_javalink'] = "#{ENV['SYSTEMDRIVE']}\\java\\bin"
 
 # Deprecated attributes that will be removed in Java 9 release
 default['java_se']['url'] = nil # deprecated in favor of uri
