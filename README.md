@@ -75,7 +75,7 @@ set_default is not true.
 - `node['java_se']['win_addlocal']` - JDK features to install. Default `ToolsFeature,SourceFeature,PublicjreFeature`.
 - `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
 are not available during chef-client run, this provides a way for cookbooks to access the latest installed 
-version. Default `C:\java\bin`.
+version. Default `%SYSTEMDRIVE%\java\bin`.
 
 ##### Deprecated
 - `node['java_se']['url']` - Deprecated in favor of uri and will be removed in Java 9 release.
