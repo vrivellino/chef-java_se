@@ -31,15 +31,8 @@ execute "install #{::File.basename(file_cache_path)} to #{java_home}" do
   notifies :run, 'execute[create symlink to bin]', :immediately
 end
 
-execute 'remove symlink to bin' do
-  command "rmdir /Q \"#{symlink_path}\""
-  only_if { ::File.exist?(symlink_path) }
-  action :nothing
-end
-
-execute 'create symlink to bin' do
-  command "mklink /D \"#{symlink_path}\" \"#{java_home}\\bin\""
-  action :nothing
+link link do
+  to "#{java_home}\\bin"
 end
 
 env 'JAVA_HOME' do
