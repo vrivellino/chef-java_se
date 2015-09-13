@@ -10,7 +10,7 @@ end
 
 win_javalink = node['java_se']['win_javalink']
 
-# create each directory in win_javalink path
+# create each directory in win_javalink path except bin
 path = ''
 win_javalink[0..win_javalink.rindex('\\') - 1].split('\\').each_with_index do |dir, index|
   if index == 0 && dir.include?(':')
