@@ -1,16 +1,6 @@
 # inspiration from https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb
 
-java_version_installed = false
-
-ruby_block 'java version installed' do
-  block do
-    cmd = Mixlib::ShellOut.new("pkgutil --pkgs='com.oracle.jdk#{node['java_se']['jdk_version']}'")
-    cmd.run_command
-    java_version_installed = cmd.exitstatus == 0
-  end
-end
-
-unless java_version_installed
+unless java_version_on_osx?
   version = node['java_se']['version']
 
   name = "JDK #{version.split('.')[1]} Update #{version.sub(/^.*?_(\d+)$/, '\1')}"
@@ -31,21 +21,21 @@ unless java_version_installed
 
   %w(BundledApp JNI WebStart Applets).each do |str|
     execute "/usr/bin/sudo /usr/libexec/PlistBuddy -c \"Add :JavaVM:JVMCapabilities: string #{str}\" " \
-       "/Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Info.plist"
+   "/Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Info.plist"
   end
 
   execute '/usr/bin/sudo /bin/rm -rf /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'
 
   execute "/usr/bin/sudo /bin/ln -nsf /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents " \
-      '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'
+  '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'
 
   execute "/usr/bin/sudo /bin/ln -nsf /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Home " \
-      '/Library/Java/Home'
+  '/Library/Java/Home'
 
   execute '/usr/bin/sudo /bin/mkdir -p ' \
-      "/Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Home/bundle/Libraries"
+  "/Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Home/bundle/Libraries"
 
   execute "/usr/bin/sudo /bin/ln -nsf /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents" \
-      "/Home/jre/lib/server/libjvm.dylib /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents" \
-      '/Home/bundle/Libraries/libserver.dylib'
+  "/Home/jre/lib/server/libjvm.dylib /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents" \
+  '/Home/bundle/Libraries/libserver.dylib'
 end
