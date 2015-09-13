@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.60.6
+
+- Fix issue with Mac OS X install not using shellout mixlib correctly
+- Use %SYSTEMPATH% on Windows 
+- Use link resource on Windows install
+
 ## 8.60.5
 
 - Fix #3 Allow skipping Java install
