@@ -4,7 +4,7 @@ maintainer_email 'dennis.hoer@gmail.com'
 license 'MIT'
 description "Installs Oracle's Java SE JDK"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '7.79.2'
+version '7.79.3'
 
 supports 'centos'
 supports 'debian'

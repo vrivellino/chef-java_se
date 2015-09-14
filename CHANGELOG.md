@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.79.3
+
+- Rename java_version_on_osx? method to java_version_on_macosx?
+
 ## 7.79.2
 
 - Fix issue with checksum validation using sha256 instead of md5
