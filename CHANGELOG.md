@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.60.7
+ 
+- Rename java_version_on_osx? method to java_version_on_macosx?
+
 ## 8.60.6
 
 - Fix issue with Mac OS X install not using shellout mixlib correctly
