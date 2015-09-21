@@ -21,13 +21,13 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Can specify an alternative URI directory to download from
 - Easily lock version to Java release '~> 8.0' or update '~> 8.60.0'
 - Lightweight, no cookbook dependencies
-- Does not support RPM installations on Linux
+- Supports only Windows (.exe), Mac OS X (.dmg), and Linux (.tar.gz) file extensions
          
 Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
                                                   
 ## Requirements
 
-- Chef 11 or higher 
+- Chef 11+
 
 ### Platforms
 
@@ -43,15 +43,14 @@ By adding java_se to a run_list or as a dependency you are accepting the
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute 
-_win_javalink_ provides a symbolic link to installed Java JDK bin directory and is available 
+`node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available 
 during initial chef-client run.
 
 ### Attributes
 
 - `node['java_se']['uri']` - The URI to the Java SE JDKs. If a directory is provided, it will then automatically 
 assign a file name that best matches platform criteria.  The JDK file names must be the same as that found on 
-Oracle's download page. Supports only the following platform extensions; windows=exe, macosx=dmg, linux=tar.gz. Leave 
-nil to download directly from Oracle. Default `nil`.
+Oracle's download page. Leave nil to download directly from Oracle. Default `nil`.
 - `node['java_se']['skip']` - Skips installing Java SE. Default `false`.
 - `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows 
 only. Default `false`.
@@ -78,8 +77,8 @@ are not available during chef-client run, this provides a way for cookbooks to a
 version. Default `%SYSTEMDRIVE%\java\bin`.
 
 ##### Deprecated
-- `node['java_se']['url']` - Deprecated in favor of uri and will be removed in Java 9 release.
-- `node['java_se']['file']` - Deprecated in favor of uri and will be removed in Java 9 release.
+- `node['java_se']['url']` - Deprecated in favor of uri and will be removed in next Java critical update.
+- `node['java_se']['file']` - Deprecated in favor of uri and will be removed in next Java critical update.
 
 ### Examples
  
