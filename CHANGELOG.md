@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.60.8
+ 
+- Update readme to clarify file extensions supported
+
 ## 8.60.7
  
 - Rename java_version_on_osx? method to java_version_on_macosx?
