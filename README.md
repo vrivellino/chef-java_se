@@ -19,7 +19,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Can specify an alternative URI directory to download from
 - Easily lock version to Java release '~> 8.0' or update '~> 8.60.0'
 - Lightweight, no cookbook dependencies
-- Supports only Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
+- Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
          
 Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
                                                   
