@@ -44,6 +44,12 @@ Windows JAVA_HOME and PATH environment variables are not available during initia
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available 
 during initial chef-client run.
 
+**Tip:** use `allow_any_instance_of` to stub java_version_on_macosx? method when testing with rspec:
+
+```ruby
+allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
+```
+
 ### Attributes
 
 - `node['java_se']['uri']` - The URI to the Java SE JDKs. If a directory is provided, it will then automatically 
@@ -80,7 +86,7 @@ version. Default `%SYSTEMDRIVE%\java\bin`.
 
 ### Examples
  
-Example role to download JDK from alternative location: 
+Example role to download JDK from alternative location 
 
 ```ruby
 name "java_se"
