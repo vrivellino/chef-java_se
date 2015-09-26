@@ -19,6 +19,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Can specify an alternative URI directory to download from
 - Easily lock version to Java release '~> 8.0' or update '~> 8.60.0'
 - Lightweight, no cookbook dependencies
+- Can skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
          
 Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
@@ -44,7 +45,7 @@ Windows JAVA_HOME and PATH environment variables are not available during initia
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available 
 during initial chef-client run.
 
-**Tip:** use `allow_any_instance_of` to stub java_version_on_macosx? method when testing with rspec:
+**Tip:** you may need to stub java_version_on_macosx? method when testing with rspec:
 
 ```ruby
 allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
