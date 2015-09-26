@@ -45,7 +45,7 @@ Windows JAVA_HOME and PATH environment variables are not available during initia
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available 
 during initial chef-client run.
 
-**Tip:** you may need to stub java_version_on_macosx? method when testing with rspec:
+**Tip:** you may need to stub `java_version_on_macosx?` method when testing with rspec:
 
 ```ruby
 allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
