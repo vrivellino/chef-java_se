@@ -13,3 +13,6 @@ supports 'mac_os_x'
 supports 'redhat'
 supports 'ubuntu'
 supports 'windows'
+
+source_url 'https://github.com/dhoer/chef-java_se' if respond_to?(:source_url)
+issues_url 'https://github.com/dhoer/chef-java_se/issues' if respond_to?(:issues_url)
