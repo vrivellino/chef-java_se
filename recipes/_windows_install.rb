@@ -38,7 +38,8 @@ env 'JAVA_HOME' do
   value java_home
 end
 
-env 'PATH' do
+env 'Add java_se to path' do
+  key_name 'PATH'
   action :modify
   delim ::File::PATH_SEPARATOR
   value "#{java_home}\\bin"

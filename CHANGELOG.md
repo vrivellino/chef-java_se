@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.60.9
+ 
+- Fix #4 WARN: Cloning resource attributes for env[PATH] from prior resource (CHEF-3694)
+
 ## 8.60.8
  
 - Update readme to clarify file extensions supported

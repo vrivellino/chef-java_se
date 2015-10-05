@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'foodcritic', '~> 4.0'
-gem 'rubocop', '~> 0.31'
+gem 'foodcritic', '~> 5.0'
+gem 'rubocop', '~> 0.34'
 gem 'chefspec', '~> 4.2'
-gem 'berkshelf', '~> 3.1.5' # 3.2 has performance issue with vmware_fusion
+gem 'berkshelf', '~> 3.3'
 gem 'chef', '~> 11.0'
 gem 'net-ssh', '= 2.9.1'
 
