@@ -33,7 +33,7 @@ end
 
 file_cache_path = node['java_se']['file_cache_path']
 
-execute "install #{::File.basename(file_cache_path)} to #{java_home}" do
+execute "install #{::File.basename(file_cache_path)} to #{java_home} with JRE #{public_jre_home}" do
   command "\"#{file_cache_path}\" /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir} #{jre_install_dir}"
   not_if { ::File.exist?(java_home) }
 end
