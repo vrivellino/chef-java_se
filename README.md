@@ -61,6 +61,9 @@ Oracle's download page. Leave nil to download directly from Oracle. Default `nil
 only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
+- `node['java_se']['version']` - The JDK version to install (example: '8.0.60')
+- `node['java_se']['build']` - The build number to download from Oracle (example: '27')
+- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. `type` is one of 'dmg', 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 
 ##### Linux Only
 - `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the 
