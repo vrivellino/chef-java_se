@@ -25,7 +25,7 @@ describe 'java_se::default' do
     end
 
     it 'installs java' do
-      expect(chef_run).to run_execute('install jdk-8u60-windows-x64.exe to C:\Program Files\Java\jdk1.8.0_60')
+      expect(chef_run).to run_execute('install jdk-8u60-windows-x64.exe to C:\Program Files\Java\jdk1.8.0_60 with JRE C:\Program Files\Java\jre1.8.0_60')
     end
 
     it 'sets JAVA_HOME' do
