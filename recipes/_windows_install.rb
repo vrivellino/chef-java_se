@@ -8,6 +8,14 @@ else
   install_dir = "INSTALLDIR=\"#{java_home}\""
 end
 
+public_jre_home = node['java_se']['public_jre_home']
+if public_jre_home.nil? || public_jre_home.empty?
+  program_files = node['java_se']['arch'] == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
+  public_jre_home = "#{program_files}\\Java\\jre#{node['java_se']['version']}"
+else
+  jre_install_dir = "/INSTALLDIRPUBJRE=\"#{public_jre_home}\""
+end
+
 win_javalink = node['java_se']['win_javalink']
 
 # create each directory in win_javalink path except bin
@@ -26,7 +34,7 @@ end
 file_cache_path = node['java_se']['file_cache_path']
 
 execute "install #{::File.basename(file_cache_path)} to #{java_home}" do
-  command "\"#{file_cache_path}\" /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir}"
+  command "\"#{file_cache_path}\" /s ADDLOCAL=\"#{node['java_se']['win_addlocal']}\" #{install_dir} #{jre_install_dir}"
   not_if { ::File.exist?(java_home) }
 end
 
@@ -43,4 +51,12 @@ env 'Add java_se to path' do
   action :modify
   delim ::File::PATH_SEPARATOR
   value "#{java_home}\\bin"
+end
+
+# JRE is supposed to come before the JDK on the stock path install. Since chef prepends, JRE env resource comes second.
+env 'Add java_se JRE to path' do
+  key_name 'PATH'
+  action :modify
+  delim ::File::PATH_SEPARATOR
+  value "#{public_jre_home}\\bin"
 end
