@@ -1,21 +1,25 @@
 # Changelog
 
+## 8.60.11
+
+- Added support for changing the public JRE location on Windows (INSTALLDIRPUBJRE argument)
+
 ## 8.60.9
- 
+
 - Fix #4 WARN: Cloning resource attributes for env[PATH] from prior resource (CHEF-3694)
 
 ## 8.60.8
- 
+
 - Update readme to clarify file extensions supported
 
 ## 8.60.7
- 
+
 - Rename java_version_on_osx? method to java_version_on_macosx?
 
 ## 8.60.6
 
 - Fix issue with Mac OS X install not using shellout mixlib correctly
-- Use %SYSTEMPATH% on Windows 
+- Use %SYSTEMPATH% on Windows
 - Use link resource on Windows install
 
 ## 8.60.5
