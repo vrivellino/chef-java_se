@@ -21,9 +21,9 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Lightweight, no cookbook dependencies
 - Can skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
-         
+
 Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
-                                                  
+
 ## Requirements
 
 - Chef 11+
@@ -37,12 +37,12 @@ Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction
 
 ## Usage
 
-By adding java_se to a run_list or as a dependency you are accepting the 
+By adding java_se to a run_list or as a dependency you are accepting the
 [Oracle Binary Code License Agreement for Java SE]
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
-Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute 
-`node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available 
+Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
+`node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
 during initial chef-client run.
 
 **Tip:** you may need to stub `java_version_on_macosx?` method when testing with rspec:
@@ -53,11 +53,11 @@ allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_ret
 
 ### Attributes
 
-- `node['java_se']['uri']` - The URI to the Java SE JDKs. If a directory is provided, it will then automatically 
-assign a file name that best matches platform criteria.  The JDK file names must be the same as that found on 
+- `node['java_se']['uri']` - The URI to the Java SE JDKs. If a directory is provided, it will then automatically
+assign a file name that best matches platform criteria.  The JDK file names must be the same as that found on
 Oracle's download page. Leave nil to download directly from Oracle. Default `nil`.
 - `node['java_se']['skip']` - Skips installing Java SE. Default `false`.
-- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows 
+- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows
 only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
@@ -66,31 +66,32 @@ and Windows only. Default `nil`.
 - `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. `type` is one of 'dmg', 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 
 ##### Linux Only
-- `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the 
+- `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the
 system. Default `true`.                
-- `node['java_se']['owner']` - The owner of extracted directory. Default `root`. 
-- `node['java_se']['group']` - The group of extracted directory. Default `root`. 
+- `node['java_se']['owner']` - The owner of extracted directory. Default `root`.
+- `node['java_se']['group']` - The group of extracted directory. Default `root`.
 - `node['java_se']['alternatives_priority']` - A priority of the alternatives. Default `1061`.
 - `node['java_se']['set_etc_environment']` - Optionally sets JAVA_HOME in /etc/environment for. Default `false`.
 - `node['java_se']['reset_alternatives']` - Whether alternatives is reset. Default `true`.  
-- `node['java_se']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. Default `false`. 
-- `node['java_se']['bin_cmds']` -  Array of binary commands to symlink /usr/bin to, and set alternative on.  Examples 
-are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. Will be ignored if 
-set_default is not true. 
+- `node['java_se']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. Default `false`.
+- `node['java_se']['bin_cmds']` -  Array of binary commands to symlink /usr/bin to, and set alternative on.  Examples
+are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. Will be ignored if
+set_default is not true.
 
 ##### Windows Only
 - `node['java_se']['win_addlocal']` - JDK features to install. Default `ToolsFeature,SourceFeature,PublicjreFeature`.
 - `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
-are not available during chef-client run, this provides a way for cookbooks to access the latest installed 
+are not available during chef-client run, this provides a way for cookbooks to access the latest installed
 version. Default `%SYSTEMDRIVE%\java\bin`.
+- `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location.
 
 ##### Deprecated
 - `node['java_se']['url']` - Deprecated in favor of uri and will be removed in next Java critical update.
 - `node['java_se']['file']` - Deprecated in favor of uri and will be removed in next Java critical update.
 
 ### Examples
- 
-Example role to download JDK from alternative location 
+
+Example role to download JDK from alternative location
 
 ```ruby
 name "java_se"
@@ -106,10 +107,10 @@ run_list(
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u60-windows-i586.exe. Note that JDK file names must be the 
-same as that found on Oracle's download page. 
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u60-windows-i586.exe. Note that JDK file names must be the
+same as that found on Oracle's download page.
 
-A script to demonstrate how to download JDKs from Oracle and upload them to an alternative location (S3) is 
+A script to demonstrate how to download JDKs from Oracle and upload them to an alternative location (S3) is
 available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
 
 ## Versioning

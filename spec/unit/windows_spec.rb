@@ -4,6 +4,8 @@ describe 'java_se::default' do
   context 'windows' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: 'C:/chef/cache', platform: 'windows', version: '2008R2') do |node|
+        allow(::File).to receive(:exist?).and_call_original
+        allow(::File).to receive(:exist?).with("#{ENV['SYSTEMDRIVE']}\\java\\jdk").and_return(false)
         ENV['SYSTEMDRIVE'] = 'C:'
         ENV['ProgramW6432'] = 'C:\Program Files'
         node.set['java_se']['arch'] = 'x64'
@@ -25,7 +27,7 @@ describe 'java_se::default' do
     end
 
     it 'installs java' do
-      expect(chef_run).to run_execute('install jdk-8u60-windows-x64.exe to C:\Program Files\Java\jdk1.8.0_60' +
+      expect(chef_run).to run_execute('install jdk-8u60-windows-x64.exe to C:\Program Files\Java\jdk1.8.0_60 ' +
                                       'with JRE C:\Program Files\Java\jre1.8.0_60')
     end
 
@@ -33,16 +35,17 @@ describe 'java_se::default' do
       expect(chef_run).to create_env('JAVA_HOME')
     end
 
+    it 'sets JRE_HOME' do
+      expect(chef_run).to create_env('JRE_HOME')
+    end
+
     it 'sets PATH' do
       expect(chef_run).to modify_env('Add java_se to path').with(key_name: 'PATH')
+      expect(chef_run).to modify_env('Add java_se JRE to path').with(key_name: 'PATH')
     end
 
     it 'creates dir' do
-      expect(chef_run).to create_directory('C:\java')
-    end
-
-    it 'creates dir' do
-      expect(chef_run).to create_directory('C:\java\jdk')
+      expect(chef_run).to create_directory('C:\java\jdk').with(recursive: true)
     end
 
     it 'removes simlink to bin' do
