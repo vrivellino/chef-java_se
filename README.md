@@ -106,7 +106,7 @@ This will download the JDK that best matches platform criteria e.g., Windows 64-
 will match https://s3.amazonaws.com/mybucket/java/jdk-8u60-windows-i586.exe. Note that JDK file names must be the
 same as that found on Oracle's download page.
 
-A script to demonstrate how to download JDKs from Oracle and upload them to an alternative location (S3) is
+A script to download JDKs from Oracle and upload them to Amazon S3 is
 available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
 
 ## Versioning
