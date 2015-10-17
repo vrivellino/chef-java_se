@@ -2,6 +2,7 @@ default['java_se']['uri'] = nil
 default['java_se']['skip'] = false
 default['java_se']['force_i586'] = false
 default['java_se']['java_home'] = nil
+default['java_se']['win_jre_home'] = nil
 
 # linux only
 default['java_se']['set_default'] = true
