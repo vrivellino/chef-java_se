@@ -85,10 +85,6 @@ are not available during chef-client run, this provides a way for cookbooks to a
 version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location.
 
-##### Deprecated
-- `node['java_se']['url']` - Deprecated in favor of uri and will be removed in next Java critical update.
-- `node['java_se']['file']` - Deprecated in favor of uri and will be removed in next Java critical update.
-
 ### Examples
 
 Example role to download JDK from alternative location
