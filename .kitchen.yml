@@ -21,9 +21,21 @@ platforms:
         force_i586: true
 
 suites:
-  - name: java_se
+  - name: default
     run_list:
       - recipe[java_se::default]
+  - name: alt_home
+    run_list:
+      - recipe[java_se::default]
+    excludes:
+      - centos-7.1
+      - ubuntu-14.04
+      - debian-8.0
+      - fedora-21
     attributes:
-#      java_se:
-#        uri: http://10.0.0.2:4567
+      java_se:
+        java_home:
+          C:\my\java\jdk
+        win_jre_home:
+          C:\my\java\jre
+

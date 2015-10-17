@@ -1,8 +1,8 @@
 # Changelog
 
-## 8.60.11
+## 8.60.10
 
-- Added support for changing the public JRE location on Windows (INSTALLDIRPUBJRE argument)
+- Fix #5 Add support for changing the public JRE location on Windows (INSTALLDIRPUBJRE argument)
 
 ## 8.60.9
 

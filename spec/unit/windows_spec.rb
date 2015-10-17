@@ -40,7 +40,7 @@ describe 'java_se::default' do
     end
 
     it 'sets PATH' do
-      expect(chef_run).to modify_env('Add java_se to path').with(key_name: 'PATH')
+      expect(chef_run).to modify_env('Add java_se JDK to path').with(key_name: 'PATH')
       expect(chef_run).to modify_env('Add java_se JRE to path').with(key_name: 'PATH')
     end
 

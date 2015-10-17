@@ -1,8 +1,19 @@
-require 'serverspec_helper'
+require 'serverspec'
+
+if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM).nil?
+  set :backend, :exec
+else
+  set :backend, :cmd
+  set :os, family: 'windows'
+end
 
 case os[:family]
 when 'windows'
   describe file('C:\Program Files (x86)\Java\jdk1.8.0_60\bin\java.exe') do
+    it { should be_file }
+  end
+
+  describe file('C:\Program Files (x86)\Java\jre1.8.0_60\bin\java.exe') do
     it { should be_file }
   end
 

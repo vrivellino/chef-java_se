@@ -1,8 +1,8 @@
 # inspiration from https://chocolatey.org/packages/jdk8
+program_files = node['java_se']['arch'] == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
 
 java_home = node['java_se']['java_home']
 if java_home.nil? || java_home.empty?
-  program_files = node['java_se']['arch'] == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
   java_home = "#{program_files}\\Java\\jdk#{node['java_se']['version']}"
 else
   install_dir = "INSTALLDIR=\"#{java_home}\""
@@ -10,7 +10,6 @@ end
 
 win_jre_home = node['java_se']['win_jre_home']
 if win_jre_home.nil? || win_jre_home.empty?
-  program_files = node['java_se']['arch'] == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
   win_jre_home = "#{program_files}\\Java\\jre#{node['java_se']['version']}"
 else
   jre_install_dir = "/INSTALLDIRPUBJRE=\"#{win_jre_home}\""
@@ -44,7 +43,7 @@ env 'JRE_HOME' do
   value win_jre_home
 end
 
-env 'Add java_se to path' do
+env 'Add java_se JDK to path' do
   key_name 'PATH'
   action :modify
   delim ::File::PATH_SEPARATOR
