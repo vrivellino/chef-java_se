@@ -48,7 +48,7 @@ describe 'java_se::default' do
       expect(chef_run).to create_directory('C:\java\jdk').with(recursive: true)
     end
 
-    it 'removes simlink to bin' do
+    it 'creates link to JDK bin' do
       expect(chef_run).to create_link('C:\java\jdk\bin').with(
         to: 'C:\Program Files\Java\jdk1.8.0_60\bin'
       )

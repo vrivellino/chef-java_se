@@ -65,7 +65,7 @@ describe 'java_se::default' do
       end
 
       it 'symlink java' do
-        expect(chef_run).to run_ruby_block('symlink /opt/jdk1.8.0_60 to /opt/java')
+        expect(chef_run).to create_link('/opt/java').with(to: '/opt/jdk1.8.0_60')
       end
 
       it 'validates java' do
@@ -106,7 +106,7 @@ describe 'java_se::default' do
       end
 
       it 'symlink java' do
-        expect(chef_run).to run_ruby_block('symlink /usr/lib/jvm/jdk1.8.0_60 to /usr/lib/jvm/java')
+        expect(chef_run).to create_link('/usr/lib/jvm/java').with(to: '/usr/lib/jvm/jdk1.8.0_60')
       end
 
       it 'validates java' do
