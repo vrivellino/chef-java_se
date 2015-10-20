@@ -164,8 +164,7 @@ ruby_block 'update-alternatives' do # ~FC014
 end
 # rubocop:enable Style/Next
 
-if default && platform_family?('debian')
-  link '/usr/lib/jvm/default-java' do
-    to java_home
-  end
+link '/usr/lib/jvm/default-java' do
+  to java_home
+  only_if { default && platform_family?('debian') }
 end
