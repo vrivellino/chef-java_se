@@ -12,5 +12,5 @@ describe file('C:\my\java\jre\bin\java.exe') do
 end
 
 describe command('C:\java\bin\java -version') do
-  its(:stderr) { should match(/java version \"1.8.0_65\"/m) }
+  its(:stderr) { should match(/java version \"1.8.0_66\"/m) }
 end

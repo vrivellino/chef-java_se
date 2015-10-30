@@ -17,7 +17,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Only supports Oracle's Java SE JDK
 - Allows for downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from
-- Easily lock version to Java release '~> 8.0' or update '~> 8.65.0'
+- Easily lock version to Java release '~> 8.0' or update '~> 8.66.0'
 - Lightweight, no cookbook dependencies
 - Can skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
@@ -61,7 +61,7 @@ Oracle's download page. Leave nil to download directly from Oracle. Default `nil
 only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
-- `node['java_se']['version']` - The JDK version to install (example: '1.8.0_65')
+- `node['java_se']['version']` - The JDK version to install (example: '1.8.0_66')
 - `node['java_se']['build']` - The build number to download from Oracle (example: '17')
 - `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. `type` is one of 'dmg', 
 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
@@ -99,7 +99,7 @@ override_attributes(
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u65-windows-i586.exe. Note that JDK file names must be the
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u66-windows-i586.exe. Note that JDK file names must be the
 same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
@@ -112,7 +112,7 @@ This cookbook does NOT use [SemVer](http://semver.org) for versioning.
 The versioning scheme is RELEASE.UPDATE.MINOR where:
 
 1. RELEASE is the release of Java e.g. 8
-2. UPDATE is the Java update e.g. 65
+2. UPDATE is the Java update e.g. 66
 3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
 
 *All MINOR versions will strive to be backwards-compatible.
