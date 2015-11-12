@@ -19,16 +19,20 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-        'fetch http://download.oracle.com/otn-pub/java/jdk/8u66-b17/jdk-8u66-windows-x64.exe')
+        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
+         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe")
     end
 
     it 'validates java' do
-      expect(chef_run).to run_ruby_block('validate C:/chef/cache/jdk-8u66-windows-x64.exe')
+      expect(chef_run).to run_ruby_block(
+        "validate C:/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe")
     end
 
     it 'installs java' do
-      expect(chef_run).to run_execute('install jdk-8u66-windows-x64.exe to C:\Program Files\Java\jdk1.8.0_66 '\
-                                      'with JRE C:\Program Files\Java\jre1.8.0_66')
+      expect(chef_run).to run_execute(
+        "install jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe to "\
+        "C:\\Program Files\\Java\\jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE} "\
+                                      "with JRE C:\\Program Files\\Java\\jre1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
     end
 
     it 'sets JAVA_HOME' do
@@ -50,7 +54,7 @@ describe 'java_se::default' do
 
     it 'creates link to JDK bin' do
       expect(chef_run).to create_link('C:\java\jdk\bin').with(
-        to: 'C:\Program Files\Java\jdk1.8.0_66\bin'
+        to: "C:\\Program Files\\Java\\jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}\\bin"
       )
     end
   end
