@@ -83,6 +83,8 @@ version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
 
 ##### Bind (Do not change) 
+See https://docs.chef.io/cookbook_versions.html for information on how to set java_se cookbook version constraints. 
+
 - `node['java_se']['version']` - The JDK version to install.
 - `node['java_se']['build']` - The build number to download from Oracle.
 - `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
