@@ -61,10 +61,6 @@ Oracle's download page. Leave nil to download directly from Oracle. Default `nil
 only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
-- `node['java_se']['version']` - The JDK version to install (example: '1.8.0_66')
-- `node['java_se']['build']` - The build number to download from Oracle (example: '17')
-- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. `type` is one of 'dmg', 
-'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 
 ##### Linux Only
 - `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the
@@ -85,6 +81,12 @@ set_default is not true.
 are not available during chef-client run, this provides a way for cookbooks to access the latest installed
 version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
+
+##### Bind (Do not change) 
+- `node['java_se']['version']` - The JDK version to install.
+- `node['java_se']['build']` - The build number to download from Oracle.
+- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
+'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 
 ### Example
 
