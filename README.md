@@ -6,7 +6,8 @@
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [travis]: https://travis-ci.org/dhoer/chef-java_se
 
-Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
+version 8u66.
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
@@ -17,7 +18,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Only supports Oracle's Java SE JDK
 - Allows for downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from
-- Easily lock version to Java release '~> 8.0' or update '~> 8.66.0'
+- Easily lock version to Java release '~> 8.0' or update '~> 8.65.0'
 - Lightweight, no cookbook dependencies
 - Can skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
