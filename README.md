@@ -6,8 +6,8 @@
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [travis]: https://travis-ci.org/dhoer/chef-java_se
 
-Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
-version 8u66.
+Installs Oracle's Java SE JDK
+[8u66](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
@@ -16,11 +16,12 @@ The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-08
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
 - Only supports Oracle's Java SE JDK
-- Allows for downloads directly from Oracle on all supported platforms
-- Can specify an alternative URI directory to download from
-- Easily lock version to Java release '~> 8.0' or update '~> 8.65.0'
+- The java_se cookbook versions are tied to Oracle JDK versions (e.g. java_se 8.60.x is bound to JDK 8u60)
+- Checksums are included in cookbook and should not be overridden
+- Downloads directly from Oracle on all platforms by default
+- Can specify an alternative URI directory to download from (e.g. https://s3.amazonaws.com/mybucket/java/)
 - Lightweight, no cookbook dependencies
-- Can skip Java installation
+- Can globally skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
 
 Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
@@ -37,20 +38,53 @@ Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction
 - Windows
 
 ## Usage
+Include the java_se recipe wherever you would like Java installed, such as a run list (recipe[java_se]) 
+or a cookbook (include_recipe 'java_se'). By default, the latest Oracle SE JDK is installed. 
 
-By adding java_se to a run_list or as a dependency you are accepting the
+By adding java_se to a run list or a cookbook you are accepting the
 [Oracle Binary Code License Agreement for Java SE]
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
+
+It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) 
+java_se cookbook version to a release e.g. '~> 8.0' or an update e.g. '~> 8.65.0' in your metadata.rb
+cookbook or [environment](https://docs.chef.io/cookbook_versions.html#environments).
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
 during initial chef-client run.
 
-You may need to stub `java_version_on_macosx?` method when testing with rspec:
+Note that you may need to stub `java_version_on_macosx?` method when testing with rspec:
 
 ```ruby
 allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
 ```
+
+### Examples
+
+Constrain java_se cookbook in metadata.rb to install latest Java 8 JDK
+
+`depends 'java_se', '~> 8.0'`
+
+Constrain java_se cookbook in environment to install Java 8u65 JDK 
+
+`cookbook 'java_se', '~> 8.65'`
+
+Download JDK from alternative location
+
+```ruby
+override_attributes(
+  "java_se": {
+    "uri": "https://s3.amazonaws.com/mybucket/java/"
+  }
+)
+```
+
+This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u66-windows-i586.exe. Note that JDK file names must be the
+same as that found on Oracle's download page.
+
+A script to download JDKs from Oracle and upload them to Amazon S3 is
+available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
 
 ### Attributes
 
@@ -83,32 +117,11 @@ are not available during chef-client run, this provides a way for cookbooks to a
 version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
 
-##### Bind (Do not change) 
-See https://docs.chef.io/cookbook_versions.html for information on how to set java_se cookbook version constraints. 
-
+##### Bind (Do not override) 
 - `node['java_se']['version']` - The JDK version to install.
 - `node['java_se']['build']` - The build number to download from Oracle.
 - `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
-
-### Example
-
-Download JDK from alternative location
-
-```ruby
-override_attributes(
-  "java_se": {
-    "uri": "https://s3.amazonaws.com/mybucket/java/"
-  }
-)
-```
-
-This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u66-windows-i586.exe. Note that JDK file names must be the
-same as that found on Oracle's download page.
-
-A script to download JDKs from Oracle and upload them to Amazon S3 is
-available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
 
 ## Versioning
 
