@@ -6,7 +6,7 @@
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [travis]: https://travis-ci.org/dhoer/chef-java_se
 
-Installs Oracle's Java SE JDK
+Installs Oracle's Java SE JDK version
 [8u66](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
@@ -18,7 +18,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Only supports Oracle's Java SE JDK 
 - Oracle JDK versions are tied to java_se cookbook versions (e.g. java_se 8.60.x is bound to JDK 8u60)
 - Checksums are included in java_se cookbook and should not be overridden
-- Downloads directly from Oracle on all platforms
+- Downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from (e.g. https://s3.amazonaws.com/mybucket/java/)
 - Lightweight, no cookbook dependencies
 - Can globally skip Java installation
@@ -61,15 +61,15 @@ allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_ret
 
 ### Examples
 
-Constrain java_se cookbook in metadata.rb to install latest Java 8 JDK
+#### Constrain java_se cookbook in metadata.rb to install latest Java 8 JDK
 
 `depends 'java_se', '~> 8.0'`
 
-Constrain java_se cookbook in environment to install Java 8u65 JDK 
+#### Constrain java_se cookbook in environment to install Java 8u65 JDK 
 
 `cookbook 'java_se', '~> 8.65'`
 
-Download JDK from alternative location
+#### Download JDK from alternative location
 
 ```ruby
 override_attributes(
