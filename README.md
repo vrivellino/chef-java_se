@@ -15,10 +15,10 @@ The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-08
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
-- Only supports Oracle's Java SE JDK
-- The java_se cookbook versions are tied to Oracle JDK versions (e.g. java_se 8.60.x is bound to JDK 8u60)
-- Checksums are included in cookbook and should not be overridden
-- Downloads directly from Oracle on all platforms by default
+- Only supports Oracle's Java SE JDK 
+- Oracle JDK versions are tied to java_se cookbook versions (e.g. java_se 8.60.x is bound to JDK 8u60)
+- Checksums are included in java_se cookbook and should not be overridden
+- Downloads directly from Oracle on all platforms
 - Can specify an alternative URI directory to download from (e.g. https://s3.amazonaws.com/mybucket/java/)
 - Lightweight, no cookbook dependencies
 - Can globally skip Java installation
