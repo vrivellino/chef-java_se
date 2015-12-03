@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.79.4
+
+- Merged with 8.66.0 install engine
+
 ## 7.79.3
 
 - Rename java_version_on_osx? method to java_version_on_macosx?

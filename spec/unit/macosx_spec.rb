@@ -17,48 +17,53 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-        'fetch http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-macosx-x64.dmg')
+        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
+        "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg")
     end
 
     it 'validates java' do
-      expect(chef_run).to run_ruby_block('validate /var/chef/cache/jdk-7u79-macosx-x64.dmg')
+      expect(chef_run).to run_ruby_block(
+        "validate /var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg")
     end
 
     it 'attaches volume' do
-      expect(chef_run).to run_execute("hdiutil attach '/var/chef/cache/jdk-7u79-macosx-x64.dmg' -quiet")
+      expect(chef_run).to run_execute(
+        "hdiutil attach '/var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg' -quiet")
     end
 
     it 'install pkg' do
-      expect(chef_run).to run_execute("sudo installer -pkg '/Volumes/JDK 7 Update 79/JDK 7 Update 79.pkg' -target /")
+      expect(chef_run).to run_execute(
+        "sudo installer -pkg '/Volumes/JDK #{VERSION_MAJOR} Update #{VERSION_UPDATE}/JDK #{VERSION_MAJOR} "\
+        "Update #{VERSION_UPDATE}.pkg' -target /")
     end
 
     it 'detaches volume' do
-      expect(chef_run).to run_execute("hdiutil detach '/Volumes/JDK 7 Update 79' " \
-        "|| hdiutil detach '/Volumes/JDK 7 Update 79' -force")
+      expect(chef_run).to run_execute("hdiutil detach '/Volumes/JDK #{VERSION_MAJOR} Update #{VERSION_UPDATE}' " \
+        "|| hdiutil detach '/Volumes/JDK #{VERSION_MAJOR} Update #{VERSION_UPDATE}' -force")
     end
 
     it 'adds BundledApp capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
         "\"Add :JavaVM:JVMCapabilities: string BundledApp\" " \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Info.plist')
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 
     it 'adds JNI capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
         "\"Add :JavaVM:JVMCapabilities: string JNI\" " \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Info.plist')
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 
     it 'adds WebStart capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
         "\"Add :JavaVM:JVMCapabilities: string WebStart\" " \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Info.plist')
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 
     it 'adds Applets capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
         "\"Add :JavaVM:JVMCapabilities: string Applets\" " \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Info.plist')
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 
     it 'removes previous jdk' do
@@ -68,24 +73,28 @@ describe 'java_se::default' do
 
     it 'adds current jdk' do
       expect(chef_run).to run_execute('/usr/bin/sudo /bin/ln -nsf ' \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents ' \
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents " \
         '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK')
     end
 
     it 'creates java home' do
       expect(chef_run).to run_execute('/usr/bin/sudo /bin/ln -nsf ' \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home /Library/Java/Home')
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk"\
+        '/Contents/Home /Library/Java/Home')
     end
 
     it 'creates lib dir' do
       expect(chef_run).to run_execute('/usr/bin/sudo /bin/mkdir -p ' \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/bundle/Libraries')
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk"\
+        '/Contents/Home/bundle/Libraries')
     end
 
     it 'creates java home' do
       expect(chef_run).to run_execute('/usr/bin/sudo /bin/ln -nsf ' \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/jre/lib/server/libjvm.dylib ' \
-        '/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/bundle/Libraries/libserver.dylib')
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk"\
+        '/Contents/Home/jre/lib/server/libjvm.dylib ' \
+        "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk"\
+        '/Contents/Home/bundle/Libraries/libserver.dylib')
     end
   end
 end

@@ -97,16 +97,8 @@ template "adding #{jinfo_file} for debian" do
   only_if { platform_family?('debian') && !::File.exist?(jinfo_file) }
 end
 
-# link java_home to java_dir
-Chef::Log.debug "java_home is #{java_home} and java_dir is #{java_dir}"
-current_link = ::File.symlink?(java_home) ? ::File.readlink(java_home) : nil
-ruby_block "symlink #{java_dir} to #{java_home}" do
-  block do
-    FileUtils.rm_f java_home
-    FileUtils.ln_sf java_dir, java_home
-    FileUtils.chown owner, group, java_home
-  end
-  only_if { current_link != java_dir }
+link java_home do
+  to java_dir
 end
 
 # rubocop:disable  Style/Next
@@ -172,9 +164,7 @@ ruby_block 'update-alternatives' do # ~FC014
 end
 # rubocop:enable Style/Next
 
-if default && platform_family?('debian')
-  link '/usr/lib/jvm/default-java' do
-    to java_home
-    not_if { java_home == '/usr/lib/jvm/default-java' }
-  end
+link '/usr/lib/jvm/default-java' do
+  to java_home
+  only_if { default && platform_family?('debian') }
 end
