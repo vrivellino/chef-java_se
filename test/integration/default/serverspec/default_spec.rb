@@ -6,7 +6,7 @@ when 'windows'
     it { should be_file }
   end
 
-  describe file("C:\\Program Files (x86)\\Java\\jre#{VERSION}\\bin\\java.exe") do
+  describe file("C:\\Program Files (x86)\\Java\\jre7\\bin\\java.exe") do
     it { should be_file }
   end
 
