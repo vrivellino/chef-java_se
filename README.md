@@ -61,13 +61,17 @@ allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_ret
 
 ### Examples
 
-#### Constrain java_se cookbook in metadata.rb to install latest Java 8 JDK
+#### Constrain java_se cookbook in metadata.rb
 
 `depends 'java_se', '~> 8.0'`
 
-#### Constrain java_se cookbook in environment to install Java 8u65 JDK 
+Constrains install to latest available Java SE JDK 8.
+
+#### Constrain java_se cookbook in environment 
 
 `cookbook 'java_se', '~> 8.65'`
+
+Constrains install to Java SE JDK 8u65.
 
 #### Download JDK from alternative location
 
