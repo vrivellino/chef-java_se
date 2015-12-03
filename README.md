@@ -1,9 +1,7 @@
 # Java SE Cookbook
 
-[![Cookbook Version](http://img.shields.io/cookbook/v/java_se.svg?style=flat-square)][cookbook]
 [![Build Status](http://img.shields.io/travis/dhoer/chef-java_se.svg?style=flat-square)][travis]
 
-[cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [travis]: https://travis-ci.org/dhoer/chef-java_se
 
 Installs Oracle's Java SE JDK version
@@ -12,7 +10,7 @@ Installs Oracle's Java SE JDK version
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
 - Only supports Oracle's Java SE JDK 
-- Oracle JDK versions are tied to java_se cookbook versions (e.g. java_se 8.60.x is bound to JDK 8u60)
+- Oracle JDK versions are tied to java_se cookbook versions (e.g. java_se 7.79.x is bound to JDK 7u79)
 - Checksums are included in java_se cookbook and should not be overridden
 - Downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from (e.g. https://s3.amazonaws.com/mybucket/java/)
@@ -42,7 +40,7 @@ By adding java_se to a run list or a cookbook you are accepting the
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
 It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) 
-java_se cookbook version to a release e.g. '~> 8.0' or an update e.g. '~> 8.65.0' in your metadata.rb
+java_se cookbook version to a release e.g. '~> 7.0' or an update e.g. '~> 7.79.0' in your metadata.rb
 cookbook or [environment](https://docs.chef.io/cookbook_versions.html#environments).
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
@@ -59,15 +57,15 @@ allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_ret
 
 #### Constrain java_se cookbook in metadata.rb
 
-`depends 'java_se', '~> 8.0'`
+`depends 'java_se', '~> 7.0'`
 
-Constrains install to latest available Java SE JDK 8.
+Constrains install to latest available Java SE JDK 7.
 
 #### Constrain java_se cookbook in environment 
 
-`cookbook 'java_se', '~> 8.65'`
+`cookbook 'java_se', '~> 7.79'`
 
-Constrains install to Java SE JDK 8u65.
+Constrains install to Java SE JDK 7u79.
 
 #### Download JDK from alternative location
 
@@ -129,8 +127,8 @@ This cookbook does NOT use [SemVer](http://semver.org) for versioning.
 
 The versioning scheme is RELEASE.UPDATE.MINOR where:
 
-1. RELEASE is the release of Java e.g. 8
-2. UPDATE is the Java update e.g. 66
+1. RELEASE is the release of Java e.g. 7
+2. UPDATE is the Java update e.g. 79
 3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
 
 *All MINOR versions will strive to be backwards-compatible.
