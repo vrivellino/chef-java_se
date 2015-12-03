@@ -101,7 +101,7 @@ only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
 
-##### Linux Only
+#### Linux Only
 - `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the
 system. Default `true`.                
 - `node['java_se']['owner']` - The owner of extracted directory. Default `root`.
@@ -114,14 +114,14 @@ system. Default `true`.
 are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. Will be ignored if
 set_default is not true.
 
-##### Windows Only
+#### Windows Only
 - `node['java_se']['win_addlocal']` - JDK features to install. Default `ToolsFeature,SourceFeature,PublicjreFeature`.
 - `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
 are not available during chef-client run, this provides a way for cookbooks to access the latest installed
 version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
 
-##### Bind (Do not override) 
+#### Bind (Do not override) 
 - `node['java_se']['version']` - The JDK version to install.
 - `node['java_se']['build']` - The build number to download from Oracle.
 - `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
