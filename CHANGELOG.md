@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.66.1
+
+- Support chef_gem compile_time attribute
+
 ## 8.66.0
 
 - Update 66
