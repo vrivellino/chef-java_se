@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.79.5
+
+- Support chef_gem compile_time attribute
+
 ## 7.79.4
 
 - Merged with 8.66.0 install engine
