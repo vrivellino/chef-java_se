@@ -69,7 +69,7 @@ Constrains install to latest available Java SE JDK 8.
 
 #### Constrain java_se cookbook in environment 
 
-`cookbook 'java_se', '~> 8.65'`
+`cookbook 'java_se', '~> 8.65.0'`
 
 Constrains install to Java SE JDK 8u65.
 
