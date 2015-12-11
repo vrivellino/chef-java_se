@@ -63,7 +63,7 @@ Constrains install to latest available Java SE JDK 7.
 
 #### Constrain java_se cookbook in environment 
 
-`cookbook 'java_se', '~> 7.79'`
+`cookbook 'java_se', '~> 7.79.0'`
 
 Constrains install to Java SE JDK 7u79.
 
