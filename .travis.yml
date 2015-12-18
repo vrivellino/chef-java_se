@@ -17,6 +17,7 @@ env:
   - INSTANCE=default-centos-6
   - INSTANCE=default-centos-7
   - INSTANCE=default-debian-8
+  - INSTANCE=default-fedora-latest
 
 # Don't `bundle install`
 install: echo "skip bundle install"
