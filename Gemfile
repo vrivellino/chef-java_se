@@ -11,4 +11,3 @@ group :integration do
   gem 'kitchen-vagrant', '~> 0.19'
   gem 'kitchen-docker', '~> 2.3'
 end
-
