@@ -51,9 +51,9 @@ platforms:
     provision_command:
       - /usr/bin/apt-get update
       - /usr/bin/apt-get install apt-transport-https net-tools -y
-- name: fedora-latest
+- name: fedora-21
   driver:
-    image: fedora:latest
+    image: fedora:21
     platform: rhel
     disable_upstart: false
     run_command: /sbin/init
