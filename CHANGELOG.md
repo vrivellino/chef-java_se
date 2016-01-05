@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.66.2
+
+- Fix #10 Retry download if file checksum is not valid 
+
 ## 8.66.1
 
 - Support chef_gem compile_time attribute
