@@ -28,6 +28,8 @@ module JavaSE
               end
             end
           end
+
+          fetch(url, file, limit - 1) unless valid?(file, checksum)
         rescue
           fetch(url, file, limit - 1)
         end
