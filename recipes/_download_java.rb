@@ -40,7 +40,7 @@ unless file_cache_path
   Chef::Log.info("download #{download_url}")
   ruby_block "fetch #{download_url}" do
     block do
-      JavaSE::Downloader.fetch(download_url, file_cache_path)
+      JavaSE::Downloader.fetch(download_url, file_cache_path, checksum)
     end
     not_if { ::File.exist?(file_cache_path) && JavaSE::Downloader.valid?(file_cache_path, checksum) }
   end
