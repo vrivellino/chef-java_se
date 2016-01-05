@@ -28,7 +28,13 @@ else
   end
 end
 
-unless file_cache_path
+if file_cache_path
+  ruby_block "validate #{file_cache_path}" do
+    block do
+      JavaSE::Downloader.validate(file_cache_path, checksum)
+    end
+  end
+else
   file_cache_path = ::File.join(Chef::Config[:file_cache_path], jdk)
 
   chef_gem 'allow for https to http redirections' do
@@ -43,12 +49,6 @@ unless file_cache_path
       JavaSE::Downloader.fetch(download_url, file_cache_path, checksum)
     end
     not_if { ::File.exist?(file_cache_path) && JavaSE::Downloader.valid?(file_cache_path, checksum) }
-  end
-end
-
-ruby_block "validate #{file_cache_path}" do
-  block do
-    JavaSE::Downloader.validate(file_cache_path, checksum)
   end
 end
 
