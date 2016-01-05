@@ -19,8 +19,8 @@ describe 'java_se::_download_java' do
         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
     end
 
-    it 'validates java' do
-      expect(chef_run).to run_ruby_block(
+    it 'does not validate java' do
+      expect(chef_run).to_not run_ruby_block(
         "validate /var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
     end
   end
@@ -43,8 +43,8 @@ describe 'java_se::_download_java' do
         "fetch https://example.com/path/to/jdks//jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
     end
 
-    it 'validates java' do
-      expect(chef_run).to run_ruby_block(
+    it 'does not validate java' do
+      expect(chef_run).to_not run_ruby_block(
         "validate /var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
     end
   end
@@ -63,8 +63,8 @@ describe 'java_se::_download_java' do
         'fetch https://example.com/path/to/jdks/myjdk.tar.gz')
     end
 
-    it 'validates java' do
-      expect(chef_run).to run_ruby_block('validate /var/chef/cache/myjdk.tar.gz')
+    it 'does not validate java' do
+      expect(chef_run).to_not run_ruby_block('validate /var/chef/cache/myjdk.tar.gz')
     end
   end
 

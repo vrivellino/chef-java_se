@@ -23,11 +23,6 @@ describe 'java_se::default' do
          "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe")
     end
 
-    it 'validates java' do
-      expect(chef_run).to run_ruby_block(
-        "validate C:/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe")
-    end
-
     it 'installs java' do
       expect(chef_run).to run_execute(
         "install jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe to "\

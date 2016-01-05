@@ -21,11 +21,6 @@ describe 'java_se::default' do
         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg")
     end
 
-    it 'validates java' do
-      expect(chef_run).to run_ruby_block(
-        "validate /var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg")
-    end
-
     it 'attaches volume' do
       expect(chef_run).to run_execute(
         "hdiutil attach '/var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg' -quiet")
