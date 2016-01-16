@@ -3,6 +3,9 @@
 settings:
   parallel: true
 
+provisioner:
+  data_path: test/shared
+
 driver:
   name: docker
   # privileged is required otherwise the container doesn't boot right
