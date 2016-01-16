@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../../../kitchen/data/spec_helper'
 
 describe file('C:\my\java\jdk\bin\java.exe') do
   it { should be_file }
