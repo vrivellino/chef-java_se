@@ -3,13 +3,15 @@
 settings:
   parallel: true
 
+transport:
+  name: dokken
+
 provisioner:
+  name: dokken
   data_path: test/shared
 
 driver:
-  name: docker
-  # privileged is required otherwise the container doesn't boot right
-  privileged: true
+  name: dokken
 
 platforms:
 - name: centos-6
