@@ -12,6 +12,8 @@ provisioner:
 
 driver:
   name: dokken
+  # privileged is required otherwise the container doesn't boot right
+  privileged: true
 
 platforms:
 - name: centos-6
