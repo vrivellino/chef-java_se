@@ -10,6 +10,10 @@ provisioner:
   name: dokken
   data_path: test/shared
 
+verifier:
+  root_path: '/opt/verifier'
+  sudo: false
+
 driver:
   name: dokken
   # privileged is required otherwise the container doesn't boot right
