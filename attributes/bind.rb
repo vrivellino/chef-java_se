@@ -1,4 +1,5 @@
-default['java_se']['version'] = '1.8.0_66'
+default['java_se']['release'] = '8'
+default['java_se']['update'] = '66'
 default['java_se']['build'] = '17'
 
 # https://www.oracle.com/webfolder/s/digest/8u66checksum.html

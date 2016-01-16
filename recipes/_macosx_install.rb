@@ -3,7 +3,7 @@
 unless java_version_on_macosx?
   version = node['java_se']['version']
 
-  name = "JDK #{version.split('.')[1]} Update #{version.sub(/^.*?_(\d+)$/, '\1')}"
+  name = "JDK #{node['java_se']['release']} Update #{node['java_se']['update']}"
   execute "hdiutil attach '#{node['java_se']['file_cache_path']}' -quiet"
 
   avoid_daemon = Gem::Version.new(node['platform_version']) >= Gem::Version.new('10.8')

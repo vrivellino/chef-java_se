@@ -19,13 +19,11 @@ if uri.nil? || uri.empty?
 elsif uri.start_with?('file://')
   file_cache_path = platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')
   file_cache_path = "#{file_cache_path}/#{jdk}" unless uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
+elsif uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
+  download_url = uri
+  jdk = ::File.basename(uri)
 else
-  if uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
-    download_url = uri
-    jdk = ::File.basename(uri)
-  else
-    download_url = "#{uri}/#{jdk}"
-  end
+  download_url = "#{uri}/#{jdk}"
 end
 
 if file_cache_path

@@ -1,6 +1,5 @@
 # inspiration from https://github.com/agileorbit-cookbooks/java
 
-version = node['java_se']['version']
 bin_cmds = node['java_se']['bin_cmds']
 default = node['java_se']['set_default']
 priority = node['java_se']['alternatives_priority']
@@ -42,7 +41,7 @@ end
 
 package 'tar'
 
-java_dir_name = "jdk#{version}"
+java_dir_name = "jdk#{node['java_se']['version']}"
 java_root = java_home.split('/')[0..-2].join('/')
 java_dir = "#{java_root}/#{java_dir_name}"
 
