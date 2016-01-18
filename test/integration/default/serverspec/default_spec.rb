@@ -33,5 +33,5 @@ else
   # which not installed on centos docker
   describe command('readlink -f `which jar`') do
     its(:stdout) { should match(%r{/usr/lib/jvm/jdk#{VERSION}/bin/jar}) }
-  end unless os[:family] == 'redhat'
+  end
 end
