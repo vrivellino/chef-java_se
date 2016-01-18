@@ -7,7 +7,6 @@ addons:
       - chef-current-precise
     packages:
       - chefdk
-      - which
 
 services: docker
 
