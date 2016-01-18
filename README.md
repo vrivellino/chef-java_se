@@ -38,12 +38,10 @@ Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction
 - Windows
 
 ## Usage
-Include the java_se recipe wherever you would like Java installed, such as a run list (recipe[java_se]) 
-or a cookbook (include_recipe 'java_se'). By default, the latest Oracle SE JDK is installed. 
-
-By adding java_se to a run list or a cookbook you are accepting the
+By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 'java_se') you are accepting the
 [Oracle Binary Code License Agreement for Java SE]
-(http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
+(http://www.oracle.com/technetwork/java/javase/terms/license/index.html). By default, 
+the latest Oracle SE JDK is installed. 
 
 It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) 
 java_se cookbook version to a release e.g. '~> 8.0' or an update e.g. '~> 8.65.0' in your metadata.rb
@@ -53,12 +51,6 @@ Windows JAVA_HOME and PATH environment variables are not available during initia
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
 during initial chef-client run.
 
-Note that you may need to stub `java_version_on_macosx?` method when testing with rspec:
-
-```ruby
-allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
-```
-
 ### Examples
 
 #### Constrain java_se cookbook in metadata.rb
@@ -67,7 +59,7 @@ allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_ret
 
 Constrains install to latest available Java SE JDK 8.
 
-#### Constrain java_se cookbook in environment 
+#### Constrain java_se cookbook in environment to a specific version
 
 `cookbook 'java_se', '~> 8.65.0'`
 
@@ -122,8 +114,9 @@ version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
 
 #### Bind (Do not override) 
-- `node['java_se']['version']` - The JDK version to install.
-- `node['java_se']['build']` - The build number to download from Oracle.
+- `node['java_se']['release']` - The JDK release version.
+- `node['java_se']['update']` - The JDK update version.
+- `node['java_se']['build']` - The build number.
 - `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 
