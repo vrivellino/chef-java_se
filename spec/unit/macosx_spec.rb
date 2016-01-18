@@ -21,11 +21,6 @@ describe 'java_se::default' do
         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg")
     end
 
-    it 'validates java' do
-      expect(chef_run).to run_ruby_block(
-        "validate /var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg")
-    end
-
     it 'attaches volume' do
       expect(chef_run).to run_execute(
         "hdiutil attach '/var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg' -quiet")
@@ -44,25 +39,25 @@ describe 'java_se::default' do
 
     it 'adds BundledApp capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
-        "\"Add :JavaVM:JVMCapabilities: string BundledApp\" " \
+        '"Add :JavaVM:JVMCapabilities: string BundledApp" ' \
         "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 
     it 'adds JNI capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
-        "\"Add :JavaVM:JVMCapabilities: string JNI\" " \
+        '"Add :JavaVM:JVMCapabilities: string JNI" ' \
         "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 
     it 'adds WebStart capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
-        "\"Add :JavaVM:JVMCapabilities: string WebStart\" " \
+        '"Add :JavaVM:JVMCapabilities: string WebStart" ' \
         "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 
     it 'adds Applets capability' do
       expect(chef_run).to run_execute('/usr/bin/sudo /usr/libexec/PlistBuddy -c ' \
-        "\"Add :JavaVM:JVMCapabilities: string Applets\" " \
+        '"Add :JavaVM:JVMCapabilities: string Applets" ' \
         "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents/Info.plist")
     end
 

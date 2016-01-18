@@ -1,4 +1,5 @@
-default['java_se']['version'] = '1.7.0_79'
+default['java_se']['release'] = '7'
+default['java_se']['update'] = '79'
 default['java_se']['build'] = '15'
 
 # https://www.oracle.com/webfolder/s/digest/7u79checksum.html

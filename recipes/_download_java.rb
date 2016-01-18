@@ -19,16 +19,20 @@ if uri.nil? || uri.empty?
 elsif uri.start_with?('file://')
   file_cache_path = platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')
   file_cache_path = "#{file_cache_path}/#{jdk}" unless uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
+elsif uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
+  download_url = uri
+  jdk = ::File.basename(uri)
 else
-  if uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
-    download_url = uri
-    jdk = ::File.basename(uri)
-  else
-    download_url = "#{uri}/#{jdk}"
-  end
+  download_url = "#{uri}/#{jdk}"
 end
 
-unless file_cache_path
+if file_cache_path
+  ruby_block "validate #{file_cache_path}" do
+    block do
+      JavaSE::Downloader.validate(file_cache_path, checksum)
+    end
+  end
+else
   file_cache_path = ::File.join(Chef::Config[:file_cache_path], jdk)
 
   chef_gem 'allow for https to http redirections' do
@@ -40,15 +44,9 @@ unless file_cache_path
   Chef::Log.info("download #{download_url}")
   ruby_block "fetch #{download_url}" do
     block do
-      JavaSE::Downloader.fetch(download_url, file_cache_path)
+      JavaSE::Downloader.fetch(download_url, file_cache_path, checksum)
     end
     not_if { ::File.exist?(file_cache_path) && JavaSE::Downloader.valid?(file_cache_path, checksum) }
-  end
-end
-
-ruby_block "validate #{file_cache_path}" do
-  block do
-    JavaSE::Downloader.validate(file_cache_path, checksum)
   end
 end
 

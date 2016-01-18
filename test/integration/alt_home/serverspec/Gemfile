@@ -1,0 +1,3 @@
+source 'https://rubygems.org'
+gem 'serverspec', '~> 2.24'
+gem 'net-ssh', '~> 2.9.0' # 3.x requires Ruby >= 2.0.0 which causes issues with Chef 11 running Ruby 1.9.3

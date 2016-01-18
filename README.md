@@ -32,26 +32,18 @@ Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction
 - Windows
 
 ## Usage
-Include the java_se recipe wherever you would like Java installed, such as a run list (recipe[java_se]) 
-or a cookbook (include_recipe 'java_se'). By default, the latest Oracle SE JDK is installed. 
-
-By adding java_se to a run list or a cookbook you are accepting the
+By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 'java_se') you are accepting the
 [Oracle Binary Code License Agreement for Java SE]
-(http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
+(http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
-It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) 
-java_se cookbook version to a release e.g. '~> 7.0' or an update e.g. '~> 7.79.0' in your metadata.rb
-cookbook or [environment](https://docs.chef.io/cookbook_versions.html#environments).
+It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) java_se cookbook 
+version to a release e.g. '~> 7.0' or an update e.g. '~> 7.79.0' in your metadata.rb cookbook or 
+[environment](https://docs.chef.io/cookbook_versions.html#environments). By default, the latest Oracle SE JDK is 
+installed.
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
 during initial chef-client run.
-
-Note that you may need to stub `java_version_on_macosx?` method when testing with rspec:
-
-```ruby
-allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
-```
 
 ### Examples
 
@@ -61,7 +53,7 @@ allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_ret
 
 Constrains install to latest available Java SE JDK 7.
 
-#### Constrain java_se cookbook in environment 
+#### Constrain java_se cookbook in environment to a specific version
 
 `cookbook 'java_se', '~> 7.79.0'`
 
@@ -95,7 +87,7 @@ only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
 
-##### Linux Only
+#### Linux Only
 - `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the
 system. Default `true`.                
 - `node['java_se']['owner']` - The owner of extracted directory. Default `root`.
@@ -108,16 +100,17 @@ system. Default `true`.
 are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. Will be ignored if
 set_default is not true.
 
-##### Windows Only
+#### Windows Only
 - `node['java_se']['win_addlocal']` - JDK features to install. Default `ToolsFeature,SourceFeature,PublicjreFeature`.
 - `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
 are not available during chef-client run, this provides a way for cookbooks to access the latest installed
 version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
 
-##### Bind (Do not override) 
-- `node['java_se']['version']` - The JDK version to install.
-- `node['java_se']['build']` - The build number to download from Oracle.
+#### Bind (Do not override) 
+- `node['java_se']['release']` - The JDK release version.
+- `node['java_se']['update']` - The JDK update version.
+- `node['java_se']['build']` - The build number.
 - `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 

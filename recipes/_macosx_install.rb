@@ -1,9 +1,11 @@
 # inspiration from https://github.com/caskroom/homebrew-cask/blob/master/Casks/java.rb
 
+# Note that you may need to stub java_version_on_macosx? method when testing with rspec:
+# allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
 unless java_version_on_macosx?
   version = node['java_se']['version']
 
-  name = "JDK #{version.split('.')[1]} Update #{version.sub(/^.*?_(\d+)$/, '\1')}"
+  name = "JDK #{node['java_se']['release']} Update #{node['java_se']['update']}"
   execute "hdiutil attach '#{node['java_se']['file_cache_path']}' -quiet"
 
   avoid_daemon = Gem::Version.new(node['platform_version']) >= Gem::Version.new('10.8')

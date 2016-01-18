@@ -13,7 +13,7 @@ module JavaSE
       end
 
       # rubocop:disable Metrics/MethodLength
-      def fetch(url, file, limit = 5)
+      def fetch(url, file, checksum, limit = 5)
         fail ArgumentError, "too many download failures from #{url}" if limit == 0
         load_open_uri_redirections
         uri = URI(url)
@@ -28,8 +28,11 @@ module JavaSE
               end
             end
           end
+
+          # retry download if file checksum is not valid
+          fetch(url, file, checksum, limit - 1) unless valid?(file, checksum)
         rescue
-          fetch(url, file, limit - 1)
+          fetch(url, file, checksum, limit - 1)
         end
       end
       # rubocop:enable Metrics/MethodLength

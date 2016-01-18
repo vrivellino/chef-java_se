@@ -90,11 +90,6 @@ describe 'java_se::default' do
           "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
       end
 
-      it 'validates java' do
-        expect(chef_run).to run_ruby_block(
-          "validate /var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
-      end
-
       it 'installs glibc package' do
         expect(chef_run).to_not install_yum_package('glibc')
       end
