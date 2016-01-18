@@ -8,8 +8,6 @@ gem 'berkshelf', '~> 3.1.5'
 
 group :integration do
   gem 'test-kitchen', '~> 1.4'
-  gem 'kitchen-ssh', '~> 0.0'
   gem 'kitchen-vagrant', '~> 0.19'
-  gem 'kitchen-docker', '~> 2.3'
   gem 'winrm-transport', '~> 1.0'
 end
