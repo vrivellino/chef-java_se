@@ -37,4 +37,3 @@ script:
   - /opt/chefdk/embedded/bin/foodcritic . --exclude spec
   - sudo /opt/chefdk/embedded/bin/rspec
   - sudo KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
-
