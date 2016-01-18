@@ -40,12 +40,12 @@ Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction
 ## Usage
 By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 'java_se') you are accepting the
 [Oracle Binary Code License Agreement for Java SE]
-(http://www.oracle.com/technetwork/java/javase/terms/license/index.html). By default, 
-the latest Oracle SE JDK is installed. 
+(http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
-It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) 
-java_se cookbook version to a release e.g. '~> 8.0' or an update e.g. '~> 8.65.0' in your metadata.rb
-cookbook or [environment](https://docs.chef.io/cookbook_versions.html#environments).
+It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) java_se cookbook 
+version to a release e.g. '~> 8.0' or an update e.g. '~> 8.65.0' in your metadata.rb cookbook or 
+[environment](https://docs.chef.io/cookbook_versions.html#environments). By default, the latest Oracle SE JDK is 
+installed. 
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
