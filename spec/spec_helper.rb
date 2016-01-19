@@ -1,8 +1,8 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-BUILD = '17'.freeze
+BUILD = '15'.freeze
 VERSION_MAJOR = '8'.freeze
-VERSION_UPDATE = '66'.freeze
+VERSION_UPDATE = '71'.freeze
 
 ChefSpec::Coverage.start!

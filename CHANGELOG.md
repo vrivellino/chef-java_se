@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.71.0 2015-01-19
+
+- Update 71
+
 ## 8.66.2
 
 - Fix #10 Retry download if file checksum is not valid 
