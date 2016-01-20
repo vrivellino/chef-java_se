@@ -59,7 +59,7 @@ during initial chef-client run.
 
 Constrains install to latest available Java SE JDK 8.
 
-#### Constrain java_se cookbook in environment to a specific version
+#### Constrain java_se cookbook in environment to a specific update
 
 `cookbook 'java_se', '~> 8.72.0'`
 
