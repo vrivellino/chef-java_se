@@ -11,7 +11,7 @@ Installs Oracle's Java SE JDK version
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
-- 19 January 2016
+- 19 April 2016
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
