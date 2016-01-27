@@ -16,10 +16,10 @@ The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-08
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
 - Only supports Oracle's Java SE JDK 
-- Oracle JDK versions are tied to java_se cookbook versions (e.g. java_se 8.60.x is bound to JDK 8u60)
+- Oracle JDK versions are tied to java_se cookbook versions e.g., java_se 8.60.x is bound to JDK 8u60
 - Checksums are included in java_se cookbook and should not be overridden
 - Downloads directly from Oracle on all supported platforms
-- Can specify an alternative URI directory to download from (e.g. https://s3.amazonaws.com/mybucket/java/)
+- Can specify an alternative URI directory to download from e.g., https://s3.amazonaws.com/mybucket/java
 - Lightweight, no cookbook dependencies
 - Can globally skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
@@ -70,7 +70,7 @@ Constrains install to Java SE JDK 8u72.
 ```ruby
 override_attributes(
   "java_se": {
-    "uri": "https://s3.amazonaws.com/mybucket/java/"
+    "uri": "https://s3.amazonaws.com/mybucket/java"
   }
 )
 ```
