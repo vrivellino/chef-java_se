@@ -63,12 +63,12 @@ ruby_block "adding java to #{java_dir}" do # ~FC014
     extract = Mixlib::ShellOut.new(
       %( tar xvzf "#{node['java_se']['file_cache_path']}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner))
     extract.run_command
-    fail("Failed to extract file #{tarball_name}!") unless extract.exitstatus == 0
+    raise("Failed to extract file #{tarball_name}!") unless extract.exitstatus == 0
 
     move = Mixlib::ShellOut.new(%( mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" ))
     move.run_command
     unless move.exitstatus == 0
-      fail(%( Command \' mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" \' failed ))
+      raise(%( Command \' mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" \' failed ))
     end
 
     # change ownership of extracted files
@@ -127,7 +127,7 @@ ruby_block 'update-alternatives' do # ~FC014
         remove_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --remove #{cmd} #{alt_path}")
         remove_alt.run_command
         unless remove_alt.exitstatus == 0
-          fail("remove alternative failed: #{alternatives_cmd} --remove #{cmd} #{alt_path}")
+          raise("remove alternative failed: #{alternatives_cmd} --remove #{cmd} #{alt_path}")
         end
       end
       # install the alternative if needed
@@ -139,7 +139,7 @@ ruby_block 'update-alternatives' do # ~FC014
         install_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
         install_alt.run_command
         unless install_alt.exitstatus == 0
-          fail("install alternative failed: #{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
+          raise("install alternative failed: #{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
         end
       end
 
@@ -153,7 +153,7 @@ ruby_block 'update-alternatives' do # ~FC014
           set_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --set #{cmd} #{alt_path}")
           set_alt.run_command
           unless set_alt.exitstatus == 0
-            fail("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}")
+            raise("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}")
           end
         end
       end

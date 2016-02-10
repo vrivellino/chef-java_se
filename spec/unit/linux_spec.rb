@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'java_se::default' do
   context 'linux' do
-    context 'set_java_home'do
+    context 'set_java_home' do
       let(:chef_run) do
         ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0') do |node|
           node.set['java_se']['java_home'] = '/opt/java'
