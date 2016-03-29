@@ -7,7 +7,7 @@
 [travis]: https://travis-ci.org/dhoer/chef-java_se
 
 Installs Oracle's Java SE JDK version
-[8u74](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+[8u77](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
@@ -43,7 +43,7 @@ By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 
 (http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
 It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) java_se cookbook 
-version to a release e.g. '~> 8.0' or an update e.g. '~> 8.74.0' in your metadata.rb cookbook or 
+version to a release e.g. '~> 8.0' or an update e.g. '~> 8.77.0' in your metadata.rb cookbook or 
 [environment](https://docs.chef.io/cookbook_versions.html#environments). By default, the latest Oracle SE JDK is 
 installed. 
 
@@ -61,9 +61,9 @@ Constrains install to latest available Java SE JDK 8.
 
 #### Constrain java_se cookbook in environment to a specific update
 
-`cookbook 'java_se', '~> 8.74.0'`
+`cookbook 'java_se', '~> 8.77.0'`
 
-Constrains install to Java SE JDK 8u74.
+Constrains install to Java SE JDK 8u77.
 
 #### Download JDK from alternative location
 
@@ -76,7 +76,7 @@ override_attributes(
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u74-windows-i586.exe. Note that JDK file names must be the
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u77-windows-i586.exe. Note that JDK file names must be the
 same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
@@ -127,7 +127,7 @@ This cookbook does NOT use [SemVer](http://semver.org) for versioning.
 The versioning scheme is RELEASE.UPDATE.MINOR where:
 
 1. RELEASE is the release of Java e.g. 8
-2. UPDATE is the Java update e.g. 74
+2. UPDATE is the Java update e.g. 77
 3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
 
 *All MINOR versions will strive to be backwards-compatible.

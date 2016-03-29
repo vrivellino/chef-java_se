@@ -1,6 +1,6 @@
 require 'serverspec'
 
-VERSION = '1.8.0_74'.freeze
+VERSION = '1.8.0_77'.freeze
 
 if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM).nil?
   set :backend, :exec
