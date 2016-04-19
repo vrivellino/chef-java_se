@@ -7,16 +7,16 @@
 [travis]: https://travis-ci.org/dhoer/chef-java_se
 
 Installs Oracle's Java SE JDK version
-[8u77](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+[8u91](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
-- 19 April 2016
+- 19 July 2016
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
 - Only supports Oracle's Java SE JDK 
-- Oracle JDK versions are tied to java_se cookbook versions e.g., java_se 8.60.x is bound to JDK 8u60
+- Oracle JDK versions are tied to java_se cookbook versions e.g., java_se 8.77.x is bound to JDK 8u77
 - Checksums are included in java_se cookbook and should not be overridden
 - Downloads directly from Oracle on all supported platforms
 - Can specify an alternative URI directory to download from e.g., https://s3.amazonaws.com/mybucket/java
@@ -76,7 +76,7 @@ override_attributes(
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u77-windows-i586.exe. Note that JDK file names must be the
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u91-windows-i586.exe. Note that JDK file names must be the
 same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
