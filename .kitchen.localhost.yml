@@ -1,0 +1,35 @@
+# Usage: KITCHEN_YAML=.kitchen.localhost.yml bundle exec kitchen list
+---
+driver:
+  name: proxy
+  host: localhost
+  reset_command: "exit 0"
+  port: <%= ENV["machine_port"] %>
+  username: <%= ENV["machine_user"] %>
+  password: <%= ENV["machine_pass"] %>
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: macosx-10
+  - name: windows-2012R2
+    attributes:
+      java_se:
+        force_i586: true
+
+suites:
+  - name: default
+    run_list:
+      - java_se
+
+  - name: alt_home
+    run_list:
+      - java_se
+    attributes:
+      java_se:
+        java_home:
+          C:\my\java\jdk
+        win_jre_home:
+          C:\my\java\jre
+
