@@ -1,10 +1,12 @@
 # Java SE Cookbook
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/java_se.svg?style=flat-square)][cookbook]
-[![Build Status](http://img.shields.io/travis/dhoer/chef-java_se.svg?style=flat-square)][travis]
+[![Travis](http://img.shields.io/travis/dhoer/chef-java_se/master.svg?label=travis&style=flat-square)][travis]
+[![AppVeyor](https://img.shields.io/appveyor/ci/dhoer/chef-java_se/master.svg?label=appveyor&style=flat-square)][appveyor]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [travis]: https://travis-ci.org/dhoer/chef-java_se
+[appveyor]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
 Installs Oracle's Java SE JDK version
 [8u92](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
