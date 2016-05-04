@@ -25,7 +25,9 @@ env:
 #    - osx_image: xcode6.2
 
 before_install:
-  - sudo dscl . -passwd /Users/travis travis
+  - env
+  - pwd
+  - dscl . -passwd /Users/travis travis
   - echo $?
 
 script:
