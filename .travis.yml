@@ -1,7 +1,7 @@
 language: ruby
 
 rvm:
-  - 2.1.5
+  - 2.1.7
 
 os: osx
 
@@ -30,7 +30,7 @@ before_install:
 
 script:
   - rvm ls
-  - bundle exec kitchen test
+  - bundle exec kitchen verify macosx
 
 branches:
   only:
