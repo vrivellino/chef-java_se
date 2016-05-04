@@ -1,8 +1,5 @@
 language: ruby
 
-rvm:
-  - 2.1.7
-
 os: osx
 
 sudo: required
@@ -26,10 +23,11 @@ env:
 
 before_install:
   - sudo dscl . -passwd /Users/travis travis
+  - echo $?
 
 script:
   - rvm ls
-  - rvm use 2.1.7 && bundle exec kitchen test
+  - bundle exec kitchen test
 
 branches:
   only:
