@@ -32,10 +32,6 @@ matrix:
 before_install:
   - sudo dscl . -passwd /Users/travis travis
 
-install:
-  - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
-  - chef exec bundle update
-
 script:
   - bundle exec rake
   - bundle exec kitchen test
