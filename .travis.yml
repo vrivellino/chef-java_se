@@ -1,4 +1,7 @@
-language: generic
+language: ruby
+
+rvm:
+  - 2.1.7
 
 sudo: required
 
@@ -34,8 +37,8 @@ install:
   - chef exec bundle update
 
 script:
-  - chef exec bundle exec rake
-  - chef exec bundle exec kitchen test
+  - bundle exec rake
+  - bundle exec kitchen test
 
 branches:
   only:
