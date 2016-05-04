@@ -1,8 +1,5 @@
 language: ruby
 
-rvm:
-  - 2.1.7
-
 sudo: required
 
 env:
@@ -16,6 +13,8 @@ matrix:
   include:
     - os: osx
       osx_image: xcode7.3
+      rvm:
+        - 2.1.7
 #    - os: osx
 #      osx_image: xcode7.2
 #    - os: osx
