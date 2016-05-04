@@ -2,7 +2,7 @@
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/java_se.svg?style=flat-square)][cookbook]
 [![Travis](http://img.shields.io/travis/dhoer/chef-java_se/master.svg?label=travis&style=flat-square)][travis]
-[![AppVeyor](https://img.shields.io/appveyor/ci/dhoer/chef-java_se/master.svg?label=appveyor&style=flat-square)][appveyor]
+[![AppVeyor](https://img.shields.io/appveyor/ci/dhoer/chef-java-se/master.svg?label=appveyor&style=flat-square)][appveyor]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [travis]: https://travis-ci.org/dhoer/chef-java_se
