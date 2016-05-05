@@ -18,6 +18,7 @@ sudo: required
 #    - osx_image: xcode6.2
 
 script:
+  - bundle exec rake
   - KITCHEN_YAML=.kitchen.localhost.yml bundle exec kitchen verify macosx
 
 branches:
