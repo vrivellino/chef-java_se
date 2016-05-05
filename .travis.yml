@@ -7,7 +7,6 @@ os: osx
 
 sudo: required
 
-
 #matrix:
 #  include:
 #    - osx_image: xcode7.3
@@ -19,7 +18,7 @@ sudo: required
 #    - osx_image: xcode6.2
 
 script:
-  - bundle exec kitchen verify macosx
+  - KITCHEN_YAML=.kitchen.localhost.yml bundle exec kitchen verify macosx
 
 branches:
   only:
