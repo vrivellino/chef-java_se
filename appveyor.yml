@@ -1,12 +1,13 @@
 version: "master-{build}"
 
 os: Windows Server 2012 R2
+
 platform:
   - x64
 
 environment:
   matrix:
-    - ruby_version: "21"
+    - RUBY_VERSION: 21
 
 clone_folder: c:\projects\kitchen-machine
 clone_depth: 1
@@ -14,6 +15,9 @@ clone_depth: 1
 branches:
   only:
     - master
+
+install:
+  - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
 
 build_script:
   - bundle install || bundle install || bundle install
