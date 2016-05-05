@@ -4,13 +4,11 @@ os: Windows Server 2012 R2
 platform:
   - x64
 
-environment:
-  KITCHEN_YAML: .kitchen.localhost.yml
-
 cache:
   - vendor/bundle
 
 environment:
+  KITCHEN_YAML: .kitchen.localhost.yml
   matrix:
     - RUBY_VERSION: 21
 
