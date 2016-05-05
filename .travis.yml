@@ -7,12 +7,6 @@ os: osx
 
 sudo: required
 
-env:
-  global:
-    - machine_user=travis
-    - machine_pass=travis
-    - machine_port=22
-    - KITCHEN_YAML=.kitchen.localhost.yml
 
 #matrix:
 #  include:
@@ -24,14 +18,7 @@ env:
 #    - osx_image: xcode6.3
 #    - osx_image: xcode6.2
 
-before_install:
-  - env
-  - pwd
-  - dscl . -passwd /Users/travis travis
-  - echo $?
-
 script:
-  - rvm ls
   - bundle exec kitchen verify macosx
 
 branches:
