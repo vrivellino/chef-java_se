@@ -5,27 +5,18 @@ platform:
   - x64
 
 cache:
-  - vendor/bundle
+  - '%TEMP%\verifier\gems'
 
-environment:
-  KITCHEN_YAML: .kitchen.localhost.yml
-  matrix:
-    - RUBY_VERSION: 21
+install:
+  - cinst chefdk
+  - SET PATH=C:\opscode\chefdk\bin;%PATH%
 
-clone_folder: c:\projects\kitchen-machine
-clone_depth: 1
+build_script:
+  - chef exec bundle update
+
+test_script:
+  - chef exec bundle exec kitchen test
 
 branches:
   only:
     - master
-
-install:
-  - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
-  - bundle config --local path vendor/bundle
-  - bundle install
-
-build_script:
-  - bundle exec rake
-
-test_script:
-  - bundle exec kitchen verify windows
