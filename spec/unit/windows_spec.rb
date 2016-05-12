@@ -20,14 +20,16 @@ describe 'java_se::default' do
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
         "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
-         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe")
+         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe"
+      )
     end
 
     it 'installs java' do
       expect(chef_run).to run_execute(
         "install jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe to "\
         "C:\\Program Files\\Java\\jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE} "\
-                                      "with JRE C:\\Program Files\\Java\\jre1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
+                                      "with JRE C:\\Program Files\\Java\\jre1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}"
+      )
     end
 
     it 'sets JAVA_HOME' do

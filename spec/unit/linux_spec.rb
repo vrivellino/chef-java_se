@@ -87,7 +87,8 @@ describe 'java_se::default' do
       it 'fetches java' do
         expect(chef_run).to run_ruby_block(
           "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
-          "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
+          "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz"
+        )
       end
 
       it 'installs glibc package' do
@@ -104,7 +105,8 @@ describe 'java_se::default' do
 
       it 'symlink java' do
         expect(chef_run).to create_link('/usr/lib/jvm/java').with(
-          to: "/usr/lib/jvm/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
+          to: "/usr/lib/jvm/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}"
+        )
       end
 
       it 'validates java' do
@@ -124,7 +126,8 @@ describe 'java_se::default' do
     context 'default_java_symlink' do
       let(:chef_run) do
         ChefSpec::SoloRunner.new(
-          file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0').converge(described_recipe)
+          file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0'
+        ).converge(described_recipe)
       end
 
       it 'symlinks /usr/lib/jvm/default-java' do
