@@ -61,7 +61,8 @@ ruby_block "adding java to #{java_dir}" do # ~FC014
     end
 
     extract = Mixlib::ShellOut.new(
-      %( tar xvzf "#{node['java_se']['file_cache_path']}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner))
+      %( tar xvzf "#{node['java_se']['file_cache_path']}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner)
+    )
     extract.run_command
     raise("Failed to extract file #{tarball_name}!") unless extract.exitstatus == 0
 
@@ -114,7 +115,8 @@ ruby_block 'update-alternatives' do # ~FC014
       end
 
       same_prio = Mixlib::ShellOut.new(
-        "#{alternatives_cmd} --display #{cmd} | grep #{alt_path} | grep 'priority #{priority}$'")
+        "#{alternatives_cmd} --display #{cmd} | grep #{alt_path} | grep 'priority #{priority}$'"
+      )
       same_prio.run_command
       alternative_exists_same_prio = same_prio.exitstatus == 0
       alt_exists = Mixlib::ShellOut.new("#{alternatives_cmd} --display #{cmd} | grep #{alt_path}")
@@ -146,7 +148,8 @@ ruby_block 'update-alternatives' do # ~FC014
       # set the alternative if default
       if default
         set_alt = Mixlib::ShellOut.new(
-          "#{alternatives_cmd} --display #{cmd} | grep \"link currently points to #{alt_path}\"")
+          "#{alternatives_cmd} --display #{cmd} | grep \"link currently points to #{alt_path}\""
+        )
         set_alt.run_command
         unless set_alt.exitstatus == 0
           Chef::Log.info "setting alternative for #{cmd}"

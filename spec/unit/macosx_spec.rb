@@ -18,18 +18,21 @@ describe 'java_se::default' do
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
         "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
-        "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg")
+        "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg"
+      )
     end
 
     it 'attaches volume' do
       expect(chef_run).to run_execute(
-        "hdiutil attach '/var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg' -quiet")
+        "hdiutil attach '/var/chef/cache/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg' -quiet"
+      )
     end
 
     it 'install pkg' do
       expect(chef_run).to run_execute(
         "sudo installer -pkg '/Volumes/JDK #{VERSION_MAJOR} Update #{VERSION_UPDATE}/JDK #{VERSION_MAJOR} "\
-        "Update #{VERSION_UPDATE}.pkg' -target /")
+        "Update #{VERSION_UPDATE}.pkg' -target /"
+      )
     end
 
     it 'detaches volume' do

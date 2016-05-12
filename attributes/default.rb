@@ -17,7 +17,8 @@ default['java_se']['bin_cmds'] = %w(
   jdeps jhat jinfo jjs jmap jmc jps jrunscript jsadebugd jstack
   jstat jstatd jvisualvm keytool native2ascii orbd pack200 policytool
   rmic rmid rmiregistry schemagen serialver servertool tnameserv
-  unpack200 wsgen wsimport xjc)
+  unpack200 wsgen wsimport xjc
+)
 
 # windows only
 default['java_se']['win_addlocal'] = 'ToolsFeature,SourceFeature,PublicjreFeature'
