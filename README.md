@@ -7,7 +7,7 @@
 
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [linux]: https://travis-ci.org/dhoer/chef-java_se
-[osx]: https://travis-ci.org/dhoer/chef-java_se
+[osx]: https://travis-ci.org/dhoer/chef-java_se/branches
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
 Installs Oracle's Java SE JDK version
