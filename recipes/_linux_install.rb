@@ -16,12 +16,12 @@ ruby_block 'set-env-java-home' do
 end
 
 directory '/etc/profile.d' do
-  mode 00755
+  mode '0755'
 end
 
 file '/etc/profile.d/jdk.sh' do
   content "export JAVA_HOME=#{java_home}"
-  mode 00755
+  mode '0755'
 end
 
 ruby_block 'set JAVA_HOME in /etc/environment' do
@@ -56,7 +56,7 @@ ruby_block "adding java to #{java_dir}" do # ~FC014
     require 'fileutils'
 
     unless ::File.exist?(java_root)
-      FileUtils.mkdir java_root, mode: 00755
+      FileUtils.mkdir java_root, mode: 0o755
       FileUtils.chown owner, group, java_root
     end
 
