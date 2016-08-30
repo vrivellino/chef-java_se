@@ -5,19 +5,18 @@ rvm:
 
 os: osx
 
-sudo: required
+osx_image:
+  - xcode8
+  - xcode7.3
+  - xcode7.2
+  - xcode7.1
+  - xcode7
+  - xcode6.4
+  - beta-xcode6.3
+  - beta-xcode6.2
+  - beta-xcode6.1
 
-matrix:
-  include:
-    - osx_image: xcode8
-    - osx_image: xcode7.3
-    - osx_image: xcode7.2
-    - osx_image: xcode7.1
-    - osx_image: xcode7
-    - osx_image: xcode6.4
-    - osx_image: beta-xcode6.3
-    - osx_image: beta-xcode6.2
-#    - osx_image: beta-xcode6.1
+sudo: required
 
 script:
   - KITCHEN_YAML=.kitchen.localhost.yml bundle exec kitchen verify macosx
