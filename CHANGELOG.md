@@ -3,6 +3,7 @@
 ## 8.102.1 2016-08-
 
 - Fix #18 Windows fails to install because ENV variables do not exist
+- Fix #17 node.set is deprecated and will be removed in Chef 14
 
 ## 8.102.0 2016-07-19
 

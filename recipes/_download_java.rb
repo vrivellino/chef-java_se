@@ -50,4 +50,4 @@ else
   end
 end
 
-node.set['java_se']['file_cache_path'] = file_cache_path
+node.default['java_se']['file_cache_path'] = file_cache_path

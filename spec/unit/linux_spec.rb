@@ -5,7 +5,7 @@ describe 'java_se::default' do
     context 'set_java_home' do
       let(:chef_run) do
         ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0') do |node|
-          node.set['java_se']['java_home'] = '/opt/java'
+          node.override['java_se']['java_home'] = '/opt/java'
         end.converge(described_recipe)
       end
 
@@ -31,8 +31,8 @@ describe 'java_se::default' do
     context 'set_java_home_environment' do
       let(:chef_run) do
         ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0') do |node|
-          node.set['java_se']['java_home'] = '/opt/java'
-          node.set['java_se']['set_etc_environment'] = true
+          node.override['java_se']['java_home'] = '/opt/java'
+          node.override['java_se']['set_etc_environment'] = true
         end.converge(described_recipe)
       end
 

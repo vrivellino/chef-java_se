@@ -4,8 +4,8 @@ describe 'java_se::_download_java' do
   context 'default' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do |node|
-        node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
+        node.override['java_se']['arch'] = 'x64'
+        node.override['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
       end.converge(described_recipe)
     end
 
@@ -30,9 +30,9 @@ describe 'java_se::_download_java' do
   context 'url_dir' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do |node|
-        node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
-        node.set['java_se']['uri'] = 'https://example.com/path/to/jdks/'
+        node.override['java_se']['arch'] = 'x64'
+        node.override['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
+        node.override['java_se']['uri'] = 'https://example.com/path/to/jdks/'
       end.converge(described_recipe)
     end
 
@@ -56,9 +56,9 @@ describe 'java_se::_download_java' do
   context 'url_file' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do |node|
-        node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
-        node.set['java_se']['uri'] = 'https://example.com/path/to/jdks/myjdk.tar.gz'
+        node.override['java_se']['arch'] = 'x64'
+        node.override['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
+        node.override['java_se']['uri'] = 'https://example.com/path/to/jdks/myjdk.tar.gz'
       end.converge(described_recipe)
     end
 
@@ -76,9 +76,9 @@ describe 'java_se::_download_java' do
   context 'file_dir' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do |node|
-        node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
-        node.set['java_se']['uri'] = 'file:///var/chef/cache/jdks/'
+        node.override['java_se']['arch'] = 'x64'
+        node.override['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
+        node.override['java_se']['uri'] = 'file:///var/chef/cache/jdks/'
       end.converge(described_recipe)
     end
 
@@ -98,9 +98,9 @@ describe 'java_se::_download_java' do
   context 'file_path' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do |node|
-        node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
-        node.set['java_se']['uri'] = 'file:///var/chef/cache/myjdk.tar.gz'
+        node.override['java_se']['arch'] = 'x64'
+        node.override['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
+        node.override['java_se']['uri'] = 'file:///var/chef/cache/myjdk.tar.gz'
       end.converge(described_recipe)
     end
 
@@ -118,9 +118,9 @@ describe 'java_se::_download_java' do
   context 'windows_file' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2') do |node|
-        node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
-        node.set['java_se']['uri'] = 'file:///c|/chef/cache/myjdk.exe'
+        node.override['java_se']['arch'] = 'x64'
+        node.override['java_se']['jdk_version'] = "#{VERSION_MAJOR}u#{VERSION_UPDATE}"
+        node.override['java_se']['uri'] = 'file:///c|/chef/cache/myjdk.exe'
       end.converge(described_recipe)
     end
 
