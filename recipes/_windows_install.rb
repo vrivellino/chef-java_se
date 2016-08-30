@@ -1,7 +1,7 @@
 # inspiration from https://chocolatey.org/packages/jdk8
 file_cache_path = fetch_java_installer
 
-program_files = java_arch == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles']
+program_files = win_install_dir
 
 java_home = node['java_se']['java_home']
 if java_home.nil? || java_home.empty?
