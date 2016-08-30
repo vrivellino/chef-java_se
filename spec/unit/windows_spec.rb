@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'java_se::default' do
   context 'windows' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(file_cache_path: 'C:/chef/cache', platform: 'windows', version: '2008R2') do |node|
+      ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do |node|
         allow(::File).to receive(:exist?).and_call_original
         allow(::File).to receive(:exist?).with("#{ENV['SYSTEMDRIVE']}\\java\\jdk").and_return(false)
         ENV['SYSTEMDRIVE'] = 'C:'
