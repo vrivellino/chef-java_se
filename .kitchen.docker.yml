@@ -21,7 +21,7 @@ platforms:
     image: centos:5
     run_command: /sbin/init
     intermediate_instructions:
-      - /usr/bin/yum install -y initscripts net-tools wget
+      - RUN yum install -y initscripts net-tools wget
 
 - name: centos-6
   driver:
