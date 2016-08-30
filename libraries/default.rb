@@ -77,6 +77,6 @@ def win_install_dir
   if ENV['ProgramW6432'].nil?
     ENV['ProgramFiles']
   else
-    java_arch == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles (x86)']
+    java_arch == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
   end
 end
