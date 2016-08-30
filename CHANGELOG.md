@@ -2,6 +2,7 @@
 
 ## 8.102.1 2016-08-
 
+- Fix #20 OSX install fails with Operation not permitted on El Capitan
 - Fix #18 Windows fails to install because ENV variables do not exist
 - Fix #17 node.set is deprecated and will be removed in Chef 14
 
