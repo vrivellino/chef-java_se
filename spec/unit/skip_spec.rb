@@ -4,7 +4,7 @@ describe 'java_se::default' do
   context 'skip install' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new do |node|
-        node.set['java_se']['skip'] = true
+        node.override['java_se']['skip'] = true
       end.converge(described_recipe)
     end
 

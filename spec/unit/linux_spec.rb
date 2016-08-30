@@ -4,8 +4,8 @@ describe 'java_se::default' do
   context 'linux' do
     context 'set_java_home' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0') do |node|
-          node.set['java_se']['java_home'] = '/opt/java'
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.0') do |node|
+          node.override['java_se']['java_home'] = '/opt/java'
         end.converge(described_recipe)
       end
 
@@ -30,9 +30,9 @@ describe 'java_se::default' do
 
     context 'set_java_home_environment' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0') do |node|
-          node.set['java_se']['java_home'] = '/opt/java'
-          node.set['java_se']['set_etc_environment'] = true
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.0') do |node|
+          node.override['java_se']['java_home'] = '/opt/java'
+          node.override['java_se']['set_etc_environment'] = true
         end.converge(described_recipe)
       end
 
@@ -80,7 +80,7 @@ describe 'java_se::default' do
 
     context 'centos' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do
+        ChefSpec::SoloRunner.new(platform: 'centos', version: '7.0') do
         end.converge(described_recipe)
       end
 
@@ -125,9 +125,7 @@ describe 'java_se::default' do
 
     context 'default_java_symlink' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(
-          file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0'
-        ).converge(described_recipe)
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.0').converge(described_recipe)
       end
 
       it 'symlinks /usr/lib/jvm/default-java' do

@@ -3,10 +3,12 @@
 # Note that you may need to stub java_version_on_macosx? method when testing with rspec:
 # allow_any_instance_of(Chef::Recipe).to receive(:java_version_on_macosx?).and_return(false)
 unless java_version_on_macosx?
-  version = node['java_se']['version']
+  file_cache_path = fetch_java_installer
+
+  version = java_version
 
   name = "JDK #{node['java_se']['release']} Update #{node['java_se']['update']}"
-  execute "hdiutil attach '#{node['java_se']['file_cache_path']}' -quiet"
+  execute "hdiutil attach '#{file_cache_path}' -quiet"
 
   avoid_daemon = Gem::Version.new(node['platform_version']) >= Gem::Version.new('10.8')
   execute "sudo installer -pkg '/Volumes/#{name}/#{name}.pkg' -target /" do

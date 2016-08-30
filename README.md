@@ -28,8 +28,6 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Can globally skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
 
-Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
-
 ## Requirements
 
 - Chef 11+
@@ -80,7 +78,7 @@ override_attributes(
 ```
 
 This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u102-windows-i586.exe. Note that JDK file names must be the
+will match https://s3.amazonaws.com/mybucket/java/jdk-8u77-windows-i586.exe. Note that JDK file names must be the
 same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
