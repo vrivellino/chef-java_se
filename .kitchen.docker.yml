@@ -19,9 +19,8 @@ platforms:
 - name: centos-5
   driver:
     image: centos:5
-    platform: rhel
     run_command: /sbin/init
-    provision_command:
+    intermediate_instructions:
       - /usr/bin/yum install -y initscripts net-tools wget
 
 - name: centos-6
@@ -54,9 +53,9 @@ platforms:
       - RUN /usr/bin/apt-get update
       - RUN /usr/bin/apt-get install apt-transport-https net-tools -y
 
-- name: fedora-23
+- name: fedora-latest
   driver:
-    image: fedora:23
+    image: fedora:latest
     intermediate_instructions:
     - RUN yum clean all
     pid_one_command: /usr/lib/systemd/systemd
