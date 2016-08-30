@@ -8,7 +8,6 @@ describe 'java_se::default' do
         allow(::File).to receive(:exist?).with("#{ENV['SYSTEMDRIVE']}\\java\\jdk").and_return(false)
         ENV['SYSTEMDRIVE'] = 'C:'
         ENV['ProgramW6432'] = 'C:\Program Files'
-        node.override['java_se']['arch'] = 'x64'
         node.override['java_se']['win_javalink'] = "#{ENV['SYSTEMDRIVE']}\\java\\jdk\\bin" # test multiple directories
       end.converge(described_recipe)
     end

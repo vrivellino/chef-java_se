@@ -1,4 +1,5 @@
 # inspiration from https://github.com/agileorbit-cookbooks/java
+file_cache_path = fetch_java_installer
 
 bin_cmds = node['java_se']['bin_cmds']
 default = node['java_se']['set_default']
@@ -36,12 +37,12 @@ end
 
 yum_package 'glibc' do
   arch 'i686'
-  only_if { platform_family?('rhel', 'fedora') && node['java_se']['arch'] == 'i586' }
+  only_if { platform_family?('rhel', 'fedora') && java_arch == 'i586' }
 end
 
 package 'tar'
 
-java_dir_name = "jdk#{node['java_se']['version']}"
+java_dir_name = "jdk#{java_version}"
 java_root = java_home.split('/')[0..-2].join('/')
 java_dir = "#{java_root}/#{java_dir_name}"
 
@@ -61,7 +62,7 @@ ruby_block "adding java to #{java_dir}" do # ~FC014
     end
 
     extract = Mixlib::ShellOut.new(
-      %( tar xvzf "#{node['java_se']['file_cache_path']}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner)
+      %( tar xvzf "#{file_cache_path}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner)
     )
     extract.run_command
     raise("Failed to extract file #{tarball_name}!") unless extract.exitstatus.zero?
