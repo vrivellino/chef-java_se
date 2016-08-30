@@ -1,5 +1,5 @@
 # inspiration from https://chocolatey.org/packages/jdk8
-program_files = node['java_se']['arch'] == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
+program_files = node['java_se']['arch'] == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles']
 
 java_home = node['java_se']['java_home']
 if java_home.nil? || java_home.empty?
