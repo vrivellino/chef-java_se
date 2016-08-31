@@ -18,6 +18,14 @@ def java_version_on_macosx?
   cmd.exitstatus.zero?
 end
 
+def win_install_dir
+  if ENV['ProgramW6432'].nil?
+    ENV['ProgramFiles']
+  else
+    java_arch == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
+  end
+end
+
 # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 def fetch_java_installer
   case node['platform_family']
@@ -72,11 +80,3 @@ def fetch_java_installer
   file_cache_path
 end
 # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
-
-def win_install_dir
-  if ENV['ProgramW6432'].nil?
-    ENV['ProgramFiles']
-  else
-    java_arch == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
-  end
-end
