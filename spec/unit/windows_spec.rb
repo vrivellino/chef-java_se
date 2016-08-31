@@ -12,10 +12,6 @@ describe 'java_se::default' do
       end.converge(described_recipe)
     end
 
-    it 'installs open_uri_redirections gem' do
-      expect(chef_run).to install_chef_gem('open_uri_redirections')
-    end
-
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
         "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\

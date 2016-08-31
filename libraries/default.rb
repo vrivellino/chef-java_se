@@ -63,12 +63,6 @@ def fetch_java_installer
   else
     file_cache_path = ::File.join(Chef::Config[:file_cache_path], jdk)
 
-    chef_gem 'allow for https to http redirections' do
-      package_name 'open_uri_redirections'
-      version '0.2.1'
-      compile_time false if Chef::Resource::ChefGem.method_defined?(:compile_time)
-    end
-
     ruby_block "fetch #{download_url}" do
       block do
         JavaSE::Downloader.fetch(download_url, file_cache_path, checksum)

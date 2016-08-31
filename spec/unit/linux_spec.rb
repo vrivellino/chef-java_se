@@ -36,10 +36,6 @@ describe 'java_se::default' do
         end.converge(described_recipe)
       end
 
-      it 'installs open_uri_redirections gem' do
-        expect(chef_run).to install_chef_gem('open_uri_redirections')
-      end
-
       it 'installs glibc package' do
         expect(chef_run).to_not install_package('glibc')
       end
