@@ -29,7 +29,7 @@ matrix:
     rvm: 2.2
     osx_image: beta-xcode6.2
   - os: osx
-    rvm: 2.2
+    rvm: 2.1.7
     osx_image: beta-xcode6.1
 
 script:
