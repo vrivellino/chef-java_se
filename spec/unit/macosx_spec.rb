@@ -65,12 +65,12 @@ describe 'java_se::default' do
     end
 
     it 'removes previous jdk' do
-      expect(chef_run).to run_execute('/usr/bin/sudo /bin/rm -rf ' \
+      expect(chef_run).to_not run_execute('/usr/bin/sudo /bin/rm -rf ' \
         '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK')
     end
 
     it 'adds current jdk' do
-      expect(chef_run).to run_execute('/usr/bin/sudo /bin/ln -nsf ' \
+      expect(chef_run).to_not run_execute('/usr/bin/sudo /bin/ln -nsf ' \
         "/Library/Java/JavaVirtualMachines/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}.jdk/Contents " \
         '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK')
     end
