@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.79.7
+
+- Fix #20 OSX install fails with Operation not permitted on El Capitan
+- Fix #19 Gem install of open_uri_redirections can fail on Windows
+- Fix #18 Windows fails to install because ENV variables do not exist
+- Fix #17 node.set is deprecated and will be removed in Chef 14
+
 ## 7.79.6
 
 - Fix #10 Retry download if file checksum is not valid 

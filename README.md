@@ -18,8 +18,6 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Can globally skip Java installation
 - Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
 
-Note that this cookbook does not yet support JCE Unlimited Strength Jurisdiction Policy Files.
-
 ## Requirements
 
 - Chef 11+
@@ -111,7 +109,7 @@ version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['release']` - The JDK release version.
 - `node['java_se']['update']` - The JDK update version.
 - `node['java_se']['build']` - The build number.
-- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
+- `node['java_se']['md5'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 
 ## Versioning

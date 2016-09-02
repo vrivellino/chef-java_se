@@ -3,31 +3,28 @@ require 'spec_helper'
 describe 'java_se::default' do
   context 'windows' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(file_cache_path: 'C:/chef/cache', platform: 'windows', version: '2008R2') do |node|
+      ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do |node|
         allow(::File).to receive(:exist?).and_call_original
         allow(::File).to receive(:exist?).with("#{ENV['SYSTEMDRIVE']}\\java\\jdk").and_return(false)
         ENV['SYSTEMDRIVE'] = 'C:'
         ENV['ProgramW6432'] = 'C:\Program Files'
-        node.set['java_se']['arch'] = 'x64'
-        node.set['java_se']['win_javalink'] = "#{ENV['SYSTEMDRIVE']}\\java\\jdk\\bin" # test multiple directories
+        node.override['java_se']['win_javalink'] = "#{ENV['SYSTEMDRIVE']}\\java\\jdk\\bin" # test multiple directories
       end.converge(described_recipe)
-    end
-
-    it 'installs open_uri_redirections gem' do
-      expect(chef_run).to install_chef_gem('open_uri_redirections')
     end
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
         "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
-         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe")
+         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe"
+      )
     end
 
     it 'installs java' do
       expect(chef_run).to run_execute(
         "install jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-windows-x64.exe to "\
         "C:\\Program Files\\Java\\jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE} "\
-                                      "with JRE C:\\Program Files\\Java\\jre1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
+                                      "with JRE C:\\Program Files\\Java\\jre1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}"
+      )
     end
 
     it 'sets JAVA_HOME' do

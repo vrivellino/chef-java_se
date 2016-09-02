@@ -6,7 +6,7 @@ driver:
 
 provisioner:
   name: chef_solo
-  require_chef_omnibus: 11
+  require_chef_omnibus: 12
   data_path: test/shared
 
 platforms:

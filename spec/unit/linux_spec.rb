@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe 'java_se::default' do
   context 'linux' do
-    context 'set_java_home'do
+    context 'set_java_home' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0') do |node|
-          node.set['java_se']['java_home'] = '/opt/java'
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.0') do |node|
+          node.override['java_se']['java_home'] = '/opt/java'
         end.converge(described_recipe)
       end
 
@@ -30,14 +30,10 @@ describe 'java_se::default' do
 
     context 'set_java_home_environment' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0') do |node|
-          node.set['java_se']['java_home'] = '/opt/java'
-          node.set['java_se']['set_etc_environment'] = true
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.0') do |node|
+          node.override['java_se']['java_home'] = '/opt/java'
+          node.override['java_se']['set_etc_environment'] = true
         end.converge(described_recipe)
-      end
-
-      it 'installs open_uri_redirections gem' do
-        expect(chef_run).to install_chef_gem('open_uri_redirections')
       end
 
       it 'installs glibc package' do
@@ -80,14 +76,15 @@ describe 'java_se::default' do
 
     context 'centos' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache', platform: 'centos', version: '7.0') do
+        ChefSpec::SoloRunner.new(platform: 'centos', version: '7.0') do
         end.converge(described_recipe)
       end
 
       it 'fetches java' do
         expect(chef_run).to run_ruby_block(
           "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
-          "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz")
+          "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz"
+        )
       end
 
       it 'installs glibc package' do
@@ -104,7 +101,8 @@ describe 'java_se::default' do
 
       it 'symlink java' do
         expect(chef_run).to create_link('/usr/lib/jvm/java').with(
-          to: "/usr/lib/jvm/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
+          to: "/usr/lib/jvm/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}"
+        )
       end
 
       it 'validates java' do
@@ -123,8 +121,7 @@ describe 'java_se::default' do
 
     context 'default_java_symlink' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(
-          file_cache_path: '/var/chef/cache', platform: 'debian', version: '8.0').converge(described_recipe)
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.0').converge(described_recipe)
       end
 
       it 'symlinks /usr/lib/jvm/default-java' do
