@@ -1,10 +1,10 @@
 default['java_se']['release'] = '8'
-default['java_se']['update'] = '111'
-default['java_se']['build'] = '14'
+default['java_se']['update'] = '112'
+default['java_se']['build'] = '15'
 
-# https://www.oracle.com/webfolder/s/digest/8u111checksum.html
-default['java_se']['sha256']['tar']['i586'] = '9a8e8fcf7b6fbe53d6312195be87ce00f3beaab9dfbaa020b96e305174f39e1f'
-default['java_se']['sha256']['tar']['x64'] = '187eda2235f812ddb35c352b5f9aa6c5b184d611c2c9d0393afb8031d8198974'
-default['java_se']['sha256']['dmg']['x64'] = 'a1c9308b625827ecdf870eab578ced1c5c61bbf2c16195fc5c9ffc25439e673d'
-default['java_se']['sha256']['exe']['i586'] = '2bc788869fe09b073067592021ab9f93d2407a078826138a49297badb6b0a06d'
-default['java_se']['sha256']['exe']['x64'] = '259caf1052673573096bb27b0ee10a8e97734461483856be1a81aa4130c3fe29'
+# https://www.oracle.com/webfolder/s/digest/8u112checksum.html
+default['java_se']['sha256']['tar']['i586'] = '1e7c2fb80b339dd65f261d37e26ffd5f3136e5ff8778026ed227b47516df69a5'
+default['java_se']['sha256']['tar']['x64'] = '777bd7d5268408a5a94f5e366c2e43e720c6ce4fe8c59d9a71e2961e50d774a5'
+default['java_se']['sha256']['dmg']['x64'] = 'c9ebb729acb0ee8e6fbeda85751be20b024c45e3ebb83cc7c624908ffb8a466d'
+default['java_se']['sha256']['exe']['i586'] = 'c2126bb16b85ee47f44124d318155c329194e1a60a3a5562a6a4672ca5989c85'
+default['java_se']['sha256']['exe']['x64'] = '6c3504185dd06f50b0578766bd913b277fd1ff444023aacd20b969ae76f20f5e'

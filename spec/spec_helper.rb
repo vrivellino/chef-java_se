@@ -1,9 +1,9 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-BUILD = '14'.freeze
+BUILD = '15'.freeze
 VERSION_MAJOR = '8'.freeze
-VERSION_UPDATE = '111'.freeze
+VERSION_UPDATE = '112'.freeze
 
 CACHE = Chef::Config[:file_cache_path]
 
