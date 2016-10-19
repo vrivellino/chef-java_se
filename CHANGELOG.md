@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.111.0 2016-10-18
+
+- Update 8u111
+
 ## 8.102.1 2016-08-31
 
 - Fix #20 OSX install fails with Operation not permitted on El Capitan
