@@ -1,6 +1,6 @@
 default['java_se']['release'] = '8'
 default['java_se']['update'] = '112'
-default['java_se']['build'] = '15'
+default['java_se']['build'] = '16'
 
 # https://www.oracle.com/webfolder/s/digest/8u112checksum.html
 default['java_se']['sha256']['tar']['i586'] = '1e7c2fb80b339dd65f261d37e26ffd5f3136e5ff8778026ed227b47516df69a5'
