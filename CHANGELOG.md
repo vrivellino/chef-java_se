@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.112.1 2016-12-18
+
+- 8u112 for OSX has a different build number
+
 ## 8.112.0 2016-10-18
 
 - Update 8u112
