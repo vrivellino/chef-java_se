@@ -13,7 +13,7 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
+        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD.to_i + 1}" \
         "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg"
       )
     end
@@ -26,7 +26,7 @@ describe 'java_se::default' do
 
     it 'install pkg' do
       expect(chef_run).to run_execute(
-        "sudo installer -pkg '/Volumes/JDK #{VERSION_MAJOR} Update #{VERSION_UPDATE}/JDK #{VERSION_MAJOR} "\
+        "sudo installer -pkg '/Volumes/JDK #{VERSION_MAJOR} Update #{VERSION_UPDATE}/JDK #{VERSION_MAJOR} " \
         "Update #{VERSION_UPDATE}.pkg' -target /"
       )
     end
