@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'java_se::default' do
   context 'skip install' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new do |node|
+      ChefSpec::SoloRunner.new(platform: 'debian', version: '8.0') do |node|
         node.override['java_se']['skip'] = true
       end.converge(described_recipe)
     end

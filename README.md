@@ -11,11 +11,11 @@
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
 Installs Oracle's Java SE JDK version
-[8u112](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+[8u121](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
-- 17 January 2017
+- 18 April 2017
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 

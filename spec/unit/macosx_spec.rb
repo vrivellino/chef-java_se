@@ -13,8 +13,8 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD.to_i + 1}" \
-        "/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg"
+        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}" \
+        "/#{HASH}/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-macosx-x64.dmg"
       )
     end
 
