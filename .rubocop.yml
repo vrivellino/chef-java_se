@@ -11,3 +11,6 @@ BlockLength:
 
 EndOfLine:
   Enabled: false
+
+PercentLiteralDelimiters:
+  Enabled: false
