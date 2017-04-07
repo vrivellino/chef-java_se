@@ -8,3 +8,6 @@ LineLength:
 
 BlockLength:
   Enabled: false
+
+EndOfLine:
+  Enabled: false
