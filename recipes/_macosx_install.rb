@@ -23,7 +23,7 @@ unless java_version_on_macosx?
   # as discussed here: https://bugs.eclipse.org/bugs/show_bug.cgi?id=411361
   #
 
-  %w(BundledApp JNI WebStart Applets).each do |str|
+  %w[BundledApp JNI WebStart Applets].each do |str|
     execute "/usr/bin/sudo /usr/libexec/PlistBuddy -c \"Add :JavaVM:JVMCapabilities: string #{str}\" " \
    "/Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Info.plist"
   end

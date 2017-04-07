@@ -79,11 +79,11 @@ module OpenURI
   end
 
   def self.http_to_https?(uri1, uri2)
-    schemes_from([uri1, uri2]) == %w(http https)
+    schemes_from([uri1, uri2]) == %w[http https]
   end
 
   def self.https_to_http?(uri1, uri2)
-    schemes_from([uri1, uri2]) == %w(https http)
+    schemes_from([uri1, uri2]) == %w[https http]
   end
 
   def self.schemes_from(uris)
