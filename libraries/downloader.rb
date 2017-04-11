@@ -96,7 +96,6 @@ module JavaSE
   # Monkey patched open library to allow oracle downloads
   module Downloader
     class <<self
-      # rubocop:disable Metrics/MethodLength
       def fetch(url, file, checksum, limit = 5)
         raise ArgumentError, "too many download failures from #{url}" if limit.zero?
         begin

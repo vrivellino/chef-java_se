@@ -26,7 +26,6 @@ def win_install_dir
   end
 end
 
-# rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 def fetch_java_installer
   case node['platform_family']
   when 'mac_os_x'

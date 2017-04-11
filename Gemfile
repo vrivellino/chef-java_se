@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 gem 'berkshelf', '~> 4.2'
 gem 'chef', '~> 12.0'
 gem 'chefspec'
+gem 'cookstyle'
 gem 'foodcritic'
-gem 'rubocop'
 
 group :integration do
   gem 'kitchen-dokken', '~> 0.0'
