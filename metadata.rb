@@ -16,4 +16,3 @@ supports 'mac_os_x'
 supports 'redhat'
 supports 'ubuntu'
 supports 'windows'
-
