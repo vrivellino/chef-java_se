@@ -15,7 +15,7 @@ end
 def java_version_on_macosx?
   cmd = Mixlib::ShellOut.new("pkgutil --pkgs='com.oracle.jdk#{jdk_version}'")
   cmd.run_command
-  cmd.exitstatus.zero?
+  cmd.exitstatus == 0
 end
 
 def win_install_dir

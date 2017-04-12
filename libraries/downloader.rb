@@ -97,7 +97,7 @@ module JavaSE
   module Downloader
     class <<self
       def fetch(url, file, checksum, limit = 5)
-        raise ArgumentError, "too many download failures from #{url}" if limit.zero?
+        raise ArgumentError, "too many download failures from #{url}" if limit == 0
         begin
           open(URI(url),
                'Cookie' => 'oraclelicense=accept-securebackup-cookie',

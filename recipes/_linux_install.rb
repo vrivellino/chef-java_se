@@ -65,11 +65,11 @@ ruby_block "adding java to #{java_dir}" do # ~FC014
       %( tar xvzf "#{file_cache_path}" -C "#{Chef::Config[:file_cache_path]}" --no-same-owner)
     )
     extract.run_command
-    raise("Failed to extract file #{tarball_name}!") unless extract.exitstatus.zero?
+    raise("Failed to extract file #{tarball_name}!") unless extract.exitstatus == 0
 
     move = Mixlib::ShellOut.new(%( mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" ))
     move.run_command
-    unless move.exitstatus.zero?
+    unless move.exitstatus == 0
       raise(%( Command \' mv "#{Chef::Config[:file_cache_path]}/#{java_dir_name}" "#{java_dir}" \' failed ))
     end
 
@@ -119,17 +119,17 @@ ruby_block 'update-alternatives' do # ~FC014
         "#{alternatives_cmd} --display #{cmd} | grep #{alt_path} | grep 'priority #{priority}$'"
       )
       same_prio.run_command
-      alternative_exists_same_prio = same_prio.exitstatus.zero?
+      alternative_exists_same_prio = (same_prio.exitstatus == 0)
       alt_exists = Mixlib::ShellOut.new("#{alternatives_cmd} --display #{cmd} | grep #{alt_path}")
       alt_exists.run_command
-      alternative_exists = alt_exists.exitstatus.zero?
+      alternative_exists = (alt_exists.exitstatus == 0)
       # remove alternative if priority is changed and install it with new priority
       if alternative_exists && !alternative_exists_same_prio
         Chef::Log.info "removing alternative for #{cmd} with old priority"
         alternative_exists = false
         remove_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --remove #{cmd} #{alt_path}")
         remove_alt.run_command
-        unless remove_alt.exitstatus.zero?
+        unless remove_alt.exitstatus == 0
           raise("remove alternative failed: #{alternatives_cmd} --remove #{cmd} #{alt_path}")
         end
       end
@@ -141,7 +141,7 @@ ruby_block 'update-alternatives' do # ~FC014
         end
         install_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
         install_alt.run_command
-        unless install_alt.exitstatus.zero?
+        unless install_alt.exitstatus == 0
           raise("install alternative failed: #{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
         end
       end
@@ -152,11 +152,11 @@ ruby_block 'update-alternatives' do # ~FC014
           "#{alternatives_cmd} --display #{cmd} | grep \"link currently points to #{alt_path}\""
         )
         set_alt.run_command
-        unless set_alt.exitstatus.zero?
+        unless set_alt.exitstatus == 0
           Chef::Log.info "setting alternative for #{cmd}"
           set_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --set #{cmd} #{alt_path}")
           set_alt.run_command
-          unless set_alt.exitstatus.zero?
+          unless set_alt.exitstatus == 0
             raise("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}")
           end
         end
