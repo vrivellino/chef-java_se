@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf', '~> 4.2'
-gem 'chef', '~> 12.0'
+gem 'berkshelf'
+gem 'chef'
 gem 'chefspec'
 gem 'cookstyle'
 gem 'foodcritic'
 
 group :integration do
-  gem 'kitchen-dokken', '~> 0.0'
-  gem 'kitchen-localhost', '~> 0.3'
-  gem 'kitchen-vagrant', '~> 0.20'
-  gem 'test-kitchen', '~> 1.12'
-  gem 'winrm-fs', '~> 1.0'
+  gem 'kitchen-dokken'
+  gem 'kitchen-localhost'
+  gem 'kitchen-vagrant'
+  gem 'test-kitchen'
+  gem 'winrm-fs'
 end
