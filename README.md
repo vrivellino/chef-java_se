@@ -41,8 +41,7 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 
 ## Usage
 By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 'java_se') you are accepting the
-[Oracle Binary Code License Agreement for Java SE]
-(http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
+[Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
 It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) java_se cookbook 
 version to a release e.g. '~> 8.0' or an update e.g. '~> 8.77.0' in your metadata.rb cookbook or 
