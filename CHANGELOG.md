@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.131.0 2017-04-18
+
+- Update 8u131
+- Use cookstyle linter
+- Drop support for CentOS 5
+
 ## 8.121.0 2017-01-18
 
 - Update 8u121
