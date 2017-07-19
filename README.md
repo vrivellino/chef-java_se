@@ -10,12 +10,12 @@
 [osx]: https://travis-ci.org/dhoer/chef-java_se/branches
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
-Installs Oracle's Java SE JDK version
-[8u131](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
+version.
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
-- 18 July 2017
+- 17 October 2017
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
