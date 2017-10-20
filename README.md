@@ -15,7 +15,7 @@ version.
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
-- 17 October 2017
+- 16 January 2018
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
@@ -58,13 +58,7 @@ during initial chef-client run.
 
 `depends 'java_se', '~> 8.0'`
 
-Constrains install to latest available Java SE JDK 8.
-
-#### Constrain java_se cookbook in environment to a specific update
-
-`cookbook 'java_se', '~> 8.77.0'`
-
-Constrains install to Java SE JDK 8u77.
+Constrains install to latest available Java SE JDK 8. 
 
 #### Download JDK from alternative location
 
@@ -76,8 +70,7 @@ override_attributes(
 )
 ```
 
-This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u77-windows-i586.exe. Note that JDK file names must be the
+This will download the JDK that best matches platform criteria. Note that JDK file names must be the
 same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
