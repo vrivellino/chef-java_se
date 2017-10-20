@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.152.1 2017-10-17
+
+- Fix Windows x64 checksum
+
 ## 8.152.0 2017-10-17
 
 - Update 8u152
