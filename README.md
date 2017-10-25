@@ -10,23 +10,12 @@
 [osx]: https://travis-ci.org/dhoer/chef-java_se/branches
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
-Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
+Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html) 
 version.
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
 - 16 January 2018
-
-How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
-
-- Only supports Oracle's Java SE JDK 
-- Oracle JDK versions are tied to java_se cookbook versions e.g., java_se 8.77.x is bound to JDK 8u77
-- Checksums are included in java_se cookbook and should not be overridden
-- Downloads directly from Oracle on all supported platforms
-- Can specify an alternative URI directory to download from e.g., https://s3.amazonaws.com/mybucket/java
-- Lightweight, no cookbook dependencies
-- Can globally skip Java installation
-- Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
 
 ## Requirements
 
@@ -44,9 +33,10 @@ By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 
 [Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
 It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) java_se cookbook 
-version to a release e.g. '~> 8.0' or an update e.g. '~> 8.77.0' in your metadata.rb cookbook or 
-[environment](https://docs.chef.io/cookbook_versions.html#environments). By default, the latest Oracle SE JDK is 
-installed. 
+version to a release e.g. '~> 9.0' in your metadata.rb cookbook or 
+[environment](https://docs.chef.io/cookbook_versions.html#environments). This is because older versions of Java JDK
+are no longer publicly available after a patch update. Another alternative is to 
+[Download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location).
 
 Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
 `node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
@@ -56,9 +46,9 @@ during initial chef-client run.
 
 #### Constrain java_se cookbook in metadata.rb
 
-`depends 'java_se', '~> 8.0'`
+`depends 'java_se', '~> 9.0'`
 
-Constrains install to latest available Java SE JDK 8. 
+Constrains install to latest available Java SE JDK 9. 
 
 #### Download JDK from alternative location
 
