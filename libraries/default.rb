@@ -1,48 +1,33 @@
-def java_arch
-  arch = node['kernel']['machine'] =~ /x86_64/ ? 'x64' : 'i586'
-  arch = 'i586' if node['java_se']['force_i586'] && !platform?('mac_os_x')
-  arch
-end
-
 def java_version
-  "1.#{node['java_se']['release']}.0_#{node['java_se']['update']}"
-end
-
-def jdk_version
-  "#{node['java_se']['release']}u#{node['java_se']['update']}"
+  (node['java_se']['release']).to_s
 end
 
 def java_version_on_macosx?
-  cmd = Mixlib::ShellOut.new("pkgutil --pkgs='com.oracle.jdk#{jdk_version}'")
+  cmd = Mixlib::ShellOut.new("pkgutil --pkgs='com.oracle.jdk-#{java_version}'")
   cmd.run_command
   cmd.exitstatus == 0
 end
 
 def win_install_dir
-  if ENV['ProgramW6432'].nil?
-    ENV['ProgramFiles']
-  else
-    java_arch == 'x64' ? ENV['ProgramW6432'] : ENV['ProgramFiles(x86)']
-  end
+  ENV['ProgramW6432']
 end
 
 def fetch_java_installer
   case node['platform_family']
   when 'mac_os_x'
-    checksum = node['java_se']['sha256']['dmg']['x64']
-    jdk = "jdk-#{jdk_version}-macosx-#{java_arch}.dmg"
+    checksum = node['java_se']['sha256']['dmg']
+    jdk = "jdk-#{java_version}_osx-x64_bin.dmg"
   when 'windows'
-    checksum = node['java_se']['sha256']['exe'][java_arch]
-    jdk = "jdk-#{jdk_version}-windows-#{java_arch}.exe"
+    checksum = node['java_se']['sha256']['exe']
+    jdk = "jdk-#{java_version}_windows-x64_bin.exe"
   else
-    checksum = node['java_se']['sha256']['tar'][java_arch]
-    jdk = "jdk-#{jdk_version}-linux-#{java_arch}.tar.gz"
+    checksum = node['java_se']['sha256']['tar']
+    jdk = "jdk-#{java_version}_linux-x64_bin.tar.gz"
   end
 
   uri = node['java_se']['uri']
   if uri.nil? || uri.empty?
-    download_url = "http://download.oracle.com/otn-pub/java/jdk/#{jdk_version}-b#{node['java_se']['build']}/" \
-        "#{node['java_se']['hash']}/#{jdk}"
+    download_url = "http://download.oracle.com/otn-pub/java/jdk/#{java_version}+#{node['java_se']['build']}/#{jdk}"
   elsif uri.start_with?('file://')
     file_cache_path =
       platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')

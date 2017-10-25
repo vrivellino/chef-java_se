@@ -35,14 +35,9 @@ ruby_block 'set JAVA_HOME in /etc/environment' do
   only_if { node['java_se']['set_etc_environment'] }
 end
 
-yum_package 'glibc' do
-  arch 'i686'
-  only_if { platform_family?('rhel', 'fedora') && java_arch == 'i586' }
-end
-
 package 'tar'
 
-java_dir_name = "jdk#{java_version}"
+java_dir_name = "jdk-#{java_version}"
 java_root = java_home.split('/')[0..-2].join('/')
 java_dir = "#{java_root}/#{java_dir_name}"
 

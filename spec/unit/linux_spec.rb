@@ -57,11 +57,11 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block("adding java to /opt/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
+        expect(chef_run).to run_ruby_block("adding java to /opt/jdk-#{VERSION}")
       end
 
       it 'symlink java' do
-        expect(chef_run).to create_link('/opt/java').with(to: "/opt/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
+        expect(chef_run).to create_link('/opt/java').with(to: "/opt/jdk-#{VERSION}")
       end
 
       it 'validates java' do
@@ -82,8 +82,8 @@ describe 'java_se::default' do
 
       it 'fetches java' do
         expect(chef_run).to run_ruby_block(
-          "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION_MAJOR}u#{VERSION_UPDATE}-b#{BUILD}"\
-          "/#{HASH}/jdk-#{VERSION_MAJOR}u#{VERSION_UPDATE}-linux-x64.tar.gz"
+          "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION}+#{BUILD}"\
+          "/jdk-#{VERSION}_linux-x64_bin.tar.gz"
         )
       end
 
@@ -96,12 +96,12 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block("adding java to /usr/lib/jvm/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}")
+        expect(chef_run).to run_ruby_block("adding java to /usr/lib/jvm/jdk-#{VERSION}")
       end
 
       it 'symlink java' do
         expect(chef_run).to create_link('/usr/lib/jvm/java').with(
-          to: "/usr/lib/jvm/jdk1.#{VERSION_MAJOR}.0_#{VERSION_UPDATE}"
+          to: "/usr/lib/jvm/jdk-#{VERSION}"
         )
       end
 

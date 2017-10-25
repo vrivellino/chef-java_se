@@ -15,7 +15,7 @@ community. Please be nice to one another.
 
 ### Updating Release
 
-* Create branch e.g., `git checkout -b 8u101`
+* Create branch e.g., `git checkout -b 9.0.1`
 * Update `CHANGLOG.md`
 * Update Java SE JDK version in `README.md` 
 * Update build and update version, and checksums in `attributes/bind.rb`
@@ -26,14 +26,14 @@ community. Please be nice to one another.
 * Push to GitHub to integration test Linux and Windows
 * Merge to macosx branch not overriding .travis.yml e.g.,
     * `git checkout macosx`
-    * `git merge --no-commit 8u101`
+    * `git merge --no-commit 9.0.1`
     * `git reset HEAD .travis.yml`
     * `git checkout -- .travis.yml`
-    * `git commit -m 'merged 8u101'`
+    * `git commit -m 'merged 9.0.1'`
 * Push to GitHub to integration test Mac OS X 
 * Merge to master e.g.,
     * `git checkout master`
-    * `git merge 8u101`
+    * `git merge 9.0.1`
 * Push to GitHub 
 * Cut a Release
 * Push to supermarket.chef.io

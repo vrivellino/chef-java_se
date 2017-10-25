@@ -2,11 +2,11 @@ require 'spec_helper'
 
 case os[:family]
 when 'windows'
-  describe file("C:\\Program Files (x86)\\Java\\jdk#{VERSION}\\bin\\java.exe") do
+  describe file("C:\\Program Files\\Java\\jdk-#{VERSION}\\bin\\java.exe") do
     it { should be_file }
   end
 
-  describe file("C:\\Program Files (x86)\\Java\\jre#{VERSION}\\bin\\java.exe") do
+  describe file("C:\\Program Files\\Java\\jre-#{VERSION}\\bin\\java.exe") do
     it { should be_file }
   end
 
@@ -33,7 +33,7 @@ else
   # which not installed on centos docker
   unless os[:family] == 'redhat'
     describe command('readlink -f `which jar`') do
-      its(:stdout) { should match(%r{/usr/lib/jvm/jdk#{VERSION}/bin/jar}) }
+      its(:stdout) { should match(%r{/usr/lib/jvm/jdk-#{VERSION}/bin/jar}) }
     end
   end
 end

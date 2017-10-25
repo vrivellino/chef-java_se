@@ -13,9 +13,6 @@ provisioner:
 
 platforms:
   - name: windows-2012r2
-    attributes:
-      java_se:
-        force_i586: true
 
 suites:
   - name: default

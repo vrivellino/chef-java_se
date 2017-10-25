@@ -82,8 +82,6 @@ available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDK
 assign a file name that best matches platform criteria.  The JDK file names must be the same as that found on
 Oracle's download page. Leave nil to download directly from Oracle. Default `nil`.
 - `node['java_se']['skip']` - Skips installing Java SE. Default `false`.
-- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows
-only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
 
@@ -109,22 +107,9 @@ version. Default `%SYSTEMDRIVE%\java\bin`.
 
 #### Bind (Do not override) 
 - `node['java_se']['release']` - The JDK release version.
-- `node['java_se']['update']` - The JDK update version.
 - `node['java_se']['build']` - The build number.
-- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
-'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
-
-## Versioning
-
-This cookbook does NOT use [SemVer](http://semver.org) for versioning.  
-
-The versioning scheme is RELEASE.UPDATE.MINOR where:
-
-1. RELEASE is the release of Java e.g. 8
-2. UPDATE is the Java update e.g. 77
-3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
-
-*All MINOR versions will strive to be backwards-compatible.
+- `node['java_se']['sha256'][type]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
+'exe', or 'tar'.
 
 ## Getting Help
 
