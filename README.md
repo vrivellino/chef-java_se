@@ -40,7 +40,7 @@ or [constrain java_se cookbook version](https://github.com/dhoer/chef-java_se#co
 Note that the latter solution could result in a failed converge when
 a new patch update is released and a matching version of java_se
 cookbook is not yet available.  A release of java_se cookbook usually
-follows within a day.
+follows within a day after a patch update.
 
 Windows JAVA_HOME and PATH environment variables are not available
 during initial chef-client run. Attribute
