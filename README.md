@@ -10,12 +10,11 @@
 [osx]: https://travis-ci.org/dhoer/chef-java_se/branches
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
-Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html) 
-version.
+Installs Oracle's
+[Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
 
-The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
-
-- 16 January 2018
+See [critical patch update](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
+for a next scheduled JDK release.
 
 ## Requirements
 
@@ -29,26 +28,29 @@ The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-08
 - Windows
 
 ## Usage
-By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 'java_se') you are accepting the
+
+By adding java_se to a run list (recipe[java_se]) or a cookbook
+(include_recipe 'java_se') you are accepting the
 [Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
-It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) java_se cookbook 
-version to a release e.g. '~> 9.0' in your metadata.rb cookbook or 
-[environment](https://docs.chef.io/cookbook_versions.html#environments). This is because older versions of Java JDK
-are no longer publicly available after a patch update. Another alternative is to 
-[Download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location).
+Older versions of Java JDK are no longer publicly available
+after a patch update. So it is recommended that you
+[download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location).
+Or [constrain](https://docs.chef.io/cookbook_versions.html#constraints)
+java_se cookbook version to use latest release e.g., '~> 9.0' in your
+metadata.rb cookbook or
+[environment](https://docs.chef.io/cookbook_versions.html#environments).
+Note that the latter solution could result in a failed converge when
+new patch updates are released and a matching version of java_se
+cookbook is not yet available.  A release of java_se cookbook usually
+follows within a day.
 
-Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
-`node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
-during initial chef-client run.
+Windows JAVA_HOME and PATH environment variables are not available
+during initial chef-client run. Attribute
+`node['java_se']['win_javalink']` provides a symbolic link to installed
+Java JDK bin directory and is available during initial chef-client run.
 
 ### Examples
-
-#### Constrain java_se cookbook in metadata.rb
-
-`depends 'java_se', '~> 9.0'`
-
-Constrains install to latest available Java SE JDK 9. 
 
 #### Download JDK from alternative location
 
@@ -65,6 +67,12 @@ same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
 available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
+
+#### Constrain java_se cookbook in metadata.rb
+
+`depends 'java_se', '~> 9.0'`
+
+Constrains install to latest available Java SE JDK 9.
 
 ### Attributes
 
@@ -103,15 +111,18 @@ version. Default `%SYSTEMDRIVE%\java\bin`.
 
 ## Getting Help
 
-- Ask specific questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/chef-java_se).
+- Ask specific questions on
+[Stack Overflow](http://stackoverflow.com/questions/tagged/chef+java).
 - Report bugs and discuss potential features in
 [Github issues](https://github.com/dhoer/chef-java_se/issues).
 
 ## Contributing
 
-Please refer to [CONTRIBUTING](https://github.com/dhoer/chef-java_se/blob/master/CONTRIBUTING.md).
+Please refer to
+[CONTRIBUTING](https://github.com/dhoer/chef-java_se/blob/master/CONTRIBUTING.md).
 
 ## License
 
-MIT - see the accompanying [LICENSE](https://github.com/dhoer/chef-java_se/blob/master/LICENSE.md) file
-for details.
+MIT - see the accompanying
+[LICENSE](https://github.com/dhoer/chef-java_se/blob/master/LICENSE.md)
+file for details.
