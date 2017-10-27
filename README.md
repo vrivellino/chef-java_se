@@ -29,8 +29,7 @@ for next scheduled JDK release.
 
 ## Usage
 
-By adding java_se to a run list (recipe[java_se]) or a cookbook
-(include_recipe 'java_se') you are accepting the
+By adding java_se to a run list or cookbook you are accepting the
 [Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
 Older versions of Java JDK are no longer publicly available
