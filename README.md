@@ -10,23 +10,11 @@
 [osx]: https://travis-ci.org/dhoer/chef-java_se/branches
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
-Installs Oracle's [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
-version.
+Installs Oracle's
+[Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
 
-The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
-
-- 16 January 2018
-
-How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
-
-- Only supports Oracle's Java SE JDK 
-- Oracle JDK versions are tied to java_se cookbook versions e.g., java_se 8.77.x is bound to JDK 8u77
-- Checksums are included in java_se cookbook and should not be overridden
-- Downloads directly from Oracle on all supported platforms
-- Can specify an alternative URI directory to download from e.g., https://s3.amazonaws.com/mybucket/java
-- Lightweight, no cookbook dependencies
-- Can globally skip Java installation
-- Only supports Linux (.tar.gz), Mac OS X (.dmg), and Windows (.exe) file extensions
+See [Critical Patch Updates](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
+for next scheduled JDK release.
 
 ## Requirements
 
@@ -40,25 +28,29 @@ How is this different from [Java](https://github.com/agileorbit-cookbooks/java) 
 - Windows
 
 ## Usage
-By adding java_se to a run list (recipe[java_se]) or a cookbook (include_recipe 'java_se') you are accepting the
-[Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html). 
 
-It is recommended that you [constrain](https://docs.chef.io/cookbook_versions.html#constraints) java_se cookbook 
-version to a release e.g. '~> 8.0' or an update e.g. '~> 8.77.0' in your metadata.rb cookbook or 
-[environment](https://docs.chef.io/cookbook_versions.html#environments). By default, the latest Oracle SE JDK is 
-installed. 
+By adding java_se to a run list (recipe[java_se]) or a cookbook
+(include_recipe 'java_se') you are accepting the
+[Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
-Windows JAVA_HOME and PATH environment variables are not available during initial chef-client run. Attribute
-`node['java_se']['win_javalink']` provides a symbolic link to installed Java JDK bin directory and is available
-during initial chef-client run.
+Older versions of Java JDK are no longer publicly available
+after a patch update. So it is recommended that you
+[download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location).
+Or [constrain](https://docs.chef.io/cookbook_versions.html#constraints)
+java_se cookbook version to use latest release e.g., '~> 8.0' in your
+metadata.rb cookbook or
+[environment](https://docs.chef.io/cookbook_versions.html#environments).
+Note that the latter solution could result in a failed converge when
+new patch updates are released and a matching version of java_se
+cookbook is not yet available.  A release of java_se cookbook usually
+follows within a day.
+
+Windows JAVA_HOME and PATH environment variables are not available
+during initial chef-client run. Attribute
+`node['java_se']['win_javalink']` provides a symbolic link to installed
+Java JDK bin directory and is available during initial chef-client run.
 
 ### Examples
-
-#### Constrain java_se cookbook in metadata.rb
-
-`depends 'java_se', '~> 8.0'`
-
-Constrains install to latest available Java SE JDK 8. 
 
 #### Download JDK from alternative location
 
@@ -75,6 +67,14 @@ same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
 available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
+
+#### Constrain java_se cookbook in metadata.rb
+
+```ruby
+depends 'java_se', '~> 8.0'
+```
+
+Constrains install to latest available Java SE JDK 8.
 
 ### Attributes
 
