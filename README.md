@@ -11,7 +11,7 @@
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
 Installs and configures Oracle's
-[Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
+[Java SE JDK 9](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
 
 See [Critical Patch Updates](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
 for next scheduled JDK release.
