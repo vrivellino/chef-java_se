@@ -51,6 +51,12 @@ Java JDK bin directory and is available during initial chef-client run.
 
 #### Download JDK from alternative location
 
+This will download the JDK that best matches platform criteria. Note that JDK file names must be the
+same as that found on Oracle's download page.
+
+A script to download JDKs from Oracle and upload them to Amazon S3 is
+available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
+
 ```ruby
 override_attributes(
   "java_se": {
@@ -58,12 +64,6 @@ override_attributes(
   }
 )
 ```
-
-This will download the JDK that best matches platform criteria. Note that JDK file names must be the
-same as that found on Oracle's download page.
-
-A script to download JDKs from Oracle and upload them to Amazon S3 is
-available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
 
 #### Constrain java_se cookbook version
 
