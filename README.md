@@ -10,7 +10,7 @@
 [osx]: https://travis-ci.org/dhoer/chef-java_se/branches
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
-Installs Oracle's
+Installs and configures Oracle's
 [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
 
 See [Critical Patch Updates](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
@@ -35,11 +35,8 @@ By adding java_se to a run list (recipe[java_se]) or a cookbook
 
 Older versions of Java JDK are no longer publicly available
 after a patch update. So it is recommended that you
-[download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location).
-Or [constrain](https://docs.chef.io/cookbook_versions.html#constraints)
-java_se cookbook version to use latest release e.g., '~> 9.0' in your
-metadata.rb cookbook or
-[environment](https://docs.chef.io/cookbook_versions.html#environments).
+[download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location),
+or [constrain java_se cookbook version](https://github.com/dhoer/chef-java_se#constrain-java_se-cookbook-version).
 Note that the latter solution could result in a failed converge when
 new patch updates are released and a matching version of java_se
 cookbook is not yet available.  A release of java_se cookbook usually
@@ -68,13 +65,22 @@ same as that found on Oracle's download page.
 A script to download JDKs from Oracle and upload them to Amazon S3 is
 available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
 
-#### Constrain java_se cookbook in metadata.rb
+#### Constrain java_se cookbook version
+
+[Constrain](https://docs.chef.io/cookbook_versions.html#constraints)
+version in cookbook to latest Java SE JDK 9.
 
 ```ruby
 depends 'java_se', '~> 9.0'
 ```
 
-Constrains install to latest available Java SE JDK 9.
+Constrain version in
+[environment](https://docs.chef.io/cookbook_versions.html#environments)
+to latest Java SE JDK 9.
+
+```ruby
+cookbook 'java_se', '~> 9.0'
+```
 
 ### Attributes
 
