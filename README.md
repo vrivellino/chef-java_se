@@ -70,7 +70,9 @@ available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDK
 
 #### Constrain java_se cookbook in metadata.rb
 
-`depends 'java_se', '~> 9.0'`
+```ruby
+depends 'java_se', '~> 9.0'
+```
 
 Constrains install to latest available Java SE JDK 9.
 
