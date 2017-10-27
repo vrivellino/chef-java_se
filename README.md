@@ -38,7 +38,7 @@ after a patch update. So it is recommended that you
 [download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location),
 or [constrain java_se cookbook version](https://github.com/dhoer/chef-java_se#constrain-java_se-cookbook-version).
 Note that the latter solution could result in a failed converge when
-new patch updates are released and a matching version of java_se
+a new patch update is released and a matching version of java_se
 cookbook is not yet available.  A release of java_se cookbook usually
 follows within a day.
 
