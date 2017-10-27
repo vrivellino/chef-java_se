@@ -13,8 +13,8 @@
 Installs Oracle's
 [Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
 
-See [critical patch update](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
-for a next scheduled JDK release.
+See [Critical Patch Updates](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
+for next scheduled JDK release.
 
 ## Requirements
 
