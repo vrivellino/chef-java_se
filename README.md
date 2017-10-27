@@ -10,8 +10,8 @@
 [osx]: https://travis-ci.org/dhoer/chef-java_se/branches
 [win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
 
-Installs Oracle's
-[Java SE JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
+Installs and configures Oracle's
+[Java SE JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 See [Critical Patch Updates](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
 for next scheduled JDK release.
@@ -29,21 +29,17 @@ for next scheduled JDK release.
 
 ## Usage
 
-By adding java_se to a run list (recipe[java_se]) or a cookbook
-(include_recipe 'java_se') you are accepting the
+By adding java_se to a run list or cookbook you are accepting the
 [Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
 
 Older versions of Java JDK are no longer publicly available
 after a patch update. So it is recommended that you
-[download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location).
-Or [constrain](https://docs.chef.io/cookbook_versions.html#constraints)
-java_se cookbook version to use latest release e.g., '~> 8.0' in your
-metadata.rb cookbook or
-[environment](https://docs.chef.io/cookbook_versions.html#environments).
+[download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location),
+or [constrain java_se cookbook version](https://github.com/dhoer/chef-java_se#constrain-java_se-cookbook-version).
 Note that the latter solution could result in a failed converge when
-new patch updates are released and a matching version of java_se
+a new patch update is released and a matching version of java_se
 cookbook is not yet available.  A release of java_se cookbook usually
-follows within a day.
+follows within a day after a patch update.
 
 Windows JAVA_HOME and PATH environment variables are not available
 during initial chef-client run. Attribute
@@ -54,6 +50,12 @@ Java JDK bin directory and is available during initial chef-client run.
 
 #### Download JDK from alternative location
 
+This will download the JDK that best matches platform criteria. Note that JDK file names must be the
+same as that found on Oracle's download page.
+
+A script to download JDKs from Oracle and upload them to Amazon S3 is
+available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
+
 ```ruby
 override_attributes(
   "java_se": {
@@ -62,19 +64,22 @@ override_attributes(
 )
 ```
 
-This will download the JDK that best matches platform criteria. Note that JDK file names must be the
-same as that found on Oracle's download page.
+#### Constrain java_se cookbook version
 
-A script to download JDKs from Oracle and upload them to Amazon S3 is
-available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
-
-#### Constrain java_se cookbook in metadata.rb
+[Constrain](https://docs.chef.io/cookbook_versions.html#constraints)
+version in cookbook to latest Java SE JDK 8.
 
 ```ruby
 depends 'java_se', '~> 8.0'
 ```
 
-Constrains install to latest available Java SE JDK 8.
+Constrain version in
+[environment](https://docs.chef.io/cookbook_versions.html#environments)
+to latest Java SE JDK 8.
+
+```ruby
+cookbook 'java_se', '~> 8.0'
+```
 
 ### Attributes
 
