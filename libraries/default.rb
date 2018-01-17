@@ -27,7 +27,8 @@ def fetch_java_installer
 
   uri = node['java_se']['uri']
   if uri.nil? || uri.empty?
-    download_url = "http://download.oracle.com/otn-pub/java/jdk/#{java_version}+#{node['java_se']['build']}/#{jdk}"
+    download_url = "http://download.oracle.com/otn-pub/java/jdk/#{java_version}+#{node['java_se']['build']}" \
+        "/#{node['java_se']['hash']}/#{jdk}"
   elsif uri.start_with?('file://')
     file_cache_path =
       platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')
