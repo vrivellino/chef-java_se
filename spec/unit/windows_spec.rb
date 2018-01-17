@@ -14,7 +14,7 @@ describe 'java_se::default' do
 
     it 'fetches java' do
       expect(chef_run).to run_ruby_block(
-        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION}+#{BUILD}/#{node['java_se']['hash']}" \
+        "fetch http://download.oracle.com/otn-pub/java/jdk/#{VERSION}+#{BUILD}/#{HASH}" \
             "/jdk-#{VERSION}_windows-x64_bin.exe"
       )
     end
