@@ -1,7 +1,7 @@
-default['java_se']['release'] = '9.0.1'
+default['java_se']['release'] = '9.0.4'
 default['java_se']['build'] = '11'
 
 # https://www.oracle.com/webfolder/s/digest/9-0-1checksum.html
-default['java_se']['sha256']['tar'] = '2cdaf0ff92d0829b510edd883a4ac8322c02f2fc1beae95d048b6716076bc014'
-default['java_se']['sha256']['dmg'] = 'e87f9c83045f68546e78ee24a61724d06180581b0712ffdcdcac8faf6a3eca56'
-default['java_se']['sha256']['exe'] = '4df5f74fe04c708977e23bdae8842297bce10d550e4a1cbedde9a33af56f4dab'
+default['java_se']['sha256']['tar'] = '90c4ea877e816e3440862cfa36341bc87d05373d53389ec0f2d54d4e8c95daa2'
+default['java_se']['sha256']['dmg'] = 'f5c827ab4c3cf380827199005a3dfe8077a38c4d6e8b3fa37ec19ce6ca9aa658'
+default['java_se']['sha256']['exe'] = '56c67197a8f2f7723ffb0324191151075cdec0f0891861e36f3fadda28d556c3'
