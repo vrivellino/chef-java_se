@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.162 2018-01-17
+
+- Update 8u162
+
 ## 8.152.1 2017-10-17
 
 - Fix Windows x64 checksum
@@ -87,7 +91,7 @@
 
 ## 8.66.2
 
-- Fix #10 Retry download if file checksum is not valid 
+- Fix #10 Retry download if file checksum is not valid
 
 ## 8.66.1
 

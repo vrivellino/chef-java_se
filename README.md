@@ -8,7 +8,7 @@
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
 [linux]: https://travis-ci.org/dhoer/chef-java_se
 [osx]: https://travis-ci.org/dhoer/chef-java_se/branches
-[win]: https://ci.appveyor.com/project/dhoer/chef-java-se 
+[win]: https://ci.appveyor.com/project/dhoer/chef-java-se
 
 Installs and configures Oracle's
 [Java SE JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
@@ -94,12 +94,12 @@ and Windows only. Default `nil`.
 
 #### Linux Only
 - `node['java_se']['set_default']` - Indicates whether or not you want the JDK installed to be default on the
-system. Default `true`.                
+system. Default `true`.
 - `node['java_se']['owner']` - The owner of extracted directory. Default `root`.
 - `node['java_se']['group']` - The group of extracted directory. Default `root`.
 - `node['java_se']['alternatives_priority']` - A priority of the alternatives. Default `1061`.
 - `node['java_se']['set_etc_environment']` - Optionally sets JAVA_HOME in /etc/environment for. Default `false`.
-- `node['java_se']['reset_alternatives']` - Whether alternatives is reset. Default `true`.  
+- `node['java_se']['reset_alternatives']` - Whether alternatives is reset. Default `true`.
 - `node['java_se']['use_alt_suffix']` whether '_alt' suffix is used for none default java install. Default `false`.
 - `node['java_se']['bin_cmds']` -  Array of binary commands to symlink /usr/bin to, and set alternative on.  Examples
 are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the extracted folder. Will be ignored if
@@ -112,16 +112,16 @@ are not available during chef-client run, this provides a way for cookbooks to a
 version. Default `%SYSTEMDRIVE%\java\bin`.
 - `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
 
-#### Bind (Do not override) 
+#### Bind (Do not override)
 - `node['java_se']['release']` - The JDK release version.
 - `node['java_se']['update']` - The JDK update version.
 - `node['java_se']['build']` - The build number.
-- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
+- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg',
 'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
 
 ## Versioning
 
-This cookbook does NOT use [SemVer](http://semver.org) for versioning.  
+This cookbook does NOT use [SemVer](http://semver.org) for versioning.
 
 The versioning scheme is RELEASE.UPDATE.MINOR where:
 
