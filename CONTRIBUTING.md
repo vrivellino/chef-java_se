@@ -6,12 +6,12 @@ community. Please be nice to one another.
 ### Coding
 
 * Pick a task:
-  * Offer feedback on open [pull requests](https://github.com/dhoer/chef-java_se/pulls).
-  * Review open [issues](https://github.com/dhoer/chef-java_se/issues) for things to help on.
-  * [Create an issue](https://github.com/dhoer/chef-java_se/issues/new) to start a discussion on additions or features.
+  * Offer feedback on open [pull requests](https://github.com/vrivellino/chef-java_se/pulls).
+  * Review open [issues](https://github.com/vrivellino/chef-java_se/issues) for things to help on.
+  * [Create an issue](https://github.com/vrivellino/chef-java_se/issues/new) to start a discussion on additions or features.
 * Fork the project, add your changes and tests to cover them in a topic branch.
-* Commit your changes and rebase against `dhoer/chef-java_se` to ensure everything is up to date.
-* [Submit a pull request](https://github.com/dhoer/chef-java_se/compare/).
+* Commit your changes and rebase against `vrivellino/chef-java_se` to ensure everything is up to date.
+* [Submit a pull request](https://github.com/vrivellino/chef-java_se/compare/).
 
 ### Updating Release
 
@@ -40,5 +40,5 @@ community. Please be nice to one another.
 
 ### Non-Coding
 
-* Offer feedback on open [issues](https://github.com/dhoer/chef-java_se/issues).
+* Offer feedback on open [issues](https://github.com/vrivellino/chef-java_se/issues).
 * Organize or volunteer at events.

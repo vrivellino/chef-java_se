@@ -1,14 +1,14 @@
 # Java SE Cookbook
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/java_se.svg?style=flat-square)][cookbook]
-[![linux](http://img.shields.io/travis/dhoer/chef-java_se/master.svg?label=linux&style=flat-square)][linux]
-[![osx](http://img.shields.io/travis/dhoer/chef-java_se/macosx.svg?label=macosx&style=flat-square)][osx]
-[![win](https://img.shields.io/appveyor/ci/dhoer/chef-java-se/master.svg?label=windows&style=flat-square)][win]
+[![linux](http://img.shields.io/travis/vrivellino/chef-java_se/master.svg?label=linux&style=flat-square)][linux]
+[![osx](http://img.shields.io/travis/vrivellino/chef-java_se/macosx.svg?label=macosx&style=flat-square)][osx]
+[![win](https://img.shields.io/appveyor/ci/vrivellino/chef-java-se/master.svg?label=windows&style=flat-square)][win]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/java_se
-[linux]: https://travis-ci.org/dhoer/chef-java_se
-[osx]: https://travis-ci.org/dhoer/chef-java_se/branches
-[win]: https://ci.appveyor.com/project/dhoer/chef-java-se
+[linux]: https://travis-ci.org/vrivellino/chef-java_se
+[osx]: https://travis-ci.org/vrivellino/chef-java_se/branches
+[win]: https://ci.appveyor.com/project/vrivellino/chef-java-se
 
 Installs and configures Oracle's
 [Java SE JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
@@ -34,8 +34,8 @@ By adding java_se to a run list or cookbook you are accepting the
 
 Older versions of Java JDK are no longer publicly available
 after a patch update. So it is recommended that you
-[download JDK from alternative location](https://github.com/dhoer/chef-java_se#download-jdk-from-alternative-location),
-or [constrain java_se cookbook version](https://github.com/dhoer/chef-java_se#constrain-java_se-cookbook-version).
+[download JDK from alternative location](#download-jdk-from-alternative-location),
+or [constrain java_se cookbook version](#constrain-java_se-cookbook-version).
 Note that the latter solution could result in a failed converge when
 a new patch update is released and a matching version of java_se
 cookbook is not yet available.  A release of java_se cookbook usually
@@ -54,7 +54,7 @@ This will download the JDK that best matches platform criteria. Note that JDK fi
 same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
-available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDKs).
+available [here](https://github.com/vrivellino/chef-java_se/wiki/Populate-S3-with-JDKs).
 
 ```ruby
 override_attributes(
@@ -135,13 +135,13 @@ The versioning scheme is RELEASE.UPDATE.MINOR where:
 
 - Ask specific questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/chef-java_se).
 - Report bugs and discuss potential features in
-[Github issues](https://github.com/dhoer/chef-java_se/issues).
+[Github issues](https://github.com/vrivellino/chef-java_se/issues).
 
 ## Contributing
 
-Please refer to [CONTRIBUTING](https://github.com/dhoer/chef-java_se/blob/master/CONTRIBUTING.md).
+Please refer to [CONTRIBUTING](https://github.com/vrivellino/chef-java_se/blob/master/CONTRIBUTING.md).
 
 ## License
 
-MIT - see the accompanying [LICENSE](https://github.com/dhoer/chef-java_se/blob/master/LICENSE.md) file
+MIT - see the accompanying [LICENSE](https://github.com/vrivellino/chef-java_se/blob/master/LICENSE.md) file
 for details.
