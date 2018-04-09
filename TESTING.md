@@ -24,7 +24,7 @@ The Chef tooling (chefspec/test kitchen/etc) is managed by the
 Clone the latest version of the cookbook from the repository.
 
 ```bash
-git clone git@github.com:dhoer/chef-java_se.git java_se
+git clone git@github.com:vrivellino/chef-java_se.git java_se
 cd java_se
 ```
 
