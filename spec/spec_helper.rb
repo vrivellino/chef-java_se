@@ -1,7 +1,7 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-BUILD = '12'.freeze
+BUILD = '11'.freeze
 VERSION_MAJOR = '8'.freeze
 VERSION_UPDATE = '171'.freeze
 HASH = '512cd62ec5174c3487ac17c61aaa89e8'.freeze
