@@ -11,7 +11,7 @@
 [win]: https://ci.appveyor.com/project/vrivellino/chef-java-se
 
 Installs and configures Oracle's
-[Java SE JDK 9](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html).
+[Java SE JDK 10](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
 See [Critical Patch Updates](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
 for next scheduled JDK release.
@@ -67,18 +67,18 @@ override_attributes(
 #### Constrain java_se cookbook version
 
 [Constrain](https://docs.chef.io/cookbook_versions.html#constraints)
-version in cookbook to latest Java SE JDK 9.
+version in cookbook to latest Java SE JDK 10.
 
 ```ruby
-depends 'java_se', '~> 9.0'
+depends 'java_se', '~> 10.0'
 ```
 
 Constrain version in
 [environment](https://docs.chef.io/cookbook_versions.html#environments)
-to latest Java SE JDK 9.
+to latest Java SE JDK 10.
 
 ```ruby
-cookbook 'java_se', '~> 9.0'
+cookbook 'java_se', '~> 10.0'
 ```
 
 ### Attributes
