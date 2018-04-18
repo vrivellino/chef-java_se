@@ -1,8 +1,8 @@
-default['java_se']['release'] = '9.0.4'
-default['java_se']['build'] = '11'
-default['java_se']['hash'] = 'c2514751926b4512b076cc82f959763f'
+default['java_se']['release'] = '10.0.1'
+default['java_se']['build'] = '10'
+default['java_se']['hash'] = 'fb4372174a714e6b8c52526dc134031e'
 
-# https://www.oracle.com/webfolder/s/digest/9-0-1checksum.html
-default['java_se']['sha256']['tar'] = '90c4ea877e816e3440862cfa36341bc87d05373d53389ec0f2d54d4e8c95daa2'
-default['java_se']['sha256']['dmg'] = 'f5c827ab4c3cf380827199005a3dfe8077a38c4d6e8b3fa37ec19ce6ca9aa658'
-default['java_se']['sha256']['exe'] = '56c67197a8f2f7723ffb0324191151075cdec0f0891861e36f3fadda28d556c3'
+# https://www.oracle.com/webfolder/s/digest/10-0-1checksum.html
+default['java_se']['sha256']['tar'] = 'ae8ed645e6af38432a56a847597ac61d4283b7536688dbab44ab536199d1e5a4'
+default['java_se']['sha256']['dmg'] = 'cf3d33be870788eed5bb5eeef8f52aa9d7601955c8742efbec0cf9fbd6245ceb'
+default['java_se']['sha256']['exe'] = '9917df90549c8ebc0430dfe92478091ecff05e1a10edc708657e83a987727695'
