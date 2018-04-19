@@ -1,0 +1,71 @@
+---
+driver:
+  name: ec2
+  instance_type: t2.large
+  region: us-east-2
+  security_group_filter:
+    tag: Name
+    value: test-kitchen
+  associate_public_ip: true
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: <%= ENV['CHEF_VERSION'] || 'latest' %>
+  data_path: test/shared
+
+platforms:
+  - name: centos-7
+    driver: {tags: {Name: chef-java_se-centos7}}
+    transport: {username: centos}
+  - name: ubuntu-16.04
+    driver: {tags: {Name: chef-java_se-ubuntu16}}
+    transport: {username: ubuntu}
+  - name: ubuntu-14.04
+    driver: {tags: {Name: chef-java_se-ubuntu14}}
+    transport: {username: ubuntu}
+  - name: debian-9
+    driver: {tags: {Name: chef-java_se-debian9}}
+    transport: {username: admin}
+  - name: debian-8
+    driver: {tags: {Name: chef-java_se-debian8}}
+    transport: {username: admin}
+  #- name: fedora-26
+  #  driver:
+  #    tags: {Name: chef-java_se-fedora26}
+  #    image_search:
+  #      owner-id: 013116697141
+  #      name: "Fedora-Cloud-Base-26-*.x86_64-hvm*"
+  #  transport: {username: fedora}
+  - name: amazon-2018
+    driver: {tags: {Name: chef-java_se-amazon2018}}
+    transport: {username: ec2-user}
+  - name: amazon-2017
+    driver: {tags: {Name: chef-java_se-amazon2017}}
+    transport: {username: ec2-user}
+  - name: amazon2
+    driver:
+      tags: {Name: chef-java_se-amazon2}
+      image_search:
+        owner-id: 137112412989
+        name: amzn2-ami-hvm-*
+    transport: {username: ec2-user}
+  - name: windows-2016
+    driver: {tags: {Name: chef-java_se-windows2016}}
+
+suites:
+  - name: default
+    run_list:
+      - recipe[java_se::default]
+    excludes:
+      - windows-2016
+  - name: alt_home
+    run_list:
+      - recipe[java_se::default]
+    includes:
+      - windows-2016
+    attributes:
+      java_se:
+        java_home:
+          C:\my\java\jdk
+        win_jre_home:
+          C:\my\java\jre
