@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+if [[ -n $2 ]]; then
+    export CHEF_VERSION=$2
+fi
+
+echo "\$CHEF_VERSION: $CHEF_VERSION"
+
+case "$1" in
+    unit-tests)
+        /opt/chefdk/embedded/bin/chef --version
+        /opt/chefdk/embedded/bin/cookstyle --version
+        /opt/chefdk/embedded/bin/cookstyle
+        /opt/chefdk/embedded/bin/foodcritic --version
+        /opt/chefdk/embedded/bin/foodcritic . --exclude spec -f any
+        /opt/chefdk/embedded/bin/rspec
+        ;;
+    default-amazon*)
+        KITCHEN_YAML=.kitchen.ec2.yml /opt/chefdk/embedded/bin/kitchen test $1
+        ;;
+    *)
+        KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify $1
+        ;;
+esac
