@@ -24,6 +24,7 @@ for next scheduled JDK release.
 
 - CentOS, Red Hat, Fedora
 - Debian, Ubuntu
+- Amazon Linux
 - Mac OS X
 - Windows
 
