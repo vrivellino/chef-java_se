@@ -2,7 +2,7 @@
 ---
 driver:
   name: dokken
-  chef_version: latest
+  chef_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
   privileged: true # because Docker and SystemD/Upstart
 
 transport:
