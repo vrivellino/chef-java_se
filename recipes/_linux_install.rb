@@ -131,9 +131,7 @@ ruby_block 'update-alternatives' do # ~FC014
       # install the alternative if needed
       unless alternative_exists
         Chef::Log.info "adding alternative for #{cmd}"
-        if node['java_se']['reset_alternatives']
-          Mixlib::ShellOut.new("rm /var/lib/alternatives/#{cmd}").run_command
-        end
+        Mixlib::ShellOut.new("rm /var/lib/alternatives/#{cmd}").run_command if node['java_se']['reset_alternatives']
         install_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --install #{bin_path} #{cmd} #{alt_path} #{priority}")
         install_alt.run_command
         unless install_alt.exitstatus == 0
@@ -151,9 +149,7 @@ ruby_block 'update-alternatives' do # ~FC014
           Chef::Log.info "setting alternative for #{cmd}"
           set_alt = Mixlib::ShellOut.new("#{alternatives_cmd} --set #{cmd} #{alt_path}")
           set_alt.run_command
-          unless set_alt.exitstatus == 0
-            raise("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}")
-          end
+          raise("set alternative failed: #{alternatives_cmd} --set #{cmd} #{alt_path}") unless set_alt.exitstatus == 0
         end
       end
     end
