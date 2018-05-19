@@ -18,7 +18,7 @@ for next scheduled JDK release.
 
 ## Requirements
 
-- Chef 11+
+- Chef 12+
 
 ### Platforms
 
