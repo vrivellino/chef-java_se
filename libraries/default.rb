@@ -73,4 +73,3 @@ def fetch_java_installer
 
   file_cache_path
 end
-# rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity

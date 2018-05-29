@@ -116,7 +116,6 @@ module JavaSE
           fetch(url, file, checksum, limit - 1)
         end
       end
-      # rubocop:enable Metrics/MethodLength
 
       def valid?(file, checksum)
         sha256 = Digest::SHA256.file file
