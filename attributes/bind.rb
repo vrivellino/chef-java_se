@@ -1,8 +1,9 @@
-default['java_se']['release'] = '10.0.1'
-default['java_se']['build'] = '10'
-default['java_se']['hash'] = 'fb4372174a714e6b8c52526dc134031e'
+# http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_osx-x64_bin.dmg
+default['java_se']['release'] = '10.0.2'
+default['java_se']['build'] = '13'
+default['java_se']['hash'] = '19aef61b38124481863b1413dce1855f'
 
-# https://www.oracle.com/webfolder/s/digest/10-0-1checksum.html
-default['java_se']['sha256']['tar'] = 'ae8ed645e6af38432a56a847597ac61d4283b7536688dbab44ab536199d1e5a4'
-default['java_se']['sha256']['dmg'] = 'cf3d33be870788eed5bb5eeef8f52aa9d7601955c8742efbec0cf9fbd6245ceb'
-default['java_se']['sha256']['exe'] = '9917df90549c8ebc0430dfe92478091ecff05e1a10edc708657e83a987727695'
+# https://www.oracle.com/webfolder/s/digest/10-0-2checksum.html
+default['java_se']['sha256']['tar'] = '6633c20d53c50c20835364d0f3e172e0cbbce78fff81867488f22a6298fa372b'
+default['java_se']['sha256']['dmg'] = '2db323c9c93e7fb63e2ed7e06ce8150c32d782e3d0704be6274ebb2d298193aa'
+default['java_se']['sha256']['exe'] = 'bd2aa173db14789ac0369ab32bf929679760cae9e04d751d5f914ac3ad36c129'
