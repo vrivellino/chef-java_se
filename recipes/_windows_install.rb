@@ -37,6 +37,10 @@ link "#{javalink_dir}\\lib" do
   to "#{java_home}\\lib"
 end
 
+link "#{javalink_dir}\\conf" do
+  to "#{java_home}\\conf"
+end
+
 env 'JAVA_HOME' do
   value java_home
 end
