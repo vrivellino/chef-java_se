@@ -105,11 +105,10 @@ are mvn, java, javac, etc. These cmds must be in the bin subdirectory of the ext
 set_default is not true.
 
 #### Windows Only
-- `node['java_se']['win_addlocal']` - JDK features to install. Default `ToolsFeature,SourceFeature,PublicjreFeature`.
+- `node['java_se']['win_addlocal']` - JDK features to install. Default `ToolsFeature,SourceFeature`.
 - `node['java_se']['win_javalink']` - Symbolic link to Java JDK bin directory. Since Windows PATH and JAVA_HOME
 are not available during chef-client run, this provides a way for cookbooks to access the latest installed
 version. Default `%SYSTEMDRIVE%\java\bin`.
-- `node['java_se']['win_jre_home']` - Location to install public JRE. Leave nil to use default location. Default `nil`.
 
 #### Bind (Do not override)
 - `node['java_se']['release']` - The JDK release version.

@@ -20,6 +20,5 @@ default['java_se']['bin_cmds'] = %w[
 ]
 
 # windows only
-default['java_se']['win_addlocal'] = 'ToolsFeature,SourceFeature,PublicjreFeature'
+default['java_se']['win_addlocal'] = 'ToolsFeature,SourceFeature'
 default['java_se']['win_javalink'] = "#{ENV['SYSTEMDRIVE']}\\java\\bin"
-default['java_se']['win_jre_home'] = nil

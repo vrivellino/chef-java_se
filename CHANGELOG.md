@@ -4,6 +4,7 @@
 - Link for conf dir on Windows [#17]
 - Initial release of JDK 11 (JDK 10 has reach end of support)
 - Java 11.0.1
+- Remove JRE install, as it's no longer included (See [JDK 11 Release Notes](https://www.oracle.com/technetwork/java/javase/11-relnote-issues-5012449.html))
 
 ## 10.0.2 2018-07-19
 - Java 10.0.2

@@ -31,13 +31,6 @@ unless java_version_on_macosx?
   execute "/usr/bin/sudo /bin/ln -nsf /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Home " \
   '/Library/Java/Home'
 
-  execute '/usr/bin/sudo /bin/mkdir -p ' \
-  "/Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents/Home/bundle/Libraries"
-
-  execute "/usr/bin/sudo /bin/ln -nsf /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents" \
-  "/Home/jre/lib/server/libjvm.dylib /Library/Java/JavaVirtualMachines/jdk#{version}.jdk/Contents" \
-  '/Home/bundle/Libraries/libserver.dylib'
-
   if node['platform_version'].split('.')[1].to_i <= 9 # mavericks or older
     execute '/usr/bin/sudo /bin/rm -rf /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'
 
