@@ -1,5 +1,10 @@
 # Changelog
 
+## 11.0.1 2018-10-17
+- Link for conf dir on Windows [#17]
+- Initial release of JDK 11 (JDK 10 has reach end of support)
+- Java 11.0.1
+
 ## 10.0.2 2018-07-19
 - Java 10.0.2
 
