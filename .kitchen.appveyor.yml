@@ -27,5 +27,3 @@ suites:
       java_se:
         java_home:
           C:\my\java\jdk
-        win_jre_home:
-          C:\my\java\jre

@@ -1,7 +1,7 @@
 ---
 driver:
   name: ec2
-  instance_type: t2.large
+  instance_type: t3.large
   region: us-east-2
   security_group_filter:
     tag: Name
@@ -67,5 +67,3 @@ suites:
       java_se:
         java_home:
           C:\my\java\jdk
-        win_jre_home:
-          C:\my\java\jre

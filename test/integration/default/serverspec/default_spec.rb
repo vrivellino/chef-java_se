@@ -6,10 +6,6 @@ when 'windows'
     it { should be_file }
   end
 
-  describe file("C:\\Program Files\\Java\\jre-#{VERSION}\\bin\\java.exe") do
-    it { should be_file }
-  end
-
   describe command('C:\java\bin\java -version') do
     its(:stderr) { should match(/java version \"#{VERSION}\"/m) }
   end

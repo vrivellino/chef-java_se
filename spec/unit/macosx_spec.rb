@@ -75,19 +75,5 @@ describe 'java_se::default' do
         "/Library/Java/JavaVirtualMachines/jdk#{VERSION}.jdk"\
         '/Contents/Home /Library/Java/Home')
     end
-
-    it 'creates lib dir' do
-      expect(chef_run).to run_execute('/usr/bin/sudo /bin/mkdir -p ' \
-        "/Library/Java/JavaVirtualMachines/jdk#{VERSION}.jdk"\
-        '/Contents/Home/bundle/Libraries')
-    end
-
-    it 'creates java home' do
-      expect(chef_run).to run_execute('/usr/bin/sudo /bin/ln -nsf ' \
-        "/Library/Java/JavaVirtualMachines/jdk#{VERSION}.jdk"\
-        '/Contents/Home/jre/lib/server/libjvm.dylib ' \
-        "/Library/Java/JavaVirtualMachines/jdk#{VERSION}.jdk"\
-        '/Contents/Home/bundle/Libraries/libserver.dylib')
-    end
   end
 end
