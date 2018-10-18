@@ -1,13 +1,13 @@
 # get details from download_url
-# http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
+# http://download.oracle.com/otn-pub/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.tar.gz
 default['java_se']['release'] = '8'
-default['java_se']['update'] = '181'
-default['java_se']['build'] = '13'
-default['java_se']['hash'] = '96a7b8442fe848ef90c96a2fad6ed6d1'
+default['java_se']['update'] = '192'
+default['java_se']['build'] = '12'
+default['java_se']['hash'] = '750e1c8617c5452694857ad95c3ee230'
 
-# https://www.oracle.com/webfolder/s/digest/8u181checksum.html
-default['java_se']['sha256']['tar']['i586'] = 'd78a023abffb7ce4aade43e6db64bbad5984e7c82c54c332da445c9a79c1a904'
-default['java_se']['sha256']['tar']['x64'] = '1845567095bfbfebd42ed0d09397939796d05456290fb20a83c476ba09f991d3'
-default['java_se']['sha256']['dmg']['x64'] = '3ea78e0107f855b47a55414fadaabd04b94e406050d615663d54200ec85efc9b'
-default['java_se']['sha256']['exe']['i586'] = '37b090d99104dab7aeae582dbad07731d5550aeb8ebd5eaf0b131e559dd2e30b'
-default['java_se']['sha256']['exe']['x64'] = '6d1e254081d56fa460505d5b0f10ce1e33426c44dfbcab838c2be620f35997a4'
+# https://www.oracle.com/webfolder/s/digest/8u192checksum.html
+default['java_se']['sha256']['tar']['i586'] = '1be1d7669a36f96d90a0856ab1973dedc632bfdfdf27ccb1c2232608b73e26ce'
+default['java_se']['sha256']['tar']['x64'] = '6d34ae147fc5564c07b913b467de1411c795e290356538f22502f28b76a323c2'
+default['java_se']['sha256']['dmg']['x64'] = '7ddd3eebbad1c723670d76fb384724c5829a7fcf7c01ea538f78b82ee4ababcc'
+default['java_se']['sha256']['exe']['i586'] = 'd4d5bcfd8e3318de9d22fd7f6f1f71df44ce4084e7ff31407492889ef600f1a2'
+default['java_se']['sha256']['exe']['x64'] = '588d0882646eaf43b6ac9e40e7de4fb6045632ce49158521980cc632d42032cd'
