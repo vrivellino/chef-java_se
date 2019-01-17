@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.201 2019-01-16
+
+- Update 8u201
+- Merge PR #23: Allow the tgz file extension for the java uri
+
 ## 8.192 2018-10-18
 
 - Update 8u192
