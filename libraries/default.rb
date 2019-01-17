@@ -33,7 +33,7 @@ def fetch_java_installer
     file_cache_path =
       platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')
     file_cache_path = "#{file_cache_path}/#{jdk}" unless uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
-  elsif uri =~ /.*(\.dmg|\.exe|\.tar\.gz)$/
+  elsif uri =~ /.*(\.dmg|\.exe|\.tar\.gz|\.tgz)$/
     download_url = uri
     jdk = ::File.basename(uri)
   else

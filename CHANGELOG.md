@@ -1,5 +1,10 @@
 # Changelog
 
+## 11.0.2 2019-01-16
+
+- Java 11.0.2
+- Cherry-picked #23: Allow the tgz file extension for the java uri
+
 ## 11.0.1 2018-10-17
 - Link for conf dir on Windows [#17]
 - Initial release of JDK 11 (JDK 10 has reach end of support)
