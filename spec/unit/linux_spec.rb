@@ -4,7 +4,7 @@ describe 'java_se::default' do
   context 'linux' do
     context 'set_java_home' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.8') do |node|
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.11') do |node|
           node.override['java_se']['java_home'] = '/opt/java'
         end.converge(described_recipe)
       end
@@ -30,7 +30,7 @@ describe 'java_se::default' do
 
     context 'set_java_home_environment' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.8') do |node|
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.11') do |node|
           node.override['java_se']['java_home'] = '/opt/java'
           node.override['java_se']['set_etc_environment'] = true
         end.converge(described_recipe)
@@ -121,7 +121,7 @@ describe 'java_se::default' do
 
     context 'default_java_symlink' do
       let(:chef_run) do
-        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.8').converge(described_recipe)
+        ChefSpec::SoloRunner.new(platform: 'debian', version: '8.11').converge(described_recipe)
       end
 
       it 'symlinks /usr/lib/jvm/default-java' do
