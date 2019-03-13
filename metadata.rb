@@ -7,7 +7,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 source_url 'https://github.com/vrivellino/chef-java_se' if respond_to?(:source_url)
 issues_url 'https://github.com/vrivellino/chef-java_se/issues' if respond_to?(:issues_url)
 chef_version '>= 12.1' if respond_to?(:chef_version)
-version '11.0.2'
+version '11.0.2+b9'
 
 supports 'centos'
 supports 'debian'
