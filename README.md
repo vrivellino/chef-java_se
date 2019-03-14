@@ -16,6 +16,11 @@ Installs and configures Oracle's
 See [Critical Patch Updates](http://www.oracle.com/technetwork/topics/security/alerts-086861.html)
 for next scheduled JDK release.
 
+**Important Notice**: The patch version of the cookbook is now 1000 times the patch level of the Java version
+it's installing plus an incrementing number controlled by the cookbook author(s). For example, if the cookbook
+version is `11.0.2000`, then that's the first release of the cookbook for Java 11.0.2. If the cookbook version
+is `11.0.2004`, then that's the fifth release of the cookbook for Java 11.0.2. [#31]
+
 ## Requirements
 
 - Chef 12+
