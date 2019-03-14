@@ -1,5 +1,8 @@
 # Changelog
 
+## 11.0.2000 2019-03-14
+- Change cookbook versioning scheme [#31]
+
 ## 11.0.2 2019-03-13
 - Java 11.0.2 (build 9)
 
