@@ -6,7 +6,7 @@ describe 'java_se::default' do
     let(:shellout) { double(exitstatus: 1, run_command: nil, error!: nil, stdout: '') }
 
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(file_cache_path: CACHE, platform: 'mac_os_x', version: '10.10') do
+      ChefSpec::SoloRunner.new(file_cache_path: CACHE, platform: 'mac_os_x', version: '10.14') do
         allow(Mixlib::ShellOut).to receive(:new).and_return(shellout)
       end.converge(described_recipe)
     end
