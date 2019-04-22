@@ -1,9 +1,9 @@
-# https://download.oracle.com/otn-pub/java/jdk/11.0.2+9/f51449fcd52f4d52b93a989c5c56ed3c/jdk-11.0.2_linux-x64_bin.tar.gz
-default['java_se']['release'] = '11.0.2'
-default['java_se']['build'] = '9'
-default['java_se']['hash'] = 'f51449fcd52f4d52b93a989c5c56ed3c'
+# https://download.oracle.com/otn-pub/java/jdk/12.0.1+12/69cfe15208a647278a19ef0990eea691/jdk-12.0.1_linux-x64_bin.tar.gz
+default['java_se']['release'] = '12.0.1'
+default['java_se']['build'] = '12'
+default['java_se']['hash'] = '69cfe15208a647278a19ef0990eea691'
 
-# https://www.oracle.com/webfolder/s/digest/11-0-2-checksum.html
-default['java_se']['sha256']['tar'] = '7b4fd8ffcf53e9ff699d964a80e4abf9706b5bdb5644a765c2b96f99e3a2cdc8'
-default['java_se']['sha256']['dmg'] = '466935684e8772b8fdd9884fc24f7c342909abfc5aff07c908d248026edee737'
-default['java_se']['sha256']['exe'] = 'c808bcf758f36ebfae1513a7f326d0747e48044ee55831fbf0e12cbfc18b3950'
+# https://www.oracle.com/webfolder/s/digest/12-0-1-checksum.html
+default['java_se']['sha256']['tar'] = '9fd6dcdaf2cfca7da59e39b009a0f5bcd53bec2fb16105f7ca8d689cdab68d75'
+default['java_se']['sha256']['dmg'] = 'cf96dc630cd8efa60b2aa8b12d0092a09a2cd4d99567b330cbe0250206bf29ea'
+default['java_se']['sha256']['exe'] = '865c1d3b92e64a53f9f2e99c2a4c6af25a99ebc70c09a52c7d0df42dc5b31876'
