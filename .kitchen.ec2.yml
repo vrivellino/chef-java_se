@@ -7,6 +7,8 @@ driver:
     tag: Name
     value: test-kitchen
   associate_public_ip: true
+  instance_initiated_shutdown_behavior: terminate
+  user_data: kitchen-ec2-user-data.sh
 
 provisioner:
   name: chef_solo

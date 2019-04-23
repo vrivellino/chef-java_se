@@ -1,5 +1,8 @@
 # Changelog
 
+## 12.0.1000 2019-04-22
+- Java 12.0.1
+
 ## 11.0.2000 2019-03-14
 - Change cookbook versioning scheme [#31]
 
