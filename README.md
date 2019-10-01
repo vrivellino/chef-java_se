@@ -1,5 +1,9 @@
 # Java SE Cookbook
 
+**NOTE**: This [cookbook](https://supermarket.chef.io/cookbooks/java_se) is up for adoption. We moved on from
+using the Oracle JDK after they began requiring sign-in for downloading LTS versions and I am no longer
+maintaining it.
+
 [![Cookbook Version](http://img.shields.io/cookbook/v/java_se.svg?style=flat-square)][cookbook]
 [![linux](http://img.shields.io/travis/vrivellino/chef-java_se/master.svg?label=linux&style=flat-square)][linux]
 [![osx](http://img.shields.io/travis/vrivellino/chef-java_se/macosx.svg?label=macosx&style=flat-square)][osx]
